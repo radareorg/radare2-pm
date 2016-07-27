@@ -8,6 +8,13 @@ and tools that can be used with radare2.
 
 See https://github.com/radare/radare2 for r2pm
 
+Testing new packages
+--------------------
+
+	export R2PM_DBDIR="$PWD/db"
+	r2pm -i acr
+
+
 TODO
 ----
 * Add support to install binaries
