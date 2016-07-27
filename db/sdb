@@ -1,11 +1,10 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radare/acr"
-R2PM_DESC "[syspkg] ACR autoconf replacement"
+R2PM_GIT "https://github.com/radare/sdb"
+R2PM_DESC "[syspkg] Simple/String DataBase"
 
 R2PM_INSTALL() {
 	${MAKE} clean
-	./configure --prefix="${R2PM_PREFIX}" || exit 1
 	${MAKE} PREFIX="${R2PM_PREFIX}" || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
 		${SUDO} ${MAKE} install PREFIX="${R2PM_PREFIX}" || exit 1
