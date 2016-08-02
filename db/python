@@ -4,7 +4,7 @@ R2PM_GIT "https://github.com/radare/radare2"
 R2PM_DESC "[syspkg-python] Native Python API bindings"
 
 R2PM_INSTALL() {
-	sys/python.sh
+	sys/python.sh || exit 1
 }
 
 R2PM_UNINSTALL() {
