@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] dex2jar"
+
+R2PM_INSTALL() {
+	cd "${R2PM_USRDIR}/git"
+	wget -c https://github.com/pxb1988/dex2jar/releases/download/2.1-nightly-26/dex-tools-2.1-20150601.060031-26.zip
+	unzip dex-tools-2.1-20150601.060031-26.zip || exit 1
+	cd dex2jar-2.1-SNAPSHOT || exit 1
+	mkdir -p "${R2PM_BINDIR}"
+	ln -fs "$PWD/d2j-dex2jar.sh" "${R2PM_BINDIR}/dex2jar" || exit 1
+	echo ln -fs "$PWD/d2j-dex2jar.sh" "${R2PM_BINDIR}/dex2jar"
+}
+
+R2PM_UNINSTALL() {
+	rm "${R2PM_BINDIR}"/dex2jar
+	rm -rf "${R2PM_USRDIR}/git/dex2jar-2.1-SNAPSHOT"
+	rm -rf "${R2PM_USRDIR}/git/dex-tools*"
+}
+
+R2PM_END
