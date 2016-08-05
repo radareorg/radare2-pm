@@ -1,0 +1,24 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] axml2xml"
+
+SOURCE="https://raw.githubusercontent.com/trufae/axml2xml.rb/0de60154032341a9a2df3d81dafd0251e0226bbd/axml2xml.rb"
+B="${R2PM_BINDIR}"/axml2xml
+
+R2PM_INSTALL() {
+	python -c "import androguard" 2>/dev/null
+	if [ $? != 0 ]; then
+		echo "Please install androguard"
+		exit 1
+	fi
+	mkdir -p "${R2PM_BINDIR}"
+	rm -f "${B}"
+	wget -O "${B}" -c "${SOURCE}"
+	chmod +x "${B}"
+}
+
+R2PM_UNINSTALL() {
+	sudo rm -f "${B}"
+}
+
+R2PM_END
