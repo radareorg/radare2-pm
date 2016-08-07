@@ -1,0 +1,24 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] java2dex"
+
+R2PM_INSTALL() {
+	mkdir -p "${R2PM_BINDIR}"
+S="$"
+cat > ${R2PM_BINDIR}/java2dex << EOF
+#!/bin/sh
+echo FILES="${S}*"
+JAR="${S}(echo "${S}1" | sed -e 's,\.java,.jar,g')"
+CLS="${S}(echo "${S}*" | sed -e 's,\.java,.class,g')"
+javac -target 1.6 -source 1.6 ${S}* || exit 1
+echo ${S}CLS
+jar -cvf ${S}JAR ${S}CLS || exit 1
+exec dx --dex --output=classes.dex ${S}{JAR}
+EOF
+}
+
+R2PM_UNINSTALL() {
+	rm "${R2PM_BINDIR}"/java2dex
+}
+
+R2PM_END
