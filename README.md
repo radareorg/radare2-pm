@@ -12,6 +12,8 @@ Testing new packages
 --------------------
 
 	export R2PM_DBDIR="$PWD/db"
+	export R2PM_GITDIR="/path/to/the/root/folder/of/the/local/repository"
+	
 	r2pm -i acr
 
 
