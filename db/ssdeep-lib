@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[syspkg] ssdeep-2.13 library"
+
+R2PM_INSTALL() {
+	export CFLAGS=-I/usr/local/include
+	ssdeep/ssdeep-lib/install-ssdeep.sh
+}
+
+R2PM_UNINSTALL() {
+	export CFLAGS=-I/usr/local/include
+	ssdeep/ssdeep-lib/uninstall-ssdeep.sh
+}
+
+R2PM_END
