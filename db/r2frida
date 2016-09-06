@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/nowsecure/r2frida"
+R2PM_DESC "[r2frida] r2frida:// IO plugin"
+
+R2PM_INSTALL() {
+	cd r2io || exit 1
+	${MAKE} || exit 1
+	${MAKE} install R2_PLUGIN_PATH="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	cd r2io || exit 1
+	${MAKE} uninstall "${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_END
