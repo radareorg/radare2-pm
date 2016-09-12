@@ -12,7 +12,8 @@ Testing new packages
 --------------------
 
 	export R2PM_DBDIR="$PWD/db"
-	export R2PM_GITDIR="/path/to/the/root/folder/of/the/local/repository"
+	# export R2PM_GITDIR="/path/to/the/root/folder/of/the/local/repository"
+	# export R2PM_USRDIR="/path/to/usr/dir"
 	
 	r2pm -i acr
 
