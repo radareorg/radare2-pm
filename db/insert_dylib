@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/Tyilo/insert_dylib"
+R2PM_DESC "[tool] insert_dylib - insert dylib into mach0 for OSX"
+
+R2PM_INSTALL() {
+	if [ "`uname`" != Darwin ]; then
+		echo "This program can only be compiled on OSX"
+		exit 1
+	fi
+	xcodebuild || exit 1
+	cp -f build/Release/insert_dylib "${R2PM_PREFIX}/insert_dylib" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PREFIX}/insert_dylib"
+}
+
+R2PM_END
