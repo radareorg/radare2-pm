@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-regressions"
-R2PM_DESC "[r2r] radare2-regressions tools"
+R2PM_DESC "[r2r] radare2-regressions tools (provides r2r and r2-v)"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
