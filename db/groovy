@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] groovy programming language"
+R2PM_TGZ https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip groovy-2.4.7
+
+GROOVY_BINS="groovy groovyc groovysh groovydoc grape"
+
+R2PM_INSTALL() {
+	for a in ${GROOVY_BINS} ; do
+		ln -fs "$PWD/bin/$a" "${R2PM_BINDIR}/$a"
+		echo ln $a
+	done
+}
+
+R2PM_UNINSTALL() {
+	for a in ${GROOVY_BINS} ; do
+		rm -f "${R2PM_BINDIR}"/$a
+		echo rm $a
+	done
+}
+
+R2PM_END
