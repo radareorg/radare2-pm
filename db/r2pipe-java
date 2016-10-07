@@ -1,12 +1,12 @@
 R2PM_BEGIN
 
 R2PM_DESC "[r2pipe] r2pipe API for Java"
-R2PM_GIT "https://github.com/radare/radare2-bindings"
+R2PM_GIT "https://github.com/radare/radare2-r2pipe"
 
 R2PM_INSTALL() {
-	cd r2pipe/java
-	${MAKE}
-	cp -f r2pipe.jar "${R2PM_OLDPWD}"
+	cd java || exit 1
+	${MAKE} || exit 1
+	cp -f r2pipe.jar "${R2PM_OLDPWD}" || exit 1
 }
 
 R2PM_UNINSTALL() {
