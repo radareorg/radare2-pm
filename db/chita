@@ -8,9 +8,9 @@ BINDIR="${R2PM_BINDIR}"
 R2PM_INSTALL() {
 	node --version || exit 1
 	npm install || exit 1
-	mkdir -p "${R2PM_BINDIR}"
-	echo '#!/bin/sh' > "${R2PM_BINDIR}/chita"
-	echo "exec node '`pwd`'"'/chita.js $*' >> "${R2PM_BINDIR}/chita"
+	mkdir -p "${R2PM_BINDIR}" || exit 1
+	echo '#!/bin/sh' > "${R2PM_BINDIR}/chita" || exit 1
+	echo "exec node '`pwd`'"'/chita.js $*' >> "${R2PM_BINDIR}/chita" || exit 1
 	chmod +x "${R2PM_BINDIR}"/chita || exit 1
 }
 

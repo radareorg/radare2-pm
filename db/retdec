@@ -9,9 +9,9 @@ R2PM_INSTALL() {
 	cd decompiler
 	node --version || exit 1
 	npm install || exit 1
-	mkdir -p "${R2PM_BINDIR}"
-	echo '#!/bin/sh' > "${R2PM_BINDIR}/retdec"
-	echo "exec node '`pwd`'"'/decompile.js $*' >> "${R2PM_BINDIR}/retdec"
+	mkdir -p "${R2PM_BINDIR}" || exit 1
+	echo '#!/bin/sh' > "${R2PM_BINDIR}/retdec" || exit 1
+	echo "exec node '`pwd`'"'/decompile.js $*' >> "${R2PM_BINDIR}/retdec" || exit 1
 	chmod +x "${R2PM_BINDIR}"/retdec || exit 1
 }
 
