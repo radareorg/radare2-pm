@@ -1,0 +1,13 @@
+R2PM_BEGIN
+
+R2PM_DESC "[syspkg] SkyNet TWD AI"
+
+R2PM_INSTALL() {
+	echo "ERROR: Skynet cannot run on old hardware like this"
+}
+
+R2PM_UNINSTALL() {
+	:
+}
+
+R2PM_END
