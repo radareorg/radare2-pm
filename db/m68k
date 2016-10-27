@@ -1,15 +1,14 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-extras"
-R2PM_DESC "[r2-asm] m68k disassembler"
+R2PM_DESC "[r2-asm-anal] m68k disassembler and analyzer"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
-	cd libr/asm/p
+	cd libr
 	${MAKE} clean
-	${MAKE} asm_m68k.${LIBEXT} || exit 1
-	cp -f asm_m68k.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
-	echo "cp -f asm_m68k.${LIBEXT} ${R2PM_PLUGDIR}"
+	${MAKE} m68k || exit 1
+	${MAKE} m68k-install R2PM_PLUGDIR="${R2PM_PLUGDIR}"
 }
 
 R2PM_UNINSTALL() {
