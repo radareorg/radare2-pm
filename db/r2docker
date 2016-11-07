@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2"
+R2PM_DESC "[pkg] radare2 symstall"
+
+R2PM_INSTALL() {
+	docker build -t r2docker .
+	echo
+	echo "Run docker run -ti r2docker"
+	echo
+}
+
+R2PM_UNINSTALL() {
+	docker rmi -f r2docker
+}
+
+R2PM_END
