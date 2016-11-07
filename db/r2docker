@@ -1,13 +1,17 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2"
-R2PM_DESC "[pkg] radare2 symstall"
+R2PM_DESC "[pkg] radare2 docker image on Ubuntu"
 
 R2PM_INSTALL() {
 	docker build -t r2docker .
 	echo
 	echo "Run docker run -ti r2docker"
 	echo
+	BIN="${R2PM_PREFIX}/bin/r2docker"
+	echo '#!/bin/sh' > $BIN
+	echo 'docker run -ti r2docker' >> $BIN
+	chmod +x $BIN
 }
 
 R2PM_UNINSTALL() {
