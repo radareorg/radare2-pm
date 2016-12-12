@@ -13,6 +13,7 @@ R2PM_INSTALL() {
 
 R2PM_UNINSTALL() {
 	rm -f "${R2PM_PLUGDIR}/asm_m68k_net."*
+	rm -f "${R2PM_PLUGDIR}/anal_m68k_net."*
 }
 
 R2PM_END
