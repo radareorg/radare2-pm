@@ -5,7 +5,19 @@ R2PM_DESC "[syspkg] SWIG compiler"
 
 R2PM_INSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
-		sys/swig.sh
+		if [ -x /opt/local/bin/port ]; then
+			sudo port install i386-mingw32-gcc
+			sudo port install swig
+			sudo port install swig-python
+		elif [ -x /usr/bin/pacman ]; then
+			sudo pacman -S swig
+		elif [ -x /usr/bin/dnf ]; then
+			sudo dnf add swig
+		elif [ -x /usr/bin/xbps ]; then
+			sudo xbps-install -Syu swig
+		elif [ -x /usr/bin/apt-get ]; then
+			sudo apt-get install swig
+		fi
 	else
 		echo "Sorry. This package cannot be installed in your home. Use r2pm -gi"
 		exit 1
