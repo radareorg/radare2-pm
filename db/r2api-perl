@@ -8,7 +8,8 @@ R2PM_INSTALL() {
 	${SUDO} make install-vapi DESTDIR="${R2PM_DESTDIR}" || exit 1
 	cd perl
 	make clean
-	${R2PM_SUDO} make install DESTDIR="${R2PM_DESTDIR}"
+	make || exit 1
+	sudo make install DESTDIR="${R2PM_DESTDIR}" || exit 1
 }
 
 R2PM_UNINSTALL() {
