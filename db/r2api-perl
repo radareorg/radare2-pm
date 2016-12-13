@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-bindings"
+R2PM_DESC "Native Perl API bindings"
+
+R2PM_INSTALL() {
+	./configure --prefix="${PREFIX}" --enable=perl || exit 1
+	${SUDO} make install-vapi DESTDIR="${DESTDIR}" || exit 1
+	cd perl
+	make clean
+	${R2PM_SUDO} make install DESTDIR="${DESTDIR}"
+}
+
+R2PM_UNINSTALL() {
+	cd perl
+	make uninstall
+}
+
+R2PM_END
