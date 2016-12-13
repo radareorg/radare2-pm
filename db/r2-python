@@ -1,15 +1,22 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radare/radare2"
-R2PM_DESC "[syspkg-python] Native Python API bindings"
+R2PM_GIT "https://github.com/radare/radare2-bindings"
+R2PM_DESC "[r2-python] Native Python API bindings"
 
 R2PM_INSTALL() {
-	sys/python.sh || exit 1
+	[ -z "${PYTHON}" ] && PYTHON=python
+	./configure --prefix="${PREFIX}" --enable=python || exit 1
+	${SUDO} make install-vapi DESTDIR="${DESTDIR}" || exit 1
+	cd python
+	make clean
+	make PYTHON="${PYTHON}"
+	${R2PM_SUDO} make install PYTHON="${PYTHON}" \
+		PYTHON_VERSION="${PYTHON_VERSION}" DESTDIR="${DESTDIR}"
 }
 
 R2PM_UNINSTALL() {
-	echo "Sorry. This package cannot be uninstalled"
-	exit 0
+	cd python
+	make uninstall
 }
 
 R2PM_END
