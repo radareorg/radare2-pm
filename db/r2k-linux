@@ -1,0 +1,24 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "r2k Linux kernel module"
+
+R2PM_INSTALL() {
+	cd r2k/linux
+	${MAKE} || R2PM_FAIL "Build"
+	#${MAKE} install || R2PM_FAIL "Install"
+	gzip r2kmod.ko
+	${R2PM_SUDO} cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/
+	${R2PM_SUDO} depmod -a
+	echo "You should now be able to run modprobe r2kmod"
+	echo
+	echo "WARNING: This module allows ANY user to read/write physical memory"
+	echo "WARNING: Dont use it if you dont know what you are doing"
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} rm -f /lib/modules/$(uname -r)/kernel/drivers/misc/r2k*.ko*
+	#${MAKE} uninstall
+}
+
+R2PM_END
