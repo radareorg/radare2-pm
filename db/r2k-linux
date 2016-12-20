@@ -6,10 +6,12 @@ R2PM_DESC "r2k Linux kernel module"
 R2PM_INSTALL() {
 	cd r2k/linux
 	${MAKE} || R2PM_FAIL "Build"
-	gzip -f r2kmod.ko || R2PM_FAIL "GZIP error"
+	#gzip -f r2kmod.ko || R2PM_FAIL "GZIP error"
 	if [ "${GLOBAL}" = 1 ]; then
 		#${MAKE} install || R2PM_FAIL "Install"
-		sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
+		sudo mkdir -p /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Cannot create install dir"
+		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
+		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
 		sudo depmod -a
 		echo "You should now be able to run:"
 		echo
