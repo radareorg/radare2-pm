@@ -6,18 +6,26 @@ R2PM_DESC "r2k Linux kernel module"
 R2PM_INSTALL() {
 	cd r2k/linux
 	${MAKE} || R2PM_FAIL "Build"
-	#${MAKE} install || R2PM_FAIL "Install"
-	gzip r2kmod.ko
-	${R2PM_SUDO} cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/
-	${R2PM_SUDO} depmod -a
-	echo "You should now be able to run modprobe r2kmod"
-	echo
-	echo "WARNING: This module allows ANY user to read/write physical memory"
-	echo "WARNING: Dont use it if you dont know what you are doing"
+	gzip -f r2kmod.ko || R2PM_FAIL "GZIP error"
+	if [ "${GLOBAL}" = 1 ]; then
+		#${MAKE} install || R2PM_FAIL "Install"
+		sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
+		sudo depmod -a
+		echo "You should now be able to run:"
+		echo
+		echo '$ sudo modprobe r2kmod'
+		echo
+		echo "WARNING: This module allows ANY user to read/write physical memory"
+		echo "WARNING: Dont use it if you dont know what you are doing"
+	else
+		R2PM_FAIL "Only installable globally with -gi"
+	fi
 }
 
 R2PM_UNINSTALL() {
-	${R2PM_SUDO} rm -f /lib/modules/$(uname -r)/kernel/drivers/misc/r2k*.ko*
+	if [ "${GLOBAL}" = 1 ]; then
+		sudo rm -f /lib/modules/$(uname -r)/kernel/drivers/misc/r2k*.ko*
+	fi
 	#${MAKE} uninstall
 }
 
