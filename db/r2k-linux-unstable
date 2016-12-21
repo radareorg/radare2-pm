@@ -12,14 +12,15 @@ R2PM_INSTALL() {
 		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
 		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
 		sudo depmod -a
-		echo "You should now be able to run:"
+		sudo modprobe r2kmod
+		echo "You should now run:"
 		echo
 		echo '$ sudo modprobe r2kmod'
 		echo
 		echo "WARNING: This module allows ANY user to read/write physical memory"
 		echo "WARNING: Dont use it if you dont know what you are doing"
 	else
-		R2PM_FAIL "Only installable globally with -gi"
+		sudo insmod r2kmod.ko || R2PM_FAIL "Only installable globally with -gi"
 	fi
 }
 
@@ -27,6 +28,7 @@ R2PM_UNINSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
 		sudo rm -f /lib/modules/$(uname -r)/kernel/drivers/misc/r2k*.ko*
 	fi
+	sudo rmmod r2kmod
 	#${MAKE} uninstall
 }
 
