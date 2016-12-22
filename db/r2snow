@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "snowman decompiler integration with radare2"
+
+R2PM_INSTALL() {
+	cd r2snowman || R2PM_FAIL "Cd"
+	${MAKE} || R2PM_FAIL "Build"
+	${MAKE} install PREFIX=${R2PM_PREFIX} || R2PM_FAIL "Install"
+}
+
+R2PM_UNINSTALL() {
+	cd r2snowman || R2PM_FAIL "Cd"
+	${MAKE} uninstall PREFIX=${R2PM_PREFIX} || R2PM_FAIL "UnInstall"
+}
+
+R2PM_END
