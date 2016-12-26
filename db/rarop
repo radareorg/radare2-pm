@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/jpenalbae/rarop"
+R2PM_DESC "Graphical ROP chain builder using radare2 and r2pipe"
+
+R2PM_INSTALL() {
+	yarn || exit 1
+	ln -fs ${PWD}/bin/rarop ${R2PM_BINDIR}/rarop || exit 1
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_BINDIR}/rarop
+}
+
+R2PM_END
