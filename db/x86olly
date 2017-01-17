@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[r2-asm] X86 Olly Assembler"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	cd libr || exit 1
+	${MAKE} clean
+	${MAKE} olly || exit 1
+	${MAKE} olly-install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	cd baleful
+	rm -f "${R2PM_PLUGDIR}"/*olly*
+}
+
+R2PM_END
