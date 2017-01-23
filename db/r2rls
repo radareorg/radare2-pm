@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-release"
+R2PM_DESC "[pkg] radare2 releasing machinery"
+
+R2PM_INSTALL() {
+	if [ "${GLOBAL}" = 1 ]; then
+		make install
+	else
+		make install PREFIX=${R2PM_PREFIX}
+	fi
+}
+
+R2PM_UNINSTALL() {
+	if [ "${GLOBAL}" = 1 ]; then
+		make uninstall
+	else
+		make uninstall PREFIX="${R2PM_PREFIX}"
+	fi
+}
+
+R2PM_END
