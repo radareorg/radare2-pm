@@ -4,6 +4,7 @@ R2PM_GIT "https://github.com/radare/radare2-release"
 R2PM_DESC "[pkg] radare2 releasing machinery"
 
 R2PM_INSTALL() {
+	make CONFIG
 	if [ "${GLOBAL}" = 1 ]; then
 		make install
 	else
@@ -12,6 +13,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
+	make CONFIG
 	if [ "${GLOBAL}" = 1 ]; then
 		make uninstall
 	else
