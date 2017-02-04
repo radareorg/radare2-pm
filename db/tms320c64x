@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[r2-asm] TMS320 C64X disassembler and analyzer"
+
+R2PM_INSTALL() {
+	${MAKE} -C tms320c64x || exit 1
+	${MAKE} -C tms320c64x install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} -C tms320c64x uninstall R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+	${MAKE} -C tms320c64x clean
+}
+
+R2PM_END
