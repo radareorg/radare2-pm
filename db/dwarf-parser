@@ -1,0 +1,24 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "dwarf parser"
+
+R2PM_INSTALL() {
+	if ! $(pkg-config --exists libdwarf); then
+		if ! $(r2pm -l libdwarf); then
+			echo "Running: r2pm -i libdwarf"
+			r2pm -i libdwarf
+		fi
+	fi
+
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	${MAKE} -C dwarf || exit 1
+	${MAKE} -C dwarf install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	rm ${R2PM_PLUGDIR}/dparser* || exit 1
+	${MAKE} -C dwarf clean
+}
+
+R2PM_END
