@@ -7,8 +7,8 @@ R2PM_INSTALL() {
 #	if ! $(pkg-config --exists libelf) || ! $(pkg-config --exists zlib); then
 #		echo "ERROR: Libraries required: libelf and zlib"; exit 1
 #	fi
-	./configure --prefix="${R2PM_PREFIX}"
-	${MAKE}
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	${MAKE} || exit 1
 }
 
 R2PM_UNINSTALL() {
