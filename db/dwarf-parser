@@ -17,7 +17,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	rm ${R2PM_PLUGDIR}/dparser* || exit 1
+	rm ${R2PM_PLUGDIR}/dparser*
 	${MAKE} -C dwarf clean
 }
 
