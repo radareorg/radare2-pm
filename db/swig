@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2"
 R2PM_DESC "[syspkg] SWIG compiler"
+R2PM_TGZ https://github.com/swig/swig/archive/rel-3.0.12.tar.gz swig-rel-3.0.12
 
 R2PM_INSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
@@ -19,8 +20,10 @@ R2PM_INSTALL() {
 			sudo apt-get install swig
 		fi
 	else
-		echo "Sorry. This package cannot be installed in your home. Use r2pm -gi"
-		exit 1
+		sh autogen.sh || exit 1
+		./configure --prefix="${R2PM_PREFIX}" || exit 1
+		${MAKE} -j${MAKE_JOBS} || exit 1
+		${MAKE} install || exit 1
 	fi
 }
 
