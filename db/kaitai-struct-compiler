@@ -1,0 +1,25 @@
+R2PM_BEGIN
+
+R2PM_DESC "[bin] kaitai-struct-compiler commandline tool"
+R2PM_GIT https://github.com/kaitai-io/kaitai_struct kaitai-struct-compiler
+
+R2PM_INSTALL() {
+	git submodule init
+	git submodule update
+	sbt clean build || exit 1
+	(
+		cd tests && ./build-compiler
+	)
+	mkdir -p ${R2PM_BINDIR}
+	echo ln -fs ${PWD}/compiler/jvm/target/universal/stage/bin/kaitai-struct-compiler \
+		${R2PM_BINDIR}/kaitai-struct-compiler || exit 1
+	ln -fs ${PWD}/compiler/jvm/target/universal/stage/bin/kaitai-struct-compiler \
+		${R2PM_BINDIR}/kaitai-struct-compiler || exit 1
+	echo "kaitai-struct-compiler is now installed and available via r2pm -r"
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_BINDIR}/kaitai-struct-compiler
+}
+
+R2PM_END
