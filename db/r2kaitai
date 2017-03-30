@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-extras"
 R2PM_DESC "[bin] r2kaitai command to list signatures and launch ksv"
+R2PM_DEPS ksv
 
 R2PM_INSTALL() {
 	ln -fs ${PWD}/kaitai/r2kaitai ${R2PM_BINDIR}/r2kaitai

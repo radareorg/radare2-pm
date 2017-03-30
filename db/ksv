@@ -1,6 +1,7 @@
 R2PM_BEGIN
 
 R2PM_DESC "[bin] kaitai-struct-visualizer"
+R2PM_DEPS kaitai-struct-compiler
 
 R2PM_INSTALL() {
 	gem install --user-install kaitai-struct-visualizer
