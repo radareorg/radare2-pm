@@ -6,7 +6,8 @@ R2PM_GIT https://github.com/kaitai-io/kaitai_struct kaitai-struct-compiler
 R2PM_INSTALL() {
 	git submodule init
 	git submodule update
-	sbt clean build || exit 1
+	sbt clean || exit 1
+	sbt || exit 1
 	(
 		cd tests && ./build-compiler
 	)
