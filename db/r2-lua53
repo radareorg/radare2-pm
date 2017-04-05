@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "lua53 disassembler, analyzer and bin parser plugins for radare2"
+
+R2PM_INSTALL() {
+	cd lua53 || R2PM_FAIL "Cd"
+	${MAKE} || R2PM_FAIL "Build failed"
+	${MAKE} install LIBR_PLUGINS=${R2PM_PLUGDIR} || R2PM_FAIL "Install"
+}
+
+R2PM_UNINSTALL() {
+	cd lua53 || R2PM_FAIL "Cd"
+	${MAKE} uninstall LIBR_PLUGINS=${R2PM_PLUGDIR} || R2PM_FAIL "UnInstall"
+}
+
+R2PM_END
