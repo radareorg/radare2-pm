@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/newlog/r2com"
+R2PM_DESC "[r2-r2pipe-python] COM object identification. A comment specifying the COM object will be added before CoCreateInstance call"
+
+R2PM_INSTALL() {
+    mkdir -p "${R2PM_ETCD}" || exit 1
+    echo '$r2com=#!pipe python '"'$(pwd)'"'/r2com.py' > "${R2PM_ETCD}/r2com" || exit 1
+}
+
+R2PM_UNINSTALL() {
+    rm -f "${R2PM_ETCD}"/r2com
+}
+
+R2PM_END
