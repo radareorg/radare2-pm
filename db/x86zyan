@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[r2-arch] X86 Zyan Disassembler"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	cd libr/asm || exit 1
+	${MAKE} clean || exit 1
+	${MAKE} zyan-install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	cd libr/asm || exit 1
+	${MAKE} zyan-uninstall R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_END
