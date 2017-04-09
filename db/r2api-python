@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-bindings"
-R2PM_DESC "[r2-python] Native Python API bindings"
+R2PM_DESC "[r2-script] Native Python API bindings"
 
 R2PM_INSTALL() {
 	[ -z "${PYTHON}" ] && PYTHON=python

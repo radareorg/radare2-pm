@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "git://git.code.sf.net/p/libdwarf/code" libdwarf-code
-R2PM_DESC "libdwarf - git"
+R2PM_DESC "[syspkg] libdwarf - git"
 
 R2PM_INSTALL() {
 #	if ! $(pkg-config --exists libelf) || ! $(pkg-config --exists zlib); then
