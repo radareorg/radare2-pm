@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_DESC "[r2-zig] Get zignatures for MASM32 libraries"
+
+USER_ZIGNS="$(r2 -hh|grep USER_ZIGNS|awk '{print $2}')"
+
+R2PM_INSTALL() {
+	eval mkdir -p "${USER_ZIGNS}"
+	eval cd "${USER_ZIGNS}"
+	wget https://github.com/radareorg/radare2-sigs/releases/download/v1.0/masm32.zip
+	unzip masm32.zip
+	rm masm32.zip
+	exit 1
+}
+
+R2PM_UNINSTALL() {
+	eval rm "${USER_ZIGNS}/masm32.zig.gz"
+	exit 1
+}
+
+R2PM_END
