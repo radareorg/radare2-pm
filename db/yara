@@ -1,22 +1,26 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_GIT "https://github.com/VirusTotal/yara"
 R2PM_DESC "[syspkg] yara library and commandline tools from git"
 
 R2PM_INSTALL() {
 	export CFLAGS=-I/usr/local/include
+	sh bootstrap.sh
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	${MAKE} -C bcl || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
-		yara/install-yara.sh
+		${SUDO} ${MAKE} install
 	else
-		PREFIX="$R2PM_PREFIX" \
-		NOSUDO=1 \
-			yara/install-yara.sh
+		${MAKE} install
 	fi
 }
 
 R2PM_UNINSTALL() {
-	echo "Sorry. This package cannot be uninstalled"
-	exit 0
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} uninstall
+	else
+		${MAKE} uninstall
+	fi
 }
 
 R2PM_END
