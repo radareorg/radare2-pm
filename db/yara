@@ -4,9 +4,9 @@ R2PM_GIT "https://github.com/VirusTotal/yara"
 R2PM_DESC "[syspkg] yara library and commandline tools from git"
 
 R2PM_INSTALL() {
-	export CFLAGS=-I/usr/local/include
+#	export CFLAGS=-I/usr/local/include
 	sh bootstrap.sh
-	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	./configure --without-crypto --prefix="${R2PM_PREFIX}" || exit 1
 	${MAKE} -j12 || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
 		${SUDO} ${MAKE} install
