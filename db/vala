@@ -9,7 +9,7 @@ R2PM_DESC "[syspkg] Vala compiler from git"
 R2PM_INSTALL() {
 #	valac --help > /dev/null 2>&1 && exit 0
 	./configure --prefix="${R2PM_PREFIX}"
-	${MAKE}
+	${MAKE} -j4
 	${MAKE} install
 }
 
