@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_DESC "[syspkg] meson
+R2PM_DEPS ninja
+
+R2PM_INSTALL() {
+	${R2PM_SUDO} pip3 install -U meson
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} pip3 uninstall meson
+}
+
+R2PM_END

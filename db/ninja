@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[syspkg] The Ninja build system required for meson"
+
+R2PM_INSTALL() {
+	python configure.py --bootstrap || exit 1
+	mkdir -p ${R2PM_PREFIX}/bin || exit 1
+	cp -f ninja ${R2PM_PREFIX}/bin || exit 1
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_PREFIX}/bin/ninja
+}
+
+R2PM_END
