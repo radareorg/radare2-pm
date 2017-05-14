@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-bindings"
-R2PM_DESC "[r2-script] Native LUA API bindings"
+R2PM_DESC "[r2-script] Native Lua API bindings"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" --enable=lua || exit 1
