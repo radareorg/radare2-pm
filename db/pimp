@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "Triton based R2 plugin for concolic execution and total control"
+
+PIMPDIR="${R2PM_PLUGDIR}/pimp"
+
+R2PM_INSTALL() {
+	cd pimp
+	mkdir -p "${PIMPDIR}"
+	cp *.py ${PIMPDIR}
+	echo "Add '\$pimp=#!pipe python ${PIMPDIR}/pimp_wrapper.py' to your radare2rc file"
+}
+
+R2PM_UNINSTALL() {
+	rm -rf "${PIMPDIR}"
+}
+
+R2PM_END
