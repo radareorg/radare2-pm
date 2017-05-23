@@ -9,7 +9,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_PLUGDIR}/"r2angr.py
+	rm -f "${R2PM_PLUGDIR}/"r2angr-io.py
 }
 
 R2PM_END
