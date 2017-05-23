@@ -1,22 +1,22 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-bindings"
-R2PM_DESC "[r2-script] Native Python API bindings"
+R2PM_DESC "[r2-api] Native Python API bindings"
 
 R2PM_INSTALL() {
 	[ -z "${PYTHON}" ] && PYTHON=python
 	./configure --prefix="${PREFIX}" --enable=python || exit 1
-	${SUDO} make install-vapi DESTDIR="${R2PM_DESTDIR}" || exit 1
+	${R2PM_SUDO} ${MAKE} install-vapi DESTDIR="${R2PM_DESTDIR}" || exit 1
 	cd python
-	make clean
-	make PYTHON="${PYTHON}"
-	${R2PM_SUDO} make install PYTHON="${PYTHON}" \
+	${MAKE} clean
+	${MAKE} PYTHON="${PYTHON}"
+	${R2PM_SUDO} ${MAKE} install PYTHON="${PYTHON}" \
 		PYTHON_VERSION="${PYTHON_VERSION}" DESTDIR="${R2PM_DESTDIR}"
 }
 
 R2PM_UNINSTALL() {
 	cd python
-	make uninstall
+	${R2PM_SUDO} ${MAKE} uninstall
 }
 
 R2PM_END

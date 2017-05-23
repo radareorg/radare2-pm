@@ -1,20 +1,20 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-bindings"
-R2PM_DESC "[r2-script] Native Lua API bindings"
+R2PM_DESC "[r2-api] Native Lua API bindings"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" --enable=lua || exit 1
-	${SUDO} make install-vapi DESTDIR="${R2PM_DESTDIR}" || exit 1
+	${R2PM_SUDO} ${MAKE} install-vapi DESTDIR="${R2PM_DESTDIR}" || exit 1
 	cd lua
-	make clean
-	make || exit 1
-	sudo make install DESTDIR="${R2PM_DESTDIR}" || exit 1
+	${MAKE} clean
+	${MAKE} || exit 1
+	${R2PM_SUDO} ${MAKE} install DESTDIR="${R2PM_DESTDIR}" || exit 1
 }
 
 R2PM_UNINSTALL() {
 	cd lua
-	make uninstall
+	${R2PM_SUDO uninstall
 }
 
 R2PM_END
