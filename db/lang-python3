@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-bindings"
-R2PM_DESC "[lang-python] Python r2pipe/RLang plugin"
+R2PM_DESC "[lang-python3] Python3 r2pipe/RLang plugin"
 
 detect_pycfg3() {
 	PCS="${PYTHON_CONFIG}
