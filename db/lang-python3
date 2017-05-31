@@ -26,7 +26,7 @@ detect_pycfg3() {
 
 R2PM_INSTALL() {
 	detect_pycfg3
-	[[ -z $PYCFG ]] && \
+	[ -z $PYCFG ] && \
 		echo "python-config binary for python3 not found," \
 		"please specify via PYTHON_CONFIG environment variable" && exit 1
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
