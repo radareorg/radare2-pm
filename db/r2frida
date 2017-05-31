@@ -1,18 +1,18 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/nowsecure/r2frida"
-R2PM_DESC "[r2-io] r2frida:// IO plugin (env R2FRIDA_CYCRIPT=0|1)"
+R2PM_DESC "[r2-io] r2frida:// IO plugin (env R2FRIDA_CYLANG=0|1)"
 
-if [ -z "${R2FRIDA_CYCRIPT}" ]; then
-	R2FRIDA_CYCRIPT=0
+if [ -z "${R2FRIDA_CYLANG}" ]; then
+	R2FRIDA_CYLANG=0
 fi
 
 R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
 	# ${MAKE} update || R2PM_FAIL "Cannot update"
-	${MAKE} WITH_CYCRIPT=${R2FRIDA_CYCRIPT} || R2PM_FAIL "Build failed"
-	${MAKE} WITH_CYCRIPT=${R2FRIDA_CYCRIPT} install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
+	${MAKE} WITH_CYLANG=${R2FRIDA_CYLANG} || R2PM_FAIL "Build failed"
+	${MAKE} WITH_CYLANG=${R2FRIDA_CYLANG} install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
 }
 
 R2PM_UNINSTALL() {
