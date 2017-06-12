@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "r2wars game"
+
+R2PM_INSTALL() {
+	cp -f r2wars/r2wars.py ${R2PM_PREFIX}/bin/r2wars || exit 1
+	chmod +x ${R2PM_PREFIX}/bin/r2wars
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_PREFIX}/bin/r2wars
+}
+
+R2PM_END
