@@ -4,16 +4,26 @@ R2PM_GIT https://github.com/hteso/iaito
 R2PM_DESC "[gui] C++/Qt GUI for radare2"
 
 R2PM_INSTALL() {
+	QT_PATH="$HOME/Qt/5.6/clang_64/bin/:$HOME/Qt/5.6/gcc_64/bin/"
 	cd src || exit 1
-	export PATH="~/Qt/5.6/clang_64/bin:$PATH"
-	qmake -makefile iaito.pro || exit 1
+	if qmake --version 2>&1 ; then
+		export PATH="$QT_PATH:$PATH"
+		qmake -makefile iaito.pro || exit 1
+	elif cmake --version 2>&1 ; then
+		cmake .. -DCMAKE_PREFIX_PATH="$QT_PATH"
+	fi
 	${MAKE} -j6 || exit 1
-	SRC="${PWD}/iaito.app/Contents/MacOS/iaito"
-	${R2PM_SUDO} ln -fs ${SRC} ${R2PM_PREFIX}/bin/iaito || exit 1
+	mkdir -p "${R2PM_PREFIX}/bin/" || exit 1
+	if [ "`uname`" = 'Darwin' ] ; then
+		SRC="${PWD}/iaito.app/Contents/MacOS/iaito"
+	else
+		SRC="${PWD}/iaito"
+	fi
+	${R2PM_SUDO} ln -fs ${SRC} "${R2PM_PREFIX}/bin/iaito" || exit 1
 }
 
 R2PM_UNINSTALL() {
-	${R2PM_SUDO} rm -f ${R2PM_PREFIX}/bin/iaito || exit 1
+	${R2PM_SUDO} rm -f "${R2PM_PREFIX}/bin/iaito" || exit 1
 }
 
 R2PM_END
