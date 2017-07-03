@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT https://github.com/hteso/iaito
+R2PM_DESC "[gui] C++/Qt GUI for radare2"
+
+R2PM_INSTALL() {
+	cd src || exit 1
+	export PATH="~/Qt/5.6/clang_64/bin:$PATH"
+	qmake -makefile iaito.pro || exit 1
+	${MAKE} -j6 || exit 1
+	${R2PM_SUDO} ln -fs ${PWD}/iaito ${R2PM_PREFIX}/bin/iaito || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} rm -f ${R2PM_PREFIX}/bin/iaito || exit 1
+}
+
+R2PM_END
