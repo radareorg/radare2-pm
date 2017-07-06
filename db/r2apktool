@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_DESC "[r2-r2pipe-python] APK decompiler alternative to apktool"
+
+R2PM_INSTALL() {
+	rm "${R2PM_USRDIR}/git/r2apktool"
+	wget -c https://raw.githubusercontent.com/h4ng3r/r2apktool/master/r2apktool.py \ 
+		-O ${R2PM_BINDIR}/r2apktool
+	chmod +x ${R2PM_BINDIR}/r2apktool
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}"/r2apktool
+}
+
+R2PM_END
+
