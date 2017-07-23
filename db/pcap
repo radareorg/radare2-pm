@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[r2-bin] PCAP | libpcap packet capture file support"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	cd libr/bin/p || exit 1
+	${MAKE} clean
+	${MAKE} bin_pcap.${LIBEXT} || exit 1
+	cp -f bin_pcap.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
+	echo "cp -f bin_pcap.${LIBEXT} ${R2PM_PLUGDIR}"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}"/*pcap*
+}
+
+R2PM_END
