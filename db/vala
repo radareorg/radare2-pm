@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-VV="0.36.3"
+VV="0.36.4"
 SV="$(echo ${VV}|cut -d . -f 1,2)"
 
 R2PM_TGZ "http://download.gnome.org/sources/vala/${SV}/vala-${VV}.tar.xz"
