@@ -4,11 +4,11 @@ R2PM_GIT "https://github.com/radare/radare2-extras"
 R2PM_DESC "[bin] LIEF bin plugins for r2"
 
 R2PM_INSTALL() {
-	cd lief && ${MAKE} install USER_PLUGINS="${R2PM_PLUGDIR}" || exit 1
+	cd lief && ${MAKE} && ${MAKE} install USER_PLUGINS="${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_UNINSTALL() {
-	cd lief && ${MAKE} uninstall USER_PLUGINS="${R2PM_PLUGDIR}" || exit 1
+	cd lief && ${MAKE} && ${MAKE} uninstall USER_PLUGINS="${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_END
