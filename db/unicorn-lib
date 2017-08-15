@@ -6,7 +6,7 @@ R2PM_DESC "[syspkg] unicorn emulation library"
 R2PM_INSTALL() {
 	${MAKE} -j${R2PM_JOBS} || exit 1
 	${R2PM_SUDO} ${MAKE} install PREFIX="${R2PM_PREFIX}" || exit 1
-	${R2PM_SUDO} rm -f ${R2PM_PREFIX}/libunicorn.*dylib
+	${R2PM_SUDO} rm -f ${R2PM_PREFIX}/lib/libunicorn.*dylib
 }
 
 R2PM_UNINSTALL() {
