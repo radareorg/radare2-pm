@@ -9,7 +9,6 @@ R2PM_INSTALL() {
 	cd pimp
 	mkdir -p "${PIMPDIR}"
 	cp *.py ${PIMPDIR}
-	echo "Add '\$pimp=#!pipe python ${PIMPDIR}/pimp_wrapper.py' to your radare2rc file"
 }
 
 R2PM_UNINSTALL() {
