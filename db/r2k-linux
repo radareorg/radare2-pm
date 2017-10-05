@@ -3,6 +3,15 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/radare/radare2-extras"
 R2PM_DESC "[r2-io] r2k Linux kernel module"
 
+R2PM_DOC="
+You should now be able to run:
+
+  $ sudo modprobe r2kmod
+
+WARNING: This module allows ANY user to read/write physical memory
+WARNING: Dont use it if you dont know what you are doing
+"
+
 R2PM_INSTALL() {
 	cd r2k/linux
 	${MAKE} || R2PM_FAIL "Build"
@@ -13,12 +22,7 @@ R2PM_INSTALL() {
 		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
 		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
 		sudo depmod -a
-		echo "You should now be able to run:"
-		echo
-		echo '$ sudo modprobe r2kmod'
-		echo
-		echo "WARNING: This module allows ANY user to read/write physical memory"
-		echo "WARNING: Dont use it if you dont know what you are doing"
+		r2pm_doc r2k-linux
 	else
 		sudo insmod r2kmod.ko || R2PM_FAIL "Cannot install kernel module"
 	fi
