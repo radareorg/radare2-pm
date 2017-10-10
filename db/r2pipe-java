@@ -9,8 +9,6 @@ R2PM_INSTALL() {
 	cp -f r2pipe.jar "${R2PM_OLDPWD}" || exit 1
 }
 
-R2PM_UNINSTALL() {
-	# nothing to do here
-}
+R2PM_UNINSTALL() {} # nothing to do here
 
 R2PM_END
