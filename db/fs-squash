@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[r2-fs] read-only SquashFS read support"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	cd libr/fs/squashfs || exit 1
+	${MAKE}
+}
+
+R2PM_UNINSTALL() {
+	cd `r2 -H USER_PLUGINS` && rm -f fs_squash*
+}
+
+R2PM_END
