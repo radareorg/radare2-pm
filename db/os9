@@ -15,7 +15,7 @@ R2PM_INSTALL() {
 
 R2PM_UNINSTALL() {
 	cd build || exit 1
-	cat install_manifest.txt | xargs rm -rfv || exit 1
+	cat install_manifest.txt | xargs rm -rv || exit 1
 }
 
 R2PM_END
