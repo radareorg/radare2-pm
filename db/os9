@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/thestr4ng3r/r2-os9.git"
+R2PM_DESC "[r2-bin] OS-9 module plugin for r2 bin"
+
+R2PM_INSTALL() {
+	mkdir build
+	cd build || exit 1
+	cmake -DPLUGINS_INSTALL_PATH="${R2PM_PLUGDIR}" .. || exit 1
+	mkdir -p "${R2PM_PLUGDIR}" || exit 1
+	${MAKE} clean
+	${MAKE} -j4 || exit 1
+	${MAKE} install || exit 1 
+}
+
+R2PM_UNINSTALL() {
+	cd build || exit 1
+	cat install_manifest.txt | xargs rm -rv || exit 1
+}
+
+R2PM_END
