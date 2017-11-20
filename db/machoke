@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/conix-security/machoke"
+R2PM_DESC "[syspkg] CFG-based fuzzy hash for malware classification"
+
+R2PM_INSTALL() {
+    ${SUDO} pip3 install mmh3 r2pipe  
+    mkdir -p ${R2PM_BINDIR}
+    cp machoke.py "${R2PM_BINDIR}"/machoke
+    chmod +x "${R2PM_BINDIR}"/machoke
+}
+
+R2PM_UNINSTALL() {
+    rm -f "${R2PM_BINDIR}"/machoke
+}
+R2PM_END
