@@ -12,7 +12,7 @@ R2PM_INSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
 		${MAKE} unicorn-install || exit 1
 	else
-		${MAKE} unicorn-install THEDIR=${USER_PLUGINS} || exit 1
+		${MAKE} unicorn-install THEDIR=${R2PM_PLUGDIR} || exit 1
 	fi
 	rm -f "${R2PM_PREFIX}/lib/libunicorn"*.{dylib,so}
 }
@@ -21,7 +21,7 @@ R2PM_UNINSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
 		${MAKE} unicorn-uninstall || exit 1
 	else
-		${MAKE} unicorn-uninstall THEDIR=${USER_PLUGINS} || exit 1
+		${MAKE} unicorn-uninstall THEDIR=${R2PM_PLUGDIR} || exit 1
 	fi
 }
 
