@@ -4,7 +4,7 @@ R2PM_GIT "https://github.com/radare/radare2-extras"
 R2PM_DESC "[r2-arch] Motorola MC6809 disassembler"
 
 R2PM_INSTALL() {
-	./configure --prefix="${R2PM_PREFIX} || exit 1
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
 	cd libr/asm/p
 	${MAKE} clean
 	ls
