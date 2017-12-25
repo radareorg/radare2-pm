@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-extras"
+R2PM_DESC "[r2-arch] Ethereum VM disassembler, analyzer, io and debugger plugins"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	cd libr
+	${MAKE} clean
+	${MAKE} evm || exit 1
+	${MAKE} evm-install R2PM_PLUGDIR="${R2PM_PLUGDIR}"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/asm_evm."*
+	rm -f "${R2PM_PLUGDIR}/anal_evm."*
+	rm -f "${R2PM_PLUGDIR}/io_evm."*
+	rm -f "${R2PM_PLUGDIR}/debug_evm."*
+}
+
+R2PM_END
