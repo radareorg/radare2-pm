@@ -1,0 +1,27 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/securisec/r2msdn"
+R2PM_DESC "[r2msdn] annotate PE/COFF Windows function arguments and built in help"
+
+R2PM_DOC="
+usage: $r2msdn [-h] [-v] [-i INFO]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -v          Verbose mode
+  -i INFO     Show info about a function
+
+Invoke from inside r2 shell with $r2msdn
+"
+
+R2PM_INSTALL() {
+    tar xf ${R2PM_GITDIR}/r2msdn/r2msdn.tar.gz -C ${R2PM_GITDIR}r2msdn
+	echo '$'r2msdn="#"'!'"pipe python ${R2PM_GITDIR}/r2msdn/r2msdn.py" >> ~/.radare2rc || exit 1
+	echo "\n[+] r2msdn has been installed"
+}
+
+R2PM_UNINSTALL() {
+	rm -rf "${R2PM_GITDIR}"/r2msdn
+}
+
+R2PM_END
