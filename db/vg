@@ -3,8 +3,7 @@ R2PM_BEGIN
 R2PM_DESC "[sys] vagrant made simple"
 
 R2PM_INSTALL() {
-	wget -c https://raw.githubusercontent.com/radare/toys/master/bin/vg \ 
-		-O ${R2PM_BINDIR}/vg
+	wget -c -O ${R2PM_BINDIR}/vg https://raw.githubusercontent.com/radare/toys/master/bin/vg
 	chmod +x ${R2PM_BINDIR}/vg
 }
 
