@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_DESC "[sys] vagrant made simple"
+
+R2PM_INSTALL() {
+	wget -c https://raw.githubusercontent.com/radare/toys/master/bin/vg \ 
+		-O ${R2PM_BINDIR}/vg
+	chmod +x ${R2PM_BINDIR}/vg
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}"/vg
+}
+
+R2PM_END
+
