@@ -17,6 +17,7 @@ R2PM_INSTALL() {
 
 R2PM_UNINSTALL() {
 	rm -f "${BINDIR}"/r2dec
+	make -C p uninstall || exit 1
 }
 
 R2PM_END
