@@ -7,6 +7,7 @@ BINDIR="${R2PM_BINDIR}"
 R2PM_INSTALL() {
 	node --version || exit 1
 	npm install || exit 1
+	make -C p || exit 1
 	mkdir -p "${R2PM_BINDIR}"
 	echo '#!/bin/sh' > "${R2PM_BINDIR}/r2dec" || exit 1
 	echo "exec node '`pwd`'"'/r2dec.js $*' >> "${R2PM_BINDIR}/r2dec" || exit 1
