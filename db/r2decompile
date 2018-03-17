@@ -17,11 +17,11 @@ Invoke from inside r2 shell with $dec
 "
 
 R2PM_INSTALL() {
-    cd ${R2PM_GITDIR}r2decompile
-    npm install
+    cd ${R2PM_GITDIR}/r2decompile
+    npm install || exit 1
     cd -
 	echo '$'dec="#"'!'"pipe node ${R2PM_GITDIR}r2decompile/r2decompile.js" >> ~/.radare2rc || exit 1
-	echo "\n[+] r2decompile has been installed"
+	echo "[+] r2decompile has been installed"
 }
 
 R2PM_UNINSTALL() {
