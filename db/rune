@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/runw"
+R2PM_DESC "[syspkg] Radare Symbolic Execution in Rust"
+
+R2PM_INSTALL() {
+	cargo update --verbose || exit 1
+	cargo build --verbose || exit 1
+	ln -fs `pwd`/target/debug/runec \
+		"${BINDIR}"/runec || exit 1
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${BINDIR}"/runec
+}
+
+R2PM_END
