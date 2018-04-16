@@ -1,0 +1,27 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/gast04/r4ge"
+R2PM_DESC "[r2-angr] R4GE is another r2-angr plugin"
+
+R2PM_INSTALL() {
+	pip install -r requirements.txt
+S="$"
+	echo << EOF > ${R2PM_BINDIR}/r4ge
+#!/bin/sh
+R4GEPATH=$(pwd)
+[ -z "${S}PYTHON" ] && PYTHON=python
+if [ -z "${S}1" ]; then
+	echo "Usage: r4ge [r4ge-bin] [args]"
+	cd ${S}{R4GEPATH}/src && ls *.py
+	exit 1
+fi
+exec ${S}{PYTHON} $(pwd)/$1.py $*
+EOF
+	chmod +x ${R2PM_BINDIR}/r4ge
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}/"r4ge
+}
+
+R2PM_END
