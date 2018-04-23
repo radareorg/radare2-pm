@@ -5,7 +5,7 @@ R2PM_DESC "[util] crashlog parser"
 
 R2PM_INSTALL() {
 	F=${R2PM_BINDIR}/r2crash
-	ln -fs ${PWD}/r2crash/r2crash.js $F
+	ln -fs ${PWD}/crashlog/r2crash.js $F
 	chmod +x $F
 }
 
