@@ -9,7 +9,8 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-    # you cant uninstall r2con
+	# you cant uninstall r2con
+	:
 }
 
 R2PM_END
