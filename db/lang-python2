@@ -31,7 +31,7 @@ R2PM_INSTALL() {
 		"please specify via PYTHON_CONFIG environment variable" && exit 1
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
 	${MAKE} -C libr/lang/p py PYTHON_CONFIG=${PYCFG} PYVER=2 || exit 1
-	${MAKE} -C libr/lang/p python-install PYVER=2 || exit 1
+	${MAKE} -C libr/lang/p python-install PYVER=2 R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_UNINSTALL() {
