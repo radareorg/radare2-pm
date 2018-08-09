@@ -10,6 +10,11 @@ R2PM_INSTALL() {
 	${MAKE} bin_pyc.${LIBEXT} || exit 1
 	cp -f bin_pyc.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
 	echo "cp -f bin_pyc.${LIBEXT} ${R2PM_PLUGDIR}"
+	cd ../../asm/p || exit 1
+	${MAKE} clean
+	${MAKE} asm_pyc.${LIBEXT} || exit 1
+	cp -f asm_pyc.${LIBEXT} ${R2PM_PLUGDIR}
+	echo "cp -f asm_pyc.${LIBEXT} ${R2PM_PLUGDIR}"
 }
 
 R2PM_UNINSTALL() {
