@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/radare2-au"
+R2PM_DESC "Audio support for radare2"
+
+R2PM_INSTALL() {
+	${MAKE} clean
+	${MAKE} || exit 1
+	${MAKE} install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} uninstall
+}
+
+R2PM_END
