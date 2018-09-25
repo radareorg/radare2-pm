@@ -12,7 +12,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_PLUGDIR}/bin_dlang.*
+	rm -f "${R2PM_PLUGDIR}"/bin_dlang.*
 }
 
 R2PM_END
