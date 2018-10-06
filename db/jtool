@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_TGZ "http://www.newosxbook.com/tools/jtool.tar"
+R2PM_DESC "[syspkg] jtool from Jonathan Levin"
+
+R2PM_INSTALL() {
+	cp -f jtool "${R2PM_PREFIX}/bin/jtool"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PREFIX}/bin/jtool"
+}
+
+R2PM_END
