@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/mrmacete/r2-ios-kernelcache"
+R2PM_DESC "[r2] kernelcache loader for radare2"
+
+R2PM_INSTALL() {
+	${MAKE} clean
+	${MAKE} || exit 1
+        export LIBEXT="`r2 -H LIBEXT`"
+	cp -f bin_kernelcache.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+        export LIBEXT="`r2 -H LIBEXT`"
+	rm -f "${R2PM_PLUGDIR}/bin_kernelcache.${LIBEXT}" || exit 1
+	${MAKE} uninstall
+}
+
+R2PM_END
