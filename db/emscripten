@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/juj/emsdk.git"
+R2PM_DESC "[system] emscripten C/C++ compiler to asm.js/wasm"
+
+R2PM_INSTALL() {
+	./emsdk update
+	./emsdk update-tags
+	./emsdk activate latest
+	echo
+	echo "Add this to your .profile"
+	echo
+	echo "source $PWD/emsdk_env.sh"
+	echo
+}
+
+R2PM_UNINSTALL() {
+	echo "Just drop the source line from your .profile"
+}
+
+R2PM_END
