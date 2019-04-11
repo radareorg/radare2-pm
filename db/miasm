@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+#R2PM_GIT "https://github.com/cea-sec/miasm"
+R2PM_GIT "https://github.com/trufae/miasm"
+R2PM_DESC "[syspkg] miasm - Reverse engineering framework in Python https://miasm.re/"
+
+R2PM_INSTALL() {
+	git checkout -b fix-macos-build || true
+	git pull origin fix-macos-build
+	python setup.py build
+	sudo python setup.py install
+}
+
+R2PM_UNINSTALL() {
+	sudo python setup.py uninstall
+}
+
+R2PM_END

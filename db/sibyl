@@ -2,16 +2,17 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/cea-sec/Sibyl"
 R2PM_DESC "[syspkg] sibyl - A Miasm2 based function divination"
+R2PM_DEPS miasm
 
 R2PM_INSTALL() {
 	pwd
 	ls
 	python setup.py build
-	python setup.py install
+	sudo python setup.py install
 }
 
 R2PM_UNINSTALL() {
-	python setup.py uninstall
+	sudo python setup.py uninstall
 }
 
 R2PM_END
