@@ -9,9 +9,11 @@ R2PM_INSTALL() {
 	ls
 	python setup.py build
 	sudo python setup.py install
+	ln -fs ${PWD}/ext/radare2/r2_find.py ${R2PM_BINDIR}/r2sibyl
 }
 
 R2PM_UNINSTALL() {
+	rm -f ${R2PM_BINDIR}/r2sibyl
 	sudo python setup.py uninstall
 }
 
