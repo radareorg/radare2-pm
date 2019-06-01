@@ -17,16 +17,23 @@ Invoke from inside r2 shell with $dec
 "
 
 R2PM_INSTALL() {
-    cd ${R2PM_GITDIR}/r2retdec
-    npm install || exit 1
-    cd -
-	echo '$'dec="#"'!'"pipe node ${R2PM_GITDIR}/r2retdec/r2retdec.js" >> ~/.radare2rc || exit 1
-	echo "\n[+] r2retdec has been installed"
-	echo "\n[*] Make sure to put the path to retdec-decompiler.sh in \$HOME/.r2retdec"
+	cd ${R2PM_GITDIR}/r2retdec
+	npm install || exit 1
+	cd -
+	echo "Usage: #!pipe r2retdec"
+	echo " - Open the file: r2 -A /bin/ls"
+	echo " - Type: #!pipe r2retdec"
+	echo "Function must be analyzed to get be able to decompile it"
+	ln -fs "${R2PM_GITDIR}/r2retdec/r2retdec.js" "${R2PM_BINDIR}/r2retdec"
+	chmod +x "${R2PM_GITDIR}/r2retdec/r2retdec.js"
+	if [ -x "${R2PM_GITDIR}/retdec/bin/retdec-decompiler.py" ]; then
+		echo "${R2PM_GITDIR}/retdec/bin/retdec-decompiler.py" > ~/.r2retdec
+	fi
 }
 
 R2PM_UNINSTALL() {
-	rm -rf "${R2PM_GITDIR}"/r2retdec
+	#rm -rf "${R2PM_GITDIR}"/r2retdec
+	rm -f "${R2PM_BINDIR}"/r2retdec
 }
 
 R2PM_END
