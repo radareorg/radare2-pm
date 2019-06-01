@@ -1,20 +1,25 @@
 R2PM_BEGIN
 
-RETDEC_URLBASE=https://retdec-tc.avast.com/repository/download/
-
-RETDEC_MACOS=${RETDEC_URLBASE}/Retdec_MacBuild/.lastSuccessful/package/retdec-master-macos-64b.zip?guest=1
-RETDEC_LINUX=${RETDEC_URLBASE}/RetDec_LinuxBuild/.lastSuccessful/package/retdec-master-linux-64b.zip?guest=1
+RETDEC_VERSION=3.3
+RETDEC_URLBASE=https://github.com/avast/retdec/releases/download/
+RETDEC_MACOS=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-macos-64b.zip
+RETDEC_LINUX=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-ubuntu-64b.zip
 
 R2PM_GIT "https://github.com/securisec/r2retdec"
 R2PM_DESC "[retdec] Official Nightly binary build of the retdec decompiler"
-
-R2PM_DOC="TODO r2pm doesnt support this URL yet "
+if [ "`uname`" = Darwin ]; then
+	R2PM_TGZ "${RETDEC_MACOS}" "retdec"
+else
+	R2PM_TGZ "${RETDEC_LINUX}" "retdec"
+fi
 
 R2PM_INSTALL() {
 	(
 		S="${R2PM_GITDIR}/retdec/bin/"
 		cd "$S" || exit 1
+		echo "Source directory: ${S}"
 		for a in * ; do
+			echo "Symlinking ${a}"
 			ln -fs "${S}/${a}" "${R2PM_BINDIR}/$a"
 		done
 	)
