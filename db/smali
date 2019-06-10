@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] smali"
+
+R2PM_INSTALL() {
+	cd "${R2PM_USRDIR}/git"
+	wget -c https://bitbucket.org/JesusFreke/smali/downloads/smali-2.2.7.jar
+	mkdir -p "${R2PM_BINDIR}"
+	echo "java -jar ${R2PM_USRDIR}/"'smali-2.2.7.jar $@' > "${R2PM_BINDIR}/smali"
+	chmod +x "${R2PM_BINDIR}/smali"
+}
+
+R2PM_UNINSTALL() {
+	rm "${R2PM_BINDIR}"/smali
+}
+
+R2PM_END
