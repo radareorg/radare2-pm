@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] ghidra"
+
+GHIDRA_VERSION=9.0.4
+GHIDRA_URL="https://ghidra-sre.org/ghidra_${GHIDRA_VERSION}_PUBLIC_20190516.zip"
+R2PM_TGZ ${GHIDRA_URL} "ghidra_${GHIDRA_VERSION}"
+
+R2PM_INSTALL() {
+	echo "Installing"
+	mkdir -p "${R2PM_BINDIR}"
+	ln -fs "${PWD}/ghidraRun" "${R2PM_BINDIR}/ghidraRun"
+	ln -fs "${PWD}/support/analyzeHeadless" "${R2PM_BINDIR}/analyzeHeadless"
+	echo "Now you have ghidraRun and analyzeHeadless in the R2PM_PATH. Enjoy"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}"/ghidraRun
+	rm -f "${R2PM_BINDIR}"/analyzeHeadless
+}
+
+R2PM_END
