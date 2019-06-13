@@ -1,0 +1,20 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] signapk"
+
+R2PM_GIT https://github.com/techexpertize/SignApk
+
+R2PM_INSTALL() {
+	mkdir -p "${R2PM_BINDIR}"
+	B="${R2PM_BINDIR}/signapk"
+	echo '#!/bin/sh' > $B
+	echo 'echo r2pm -r '"$PWD/certificate.pem $PWD/key.pk8 in.apk out.apk" >> $B
+	echo 'java -jar "${R2PM_USRDIR}/git/SignApk.jar" $@' >> $B
+	chmod +x "${R2PM_BINDIR}/signapk"
+}
+
+R2PM_UNINSTALL() {
+	rm "${R2PM_BINDIR}"/signapk
+}
+
+R2PM_END
