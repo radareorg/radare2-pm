@@ -8,13 +8,19 @@ R2PM_INSTALL() {
 	mkdir -p "${R2PM_BINDIR}"
 	B="${R2PM_BINDIR}/signapk"
 	echo '#!/bin/sh' > $B
-	echo 'echo r2pm -r '"$PWD/certificate.pem $PWD/key.pk8 in.apk out.apk" >> $B
+	echo 'echo r2pm -r signapk '"$PWD/certificate.pem $PWD/key.pk8 in.apk out.apk" >> $B
 	echo "java -jar \"${R2PM_USRDIR}/git/SignApk/signapk.jar\" $@" >> $B
-	chmod +x "${R2PM_BINDIR}/signapk"
+	chmod +x $B
+	#
+	B="${R2PM_BINDIR}/signapk2"
+	echo '#!/bin/sh' > $B
+	echo "java -jar \"${R2PM_USRDIR}/git/SignApk/signapk.jar\" \"$PWD/certificate.pem\" \"$PWD/key.pk8\" $@" >> $B
+	chmod +x $B
 }
 
 R2PM_UNINSTALL() {
-	rm "${R2PM_BINDIR}"/signapk
+	rm -f "${R2PM_BINDIR}"/signapk
+	rm -f "${R2PM_BINDIR}"/signapk2
 }
 
 R2PM_END
