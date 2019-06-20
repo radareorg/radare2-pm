@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] jadx decompiler"
+
+JADX_VERSION=1.0.0
+JADX_URL="https://github.com/skylot/jadx/releases/download/v${JADX_VERSION}/jadx-${JADX_VERSION}.zip"
+
+R2PM_TGZ ${JADX_URL} jadx-${JADX_VERSION}
+
+R2PM_INSTALL() {
+	mkdir -p "${R2PM_BINDIR}"
+	ln -fs "${PWD}/bin/jadx" "${R2PM_BINDIR}/jadx"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}"/jadx
+}
+
+R2PM_END
