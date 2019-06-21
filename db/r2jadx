@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-extras"
 R2PM_DESC "[decompiler] Jadx plugin ffor radare2"
+R2PM_DEPS jadx
 
 R2PM_INSTALL() {
 	cd r2jadx || exit 1
