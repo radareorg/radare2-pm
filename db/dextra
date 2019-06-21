@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_TGZ "http://newandroidbook.com/tools/dextra.tar"
+R2PM_DESC "[syspkg] dextra from Jonathan Levin"
+
+R2PM_INSTALL() {
+	cp -f dextra "${R2PM_PREFIX}/bin/dextra"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PREFIX}/bin/dextra"
+}
+
+R2PM_END
