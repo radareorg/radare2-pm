@@ -6,8 +6,8 @@ R2PM_DESC "[app] verified dex extractor tool from oat files"
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	sh make.sh
-	ln -fs "${PWD}/vdexExtractor" "${R2PM_BINDIR}/vdexExtractor"
+	sh make.sh || exit 1
+	ln -fs "${PWD}/bin/vdexExtractor" "${R2PM_BINDIR}/vdexExtractor"
 }
 
 R2PM_UNINSTALL() {
