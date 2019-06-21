@@ -7,7 +7,7 @@ BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
 	sh make.sh
-	ln -fs vdexExtractor "${R2PM_BINDIR}/vdexExtractor"
+	ln -fs "${PWD}/vdexExtractor" "${R2PM_BINDIR}/vdexExtractor"
 }
 
 R2PM_UNINSTALL() {
