@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_DESC "[app] apktool"
+
+R2PM_INSTALL() {
+	cd "${R2PM_USRDIR}/git"
+	wget -c https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.4.0.jar
+	mkdir -p "${R2PM_BINDIR}"
+	echo "java -jar ${R2PM_USRDIR}/git/"'apktool_2.4.0.jar $@' > "${R2PM_BINDIR}/apktool"
+	chmod +x "${R2PM_BINDIR}/apktool"
+}
+
+R2PM_UNINSTALL() {
+	rm "${R2PM_BINDIR}"/apktool
+}
+
+R2PM_END
