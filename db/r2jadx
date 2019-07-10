@@ -6,6 +6,7 @@ R2PM_DEPS jadx
 
 R2PM_INSTALL() {
 	cd r2jadx || exit 1
+	rm -rf node_modules
 	${MAKE} || exit 1
 	${MAKE} install || exit 1
 }
