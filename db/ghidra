@@ -8,6 +8,7 @@ R2PM_TGZ ${GHIDRA_URL} "ghidra_${GHIDRA_VERSION}"
 
 R2PM_INSTALL() {
 	echo "Installing"
+	( cd .. ; ln -fs ghidra_${GHIDRA_VERSION} ghidra )
 	mkdir -p "${R2PM_BINDIR}"
 	ln -fs "${PWD}/ghidraRun" "${R2PM_BINDIR}/ghidraRun"
 	ln -fs "${PWD}/support/analyzeHeadless" "${R2PM_BINDIR}/analyzeHeadless"
