@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/ghidra-r2web"
+R2PM_DESC "[ghidra] Plugin for Ghidra to let r2 talk to it"
+
+R2PM_INSTALL() {
+	${MAKE} install || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} uninstall || exit 1
+}
+
+R2PM_END
