@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/SiD3W4y/r2wakare"
+R2PM_DESC "[r2-wakare] Wakare trace integration for radare2"
+
+R2PM_INSTALL() {
+    ${MAKE}
+    ${MAKE} install
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} uninstall
+}
+
+R2PM_END
