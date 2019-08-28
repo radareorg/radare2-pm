@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/r2ghidra-dec.git"
+R2PM_DESC "[r2-core] Ghidra Decompiler Plugin"
+
+R2PM_DOC=""
+
+R2PM_INSTALL() {
+	git submodule init && git submodule update || exit 1
+	mkdir -p build && cd build || exit 1
+	cmake -DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" .. || exit 1
+	${MAKE} -j4 || exit 1
+	${MAKE} install || exit 1
+}
+
+R2PM_UNINSTALL() {
+	cd build || exit 1
+	cat install_manifest.txt | xargs rm -rv
+	rm -r "${R2PM_PLUGDIR}/r2ghidra_sleigh"
+}
+
+R2PM_END
