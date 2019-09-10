@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/0ki/r2lrn"
+R2PM_DESC "[r2learn] Learning game for radare2"
+
+R2PM_INSTALL() {
+	ln -fs "`pwd`/bash/r2lrn.sh" ${R2PM_PREFIX}/bin/r2lrn
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_PREFIX}/bin/r2lrn
+}
+
+R2PM_END
