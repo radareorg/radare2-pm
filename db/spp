@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radare/spp"
+R2PM_DESC "[syspkg] multi-syntax SPP text preprocessor"
+
+R2PM_INSTALL() {
+	${MAKE} clean
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	${MAKE} PREFIX="${R2PM_PREFIX}" || exit 1
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} install PREFIX="${R2PM_PREFIX}" || exit 1
+	else
+		${MAKE} install PREFIX="${R2PM_PREFIX}" || exit 1
+	fi
+}
+
+R2PM_UNINSTALL() {
+	${SUDO} ${MAKE} uninstall PREFIX="${R2PM_PREFIX}"
+}
+
+R2PM_END
