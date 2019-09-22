@@ -15,6 +15,7 @@ R2PM_INSTALL() {
 
 R2PM_UNINSTALL() {
 	cd build || exit 1
+	rm -rf build
 	cat install_manifest.txt | xargs rm -rv
 	rm -r "${R2PM_PLUGDIR}/r2ghidra_sleigh"
 }
