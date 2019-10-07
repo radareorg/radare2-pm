@@ -6,7 +6,7 @@ The radare2 plugin/package database for r2pm
 Allows to install, update, uninstall and discover plugins
 and tools that can be used with radare2.
 
-See https://github.com/radare/radare2 for r2pm
+See https://github.com/radareorg/radare2 for r2pm
 
 Testing new packages
 --------------------
