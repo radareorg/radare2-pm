@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/wargio/r2dec-js"
-R2PM_DESC "[r2-r2pipe-node] an Experimental Decompiler"
+R2PM_GIT "https://github.com/radareorg/r2dec-js"
+R2PM_DESC "[r2-native] converts asm to pseudo-C code."
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
