@@ -1,0 +1,13 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/wargio/libmc7"
+R2PM_DESC "[r2-plugin] Library to disassemble MC7 bytecode for Siemens PLC SIMATIC S7-300 and S7-400"
+BINDIR="${R2PM_BINDIR}"
+
+R2PM_INSTALL() {
+        make all install || exit 1
+}
+
+R2PM_UNINSTALL() {
+        make uninstall || exit 1
+}
