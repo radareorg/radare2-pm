@@ -5,6 +5,8 @@ R2PM_DESC "[r2-plugin] Experimental Decompiler written in javascript on top of r
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
+	git checkout core2
+	make clean && make -C p clean
 	make -C p || exit 1
 }
 
