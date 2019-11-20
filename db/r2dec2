@@ -5,13 +5,11 @@ R2PM_DESC "[r2-plugin] Experimental Decompiler written in javascript on top of r
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	git checkout -b core2-local
-	git reset --hard @~50
-	git pull https://github.com/radareorg/r2dec-js core2
+	rm -rf core2
+	git clone --branch core2 https://github.com/radareorg/r2dec-js core2
+	cd core2
 	make clean && make
 	make || exit 1
-	git checkout master
-	git branch -d core2-local
 }
 
 R2PM_UNINSTALL() {
