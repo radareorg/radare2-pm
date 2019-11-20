@@ -5,11 +5,11 @@ R2PM_DESC "[r2-plugin] Experimental Decompiler written in javascript on top of r
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	make || exit 1
+	make -C p || exit 1
 }
 
 R2PM_UNINSTALL() {
-	make uninstall || exit 1
+	make -C p uninstall || exit 1
 }
 
 R2PM_END
