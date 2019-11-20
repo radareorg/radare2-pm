@@ -7,9 +7,10 @@ BINDIR="${R2PM_BINDIR}"
 R2PM_INSTALL() {
 	rm -rf core2
 	git clone --branch core2 https://github.com/radareorg/r2dec-js core2
-	cd core2
-	make clean && make
+	cd core2 || exit 1
+	make clean
 	make || exit 1
+	make install || exit 1
 }
 
 R2PM_UNINSTALL() {
