@@ -6,15 +6,17 @@ BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
 	cd ..
-	rm -rf r2dec-js
-	git clone --branch core2 https://github.com/radareorg/r2dec-js r2dec-js
-	cd r2dec-js || exit 1
+	[ ! -d r2dec2 ] && \
+		git clone --branch core2 https://github.com/radareorg/r2dec-js r2dec2
+	cd r2dec2 || exit 1
+	git pull
 	make clean
 	make || exit 1
 	make install || exit 1
 }
 
 R2PM_UNINSTALL() {
+	cd ../r2dec2
 	make uninstall || exit 1
 }
 
