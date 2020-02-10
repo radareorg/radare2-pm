@@ -1,0 +1,31 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/avast/retdec-r2plugin.git"
+R2PM_DESC "[r2-core] RetDec plugin"
+
+R2PM_DOC=""
+
+fetch_nproc() {
+	which nproc 2>/dev/null >/dev/null
+	if [ $? -eq 0 ]; then
+		nproc
+	else
+		echo 1
+	fi
+}
+
+R2PM_INSTALL() {
+	mkdir -p build && cd build || exit 1
+	cmake .. \
+		-DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" \
+		-DBUILD_BUNDLED_RETDEC=ON \
+		-DRETDEC_INSTALL_PREFIX="${PWD}/install" || exit 1
+	${MAKE} -j$(fetch_nproc) install || exit 1
+}
+
+R2PM_UNINSTALL() {
+	cd build || exit 1
+	cat install_manifest.txt | xargs rm -rv
+}
+
+R2PM_END
