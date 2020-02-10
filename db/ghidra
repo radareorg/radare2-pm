@@ -2,8 +2,8 @@ R2PM_BEGIN
 
 R2PM_DESC "[app] ghidra"
 
-GHIDRA_VERSION=9.1
-GHIDRA_URL="https://ghidra-sre.org/ghidra_${GHIDRA_VERSION}_PUBLIC_20191023.zip"
+GHIDRA_VERSION=9.1.1
+GHIDRA_URL="https://ghidra-sre.org/ghidra_${GHIDRA_VERSION}_PUBLIC_20191218.zip"
 R2PM_TGZ ${GHIDRA_URL} "ghidra_${GHIDRA_VERSION}"
 
 R2PM_INSTALL() {
