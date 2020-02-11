@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-extras"
+R2PM_DESC "[r2-arch] Load SVD description files into r2"
+
+R2PM_INSTALL() {
+	cd r2svd || exit 1
+	${MAKE} install || exit 1
+}
+
+R2PM_UNINSTALL() {
+	cd r2svd || exit 1
+	${MAKE} uninstall "${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_END
