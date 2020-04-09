@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-RETDEC_VERSION=3.3
+RETDEC_VERSION=4.0
 RETDEC_URLBASE=https://github.com/avast/retdec/releases/download/
 RETDEC_MACOS=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-macos-64b.zip
 RETDEC_LINUX=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-ubuntu-64b.zip
