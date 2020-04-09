@@ -15,6 +15,11 @@ R2PM_INSTALL() {
 	${MAKE} asm_pyc.${LIBEXT} || exit 1
 	cp -f asm_pyc.${LIBEXT} ${R2PM_PLUGDIR}
 	echo "cp -f asm_pyc.${LIBEXT} ${R2PM_PLUGDIR}"
+	cd ../../anal/p || exit 1
+	${MAKE} clean
+	${MAKE} anal_pyc.${LIBEXT} || exit 1
+	cp -f anal_pyc.${LIBEXT} ${R2PM_PLUGDIR}
+	echo "cp -f anal_pyc.${LIBEXT} ${R2PM_PLUGDIR}"
 }
 
 R2PM_UNINSTALL() {
