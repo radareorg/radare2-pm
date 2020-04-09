@@ -2,8 +2,8 @@ R2PM_BEGIN
 
 RETDEC_VERSION=4.0
 RETDEC_URLBASE=https://github.com/avast/retdec/releases/download/
-RETDEC_MACOS=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-macos-64b.zip
-RETDEC_LINUX=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-ubuntu-64b.zip
+RETDEC_MACOS=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-macos-64b.tar.xz
+RETDEC_LINUX=${RETDEC_URLBASE}/v${RETDEC_VERSION}/retdec-v${RETDEC_VERSION}-ubuntu-64b.tar.xz
 
 R2PM_GIT "https://github.com/securisec/r2retdec"
 R2PM_DESC "[retdec] Official Nightly binary build of the retdec decompiler"
