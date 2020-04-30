@@ -4,6 +4,7 @@ R2PM_GIT "https://github.com/VirusTotal/yara"
 R2PM_DESC "[syspkg] yara library and commandline tools from git"
 
 R2PM_INSTALL() {
+	git checkout v4.0.0
 #	export CFLAGS="-fPIC -I/usr/local/include"
 	${SHELL} bootstrap.sh
 	export CFLAGS="-fPIC"
