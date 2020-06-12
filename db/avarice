@@ -6,12 +6,12 @@ R2PM_DESC "[syspkg] avarice - gdbserver bridge the avr jtag"
 R2PM_INSTALL() {
 	./Bootstrap || exit 1
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
-	make -j 4 || exit -1
-	make install || exit 1
+	${MAKE} -j 4 || exit -1
+	${MAKE} install || exit 1
 }
 
 R2PM_UNINSTALL() {
-	make uninstall || exit 1
+	${MAKE} uninstall || exit 1
 }
 
 R2PM_END

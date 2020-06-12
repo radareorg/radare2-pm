@@ -5,12 +5,12 @@ R2PM_DESC "[r2learn] Golf plugin to learn r2 commands"
 
 R2PM_INSTALL() {
 	cd _other/golf-plugin
-	make ; make install
+	$MAKE ; $MAKE install
 }
 
 R2PM_UNINSTALL() {
 	cd _other/golf-plugin
-	make ; make uninstall
+	$MAKE ; $MAKE uninstall
 }
 
 R2PM_END

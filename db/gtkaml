@@ -5,10 +5,10 @@ R2PM_DESC "[syspkg] GtkAml transpiler"
 
 R2PM_INSTALL() {
 	sh autogen.sh --prefix=/usr && \
-	make && \
-	sudo make install
+	$MAKE && \
+	sudo $MAKE install
 }
 
 R2PM_UNINSTALL() {
-	sudo make uninstall
+	sudo $MAKE uninstall
 }

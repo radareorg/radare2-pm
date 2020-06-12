@@ -5,11 +5,11 @@ R2PM_DESC "[r2tox] Expose current shell in Tox"
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	make -C r2tox || exit 1
+	$MAKE -C r2tox || exit 1
 }
 
 R2PM_UNINSTALL() {
-	make -C r2tox uninstall || exit 1
+	$MAKE -C r2tox uninstall || exit 1
 }
 
 R2PM_END
