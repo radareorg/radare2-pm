@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-extras"
+R2PM_DESC "[r2-arch] Beyond Architecture 2 disassembler plugin"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
+	cd libr/asm/p || exit 1
+	${MAKE} clean
+	${MAKE} || exit 1
+	cp -f asm_ba2.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/asm_ba2."*
+}
+
+R2PM_END
