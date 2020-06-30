@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-rlang"
+R2PM_DESC "[lang] V RLang plugin #!v"
+
+R2PM_INSTALL() {
+	${MAKE} v-clean || exit 1
+	${MAKE} v || exit 1
+	${MAKE} v-install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} v-uninstall
+}
+
+R2PM_END
