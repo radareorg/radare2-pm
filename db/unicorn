@@ -5,8 +5,7 @@ R2PM_DESC "[r2-debug] Unicorn emulator plugin for radare2"
 R2PM_DEPS unicorn-lib
 
 R2PM_INSTALL() {
-	[ -z "${SHELL}" ] && SHELL=/bin/sh
-	${SHELL} configure --prefix="${R2PM_PREFIX}" || exit 1
+	./configure --prefix="${R2PM_PREFIX}" || exit 1
 	${MAKE} -C unicorn clean
 	${MAKE} -C unicorn || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
