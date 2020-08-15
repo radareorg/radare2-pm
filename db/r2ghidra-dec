@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radareorg/r2ghidra-dec.git"
+R2PM_GIT "https://github.com/radareorg/r2ghidra-dec"
 R2PM_DESC "[r2-core] Ghidra Decompiler Plugin"
 
 R2PM_DOC=""

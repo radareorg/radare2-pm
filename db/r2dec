@@ -1,11 +1,11 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radareorg/r2dec-js"
+R2PM_GIT "https://github.com/radareorg/r2dec-js" r2dec
 R2PM_DESC "[r2-plugin] Experimental Decompiler written in javascript on top of r2"
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	${MAKE} -C p || exit 1
+	CFLAGS="-DR2DEC_HOME=\\\"${R2PM_GITDIR}/r2dec\\\"" ${MAKE} -C p || exit 1
 }
 
 R2PM_UNINSTALL() {
