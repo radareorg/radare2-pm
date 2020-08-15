@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/avast/retdec-r2plugin.git"
+R2PM_GIT "https://github.com/avast/retdec-r2plugin"
 R2PM_DESC "[r2-core] RetDec plugin"
 
 R2PM_DOC=""
