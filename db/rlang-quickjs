@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-rlang"
+R2PM_DESC "[rlang] QuickJS RLang plugin #!duktape"
+
+R2PM_INSTALL() {
+	cd libr/lang || exit 1
+	${MAKE} -C quickjs clean || exit 1
+	${MAKE} -C quickjs || exit 1
+	${MAKE} -C quickjs install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} -C quickjs uninstall || exit 1
+}
+
+R2PM_END
