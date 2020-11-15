@@ -1,6 +1,7 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/xerub/ldid"
+# R2PM_GIT "https://github.com/xerub/ldid"
+R2PM_GIT "https://github.com/razum2um/ldid"
 R2PM_DESC "[syspkg] LDID2 Xerub fork to sign iOS binaries"
 
 R2PM_INSTALL() {
