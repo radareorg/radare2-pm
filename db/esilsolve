@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/esilsolve"
 R2PM_DESC "z3 theorem prover with esil to symbolically execute code"
+R2PM_DEPS rlang-python
 
 R2PM_INSTALL() {
 	python setup.py build
