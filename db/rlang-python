@@ -7,6 +7,7 @@ R2PM_INSTALL() {
 	[ -z python-config ] && \
 		echo "python-config binary for python3 not found," \
 		"please specify via PYTHON_CONFIG environment variable" && exit 1
+	./configure --prefix=${R2PM_PREFIX}
 	cd python
 	${MAKE} clean || exit 1
 	${MAKE} || exit 1
