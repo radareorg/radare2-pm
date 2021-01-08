@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-extras"
+R2PM_DESC "Disassembler plugin for ASAHI (Apple-M1 GPU)"
+
+R2PM_INSTALL() {
+	./configure --prefix="${R2PM_PREFIX} || exit 1
+	${MAKE} -C asahi clean
+	${MAKE} -C asahi
+	${MAKE} -C asahi install R2_USER_PLUGINS="${R2PM_PLUGDIR}"
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} -C asahi uninstall R2_USER_PLUGINS="${R2PM_PLUGDIR}"
+}
+
+R2PM_END
