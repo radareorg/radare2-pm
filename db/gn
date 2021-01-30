@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT https://gn.googlesource.com/gn
+R2PM_DESC "Generator for Ninja build files"
+
+R2PM_INSTALL() {
+	python build/gen.py
+	ninja -C out
+	${SUDO} cp -f out/gn ${R2PM_BINDIR}/gn
+}
+
+R2PM_UNINSTALL() {
+	${SUDO} rm -f ${R2PM_BINDIR}/gn
+}
+
+R2PM_END
