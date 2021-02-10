@@ -7,7 +7,8 @@ R2PM_INSTALL() {
 	git fetch --tags
 	git checkout v4.0.4
 #	export CFLAGS="-fPIC -I/usr/local/include"
-	${SHELL} bootstrap.sh
+	chmod +x bootstrap.sh
+	./bootstrap.sh
 	export CFLAGS="-fPIC"
 	./configure --disable-shared --enable-static \
 		--without-crypto --prefix="${R2PM_PREFIX}" || exit 1
