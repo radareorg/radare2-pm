@@ -16,10 +16,18 @@ fetch_nproc() {
 
 R2PM_INSTALL() {
 	mkdir -p build && cd build || exit 1
-	cmake .. \
+	if [ "`uname`" = Darwin ]; then
+		cmake .. \
 		-DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" \
 		-DBUILD_BUNDLED_RETDEC=ON \
 		-DRETDEC_INSTALL_PREFIX="${PWD}/install" || exit 1
+		-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/ \
+	else
+		cmake .. \
+		-DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" \
+		-DBUILD_BUNDLED_RETDEC=ON \
+		-DRETDEC_INSTALL_PREFIX="${PWD}/install" || exit 1
+	fi
 	${MAKE} -j$(fetch_nproc) install || exit 1
 }
 
