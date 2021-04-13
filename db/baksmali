@@ -4,9 +4,9 @@ R2PM_DESC "[app] baksmali"
 
 R2PM_INSTALL() {
 	cd "${R2PM_USRDIR}/git"
-	wget -c https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.2.7.jar
+	wget -c https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar
 	mkdir -p "${R2PM_BINDIR}"
-	echo "java -jar ${R2PM_USRDIR}/git/"'baksmali-2.2.7.jar $@' > "${R2PM_BINDIR}/baksmali"
+	echo "java -jar ${R2PM_USRDIR}/git/"'baksmali-2.5.2.jar $@' > "${R2PM_BINDIR}/baksmali"
 	chmod +x "${R2PM_BINDIR}/baksmali"
 }
 
