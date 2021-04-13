@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/avast/retdec-r2plugin"
+R2PM_GIT "https://github.com/trufae/retdec-r2plugin"
 R2PM_DESC "[r2-core] RetDec plugin"
 
 R2PM_DOC=""
@@ -15,6 +15,7 @@ fetch_nproc() {
 }
 
 R2PM_INSTALL() {
+        git pull origin fix-build
 	mkdir -p build && cd build || exit 1
 	if [ "`uname`" = Darwin ]; then
 		cmake .. \
