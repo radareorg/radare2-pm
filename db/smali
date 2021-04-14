@@ -4,9 +4,9 @@ R2PM_DESC "[app] smali"
 
 R2PM_INSTALL() {
 	cd "${R2PM_USRDIR}/git"
-	wget -c https://bitbucket.org/JesusFreke/smali/downloads/smali-2.2.7.jar
+	wget -c https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar
 	mkdir -p "${R2PM_BINDIR}"
-	echo "java -jar ${R2PM_USRDIR}/git/"'smali-2.2.7.jar $@' > "${R2PM_BINDIR}/smali"
+	echo "java -jar ${R2PM_USRDIR}/git/"'smali-2.5.2.jar $@' > "${R2PM_BINDIR}/smali"
 	chmod +x "${R2PM_BINDIR}/smali"
 }
 
