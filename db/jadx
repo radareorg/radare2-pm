@@ -2,7 +2,7 @@ R2PM_BEGIN
 
 R2PM_DESC "[app] jadx decompiler"
 
-JADX_VERSION=1.1.0
+JADX_VERSION=1.2.0
 JADX_URL="https://github.com/skylot/jadx/releases/download/v${JADX_VERSION}/jadx-${JADX_VERSION}.zip"
 
 R2PM_TGZ ${JADX_URL} jadx-${JADX_VERSION}
