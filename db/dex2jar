@@ -6,6 +6,7 @@ R2PM_INSTALL() {
 	cd "${R2PM_USRDIR}/git"
 	wget -c https://github.com/pxb1988/dex2jar/files/1867564/dex-tools-2.1-SNAPSHOT.zip
 	unzip dex-tools-2.1-SNAPSHOT.zip || exit 1
+	mv dex-tools-2.1-SNAPSHOT dex2jar-2.1-SNAPSHOT
 	cd dex2jar-2.1-SNAPSHOT || exit 1
 	mkdir -p "${R2PM_BINDIR}"
 	ln -fs "$PWD/d2j-dex2jar.sh" "${R2PM_BINDIR}/dex2jar" || exit 1
