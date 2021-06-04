@@ -8,9 +8,10 @@ R2PM_DOC=""
 USE_CMAKE=1
 
 R2PM_INSTALL() {
-	git submodule init && git submodule update || exit 1
+	git submodule update --init || exit 1
 if [ "$USE_CMAKE" = 1 ]; then
 	rm -rf build # clean build
+	${MAKE} ghidra/ghidra/Ghidra
 	mkdir -p build && cd build || exit 1
 	cmake -DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" .. || exit 1
 	${MAKE} -j4 || exit 1
