@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/r2env"
+R2PM_DESC "multiple radare2 environment tool"
+
+R2PM_INSTALL() {
+	make
+}
+
+R2PM_UNINSTALL() {
+	make uninstall
+}
+
+R2PM_END
