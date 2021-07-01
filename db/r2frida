@@ -29,11 +29,11 @@ R2PM_INSTALL() {
 	unset LDFLAGS
 	# ${MAKE} update || R2PM_FAIL "Cannot update"
 	${MAKE} WITH_CYLANG=${R2FRIDA_CYLANG} || R2PM_FAIL "Build failed"
-	${MAKE} WITH_CYLANG=${R2FRIDA_CYLANG} install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
+	${MAKE} WITH_CYLANG=${R2FRIDA_CYLANG} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} uninstall R2_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+	${MAKE} user-uninstall R2_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_END
