@@ -15,13 +15,13 @@ if [ "$USE_CMAKE" = 1 ]; then
 	mkdir -p build && cd build || exit 1
 	cmake -DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" .. || exit 1
 	${MAKE} -j4 || exit 1
-	${MAKE} install || exit 1
+	${SUDO} ${MAKE} install || exit 1
 else
 	./preconfigure
 	./configure --prefix=`r2 -H R2_PREFIX`
 	${MAKE} -j4
 	if [ "${GLOBAL}" = 1 ]; then
-		${MAKE} install
+		${SUDO} ${MAKE} install
 	else
 		${MAKE} user-install
 	fi
@@ -36,9 +36,9 @@ if [ "$USE_CMAKE" = 1 ]; then
 	rm -r "${R2PM_PLUGDIR}/r2ghidra_sleigh"
 else
 	if [ "${GLOBAL}" = 1 ]; then
-		${MAKE} uninstall
+		${SUDO} ${MAKE} uninstall
 	else
-		${MAKE} user-uninstall
+		${SUDO} ${MAKE} user-uninstall
 	fi
 fi
 }
