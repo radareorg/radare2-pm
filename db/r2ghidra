@@ -15,7 +15,11 @@ if [ "$USE_CMAKE" = 1 ]; then
 	mkdir -p build && cd build || exit 1
 	cmake -DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" .. || exit 1
 	${MAKE} -j4 || exit 1
-	${SUDO} ${MAKE} install || exit 1
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} install || exit 1
+	else
+		${MAKE} install || exit 1
+	fi
 else
 	./configure --prefix=`r2 -H R2_PREFIX`
 	${MAKE} -j4
