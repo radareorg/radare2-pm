@@ -5,11 +5,21 @@ R2PM_DESC "Experimental Decompiler written in javascript on top of r2"
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	CFLAGS="-DR2DEC_HOME=\\\"${R2PM_GITDIR}/r2dec\\\"" ${MAKE} -C p || exit 1
+	export CFLAGS="-DR2DEC_HOME=\\\"${R2PM_GITDIR}/r2dec\\\""
+	${MAKE} -C p || exit 1
+	if [ "${GLOBAL}" = 1 ]; then
+		${MAKE} -C p install || exit 1
+	else
+		${MAKE} -C p user-install || exit 1
+	fi
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} -C p uninstall || exit 1
+	if [ "${GLOBAL}" = 1 ]; then
+		${MAKE} -C p uninstall || exit 1
+	else
+		${MAKE} -C p user-uninstall || exit 1
+	fi
 }
 
 R2PM_END

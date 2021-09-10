@@ -12,12 +12,11 @@ R2PM_INSTALL() {
 	git pull
 	${MAKE} clean
 	${MAKE} || exit 1
-	${MAKE} install || exit 1
+	${MAKE} user-install || exit 1
 }
 
 R2PM_UNINSTALL() {
-	cd ../r2dec2
-	${MAKE} uninstall || exit 1
+	${MAKE} -C ../r2dec2 user-uninstall || exit 1
 }
 
 R2PM_END
