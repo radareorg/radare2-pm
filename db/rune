@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radare/rune"
+R2PM_GIT "https://github.com/sushant94/rune"
 R2PM_DESC "[syspkg] Radare Symbolic Execution in Rust"
 
 R2PM_INSTALL() {
