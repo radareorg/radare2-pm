@@ -6,11 +6,11 @@ BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
 	export CFLAGS="-DR2DEC_HOME=\\\"${R2PM_GITDIR}/r2dec\\\""
-	${MAKE} -C p || exit 1
+	${MAKE} -C p USE_JSC=1 || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
-		${MAKE} -C p install || exit 1
+		${MAKE} -C p install USE_JSC=1 || exit 1
 	else
-		${MAKE} -C p user-install || exit 1
+		${MAKE} -C p user-install USE_JSC=1 || exit 1
 	fi
 }
 
