@@ -5,7 +5,7 @@ R2PM_DESC "Ghidra Disassembler, Analysis and Decompiler Plugins"
 
 R2PM_DOC=""
 
-USE_CMAKE=1
+USE_CMAKE=0
 
 R2PM_INSTALL() {
 	rm -rf ghidra/ghidra/Ghidra
