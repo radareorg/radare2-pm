@@ -8,7 +8,7 @@ R2PM_TGZ ${GHIDRA_URL} "ghidra_${GHIDRA_VERSION}"
 
 R2PM_INSTALL() {
 	echo "Installing Ghidra"
-	cd ghidra_${GHIDRA_VERSION}
+	cd ghidra_${GHIDRA_VERSION}_PUBLIC
 	( ln -fs ghidra_${GHIDRA_VERSION} ../ghidra )
 	mkdir -p "${R2PM_BINDIR}"
 	ln -fs "${PWD}/ghidraRun" "${R2PM_BINDIR}/ghidraRun"
