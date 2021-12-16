@@ -22,7 +22,8 @@ R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
 	# ${MAKE} update || R2PM_FAIL "Cannot update"
-	${MAKE} R2FRIDA_PRECOMPILED_AGENT=1 || R2PM_FAIL "Build failed"
+	./configure --with-precompiled-agent
+	${MAKE} || R2PM_FAIL "Build failed"
 	${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
 }
 
