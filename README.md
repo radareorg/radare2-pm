@@ -1,5 +1,4 @@
-R2PM
-====
+# R2PM
 
 The radare2 plugin/package database for r2pm
 
@@ -8,8 +7,7 @@ and tools that can be used with radare2.
 
 See https://github.com/radareorg/radare2 for r2pm
 
-Testing new packages
---------------------
+## Testing new packages
 
 ```sh
 export R2PM_DBDIR="$PWD/db"
