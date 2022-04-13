@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radare/acr"
+R2PM_GIT "https://github.com/radareorg/acr"
 R2PM_DESC "[syspkg] ACR autoconf replacement"
 
 R2PM_INSTALL() {
