@@ -5,7 +5,7 @@ R2PM_DESC "[syspkg] yara library and commandline tools from git"
 
 R2PM_INSTALL() {
 	git fetch --tags
-	git checkout v4.2.0
+	git checkout v4.2.1
 #	export CFLAGS="-fPIC -I/usr/local/include"
 	chmod +x bootstrap.sh
 	./bootstrap.sh
