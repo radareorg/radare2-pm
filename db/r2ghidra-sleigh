@@ -11,7 +11,14 @@ R2PM_INSTALL() {
 	if [ "$USE_BIN" = 1 ]; then
 		mkdir -p ~/.local/share/radare2/plugins/
 		cd ~/.local/share/radare2/plugins/ || return 1
-		wget -c https://github.com/radareorg/r2ghidra/releases/download/${R2G_VERSION}/r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
+		DURL="https://github.com/radareorg/r2ghidra/releases/download/${R2G_VERSION}/r2ghidra_sleigh-${R2G_VERSION}.zip"
+		echo "Downloading $DURL"
+		wget --help > /dev/null 2>&1
+		if [ $? = 0 ]; then
+			wget -c "${DURL}" || return 1
+		else
+			curl -Lo "r2ghidra_sleigh-${R2G_VERSION}.zip" "${DURL}"
+		fi
 		unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
 		rm -rf r2ghidra_sleigh
 		mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
