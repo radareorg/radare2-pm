@@ -13,7 +13,6 @@ R2PM_INSTALL() {
 	else
 		${MAKE} unicorn-install THEDIR=${R2PM_PLUGDIR} || exit 1
 	fi
-	rm -f "${R2PM_PREFIX}/lib/libunicorn"*.{dylib,so}
 }
 
 R2PM_UNINSTALL() {
