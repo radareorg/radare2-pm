@@ -22,6 +22,9 @@ R2PM_INSTALL() {
 		unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
 		rm -rf r2ghidra_sleigh
 		mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
+		if [ "${GLOBAL}" = 1 ]; then
+			${SUDO} mv ~/.local/share/radare2/plugins/r2ghidra_sleigh $(r2 -HR2_LIBR_PLUGINS)
+		fi
 	else
 		rm -rf ghidra/ghidra/Ghidra
 		rm -rf build # clean build
