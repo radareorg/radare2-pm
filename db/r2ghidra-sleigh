@@ -10,8 +10,9 @@ R2G_VERSION=5.6.2
 R2PM_INSTALL() {
     if [ "$USE_BIN" = 1 ]; then
         if [ "${GLOBAL}" = 0 ]; then
-            mkdir -p ~/.local/share/radare2/plugins/
-            cd ~/.local/share/radare2/plugins/ || return 1
+            mkdir -p r2 -H $(r2 -HR2_USER_PLUGINS)
+            cd $(r2 -HR2_USER_PLUGINS) || return 1
+            SUDO=''
         else
             ${SUDO} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
             cd $(r2 -HR2_LIBR_PLUGINS) || return 1
@@ -28,6 +29,7 @@ R2PM_INSTALL() {
         ${SUDO} unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
         ${SUDO} rm -rf r2ghidra_sleigh
         ${SUDO} mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
+        SUDO=sudo
     else
         rm -rf ghidra/ghidra/Ghidra
         rm -rf build # clean build
