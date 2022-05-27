@@ -8,52 +8,52 @@ USE_BIN=1
 R2G_VERSION=5.6.2
 
 R2PM_INSTALL() {
-    if [ "$USE_BIN" = 1 ]; then
-        if [ "${GLOBAL}" = 1 ]; then
-            ${SUDO} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
-            cd $(r2 -HR2_LIBR_PLUGINS) || return 1
-        else
-            mkdir -p r2 -H $(r2 -HR2_USER_PLUGINS)
-            cd $(r2 -HR2_USER_PLUGINS) || return 1
-            SUDO=''
-        fi
+	if [ "$USE_BIN" = 1 ]; then
+		if [ "${GLOBAL}" = 1 ]; then
+			${SUDO} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
+			cd $(r2 -HR2_LIBR_PLUGINS) || return 1
+		else
+			mkdir -p r2 -H $(r2 -HR2_USER_PLUGINS)
+			cd $(r2 -HR2_USER_PLUGINS) || return 1
+			SUDO=''
+		fi
 
-        DURL="https://github.com/radareorg/r2ghidra/releases/download/${R2G_VERSION}/r2ghidra_sleigh-${R2G_VERSION}.zip"
-        echo "Downloading $DURL"
-        ${SUDO} wget --help > /dev/null 2>&1
-        if [ $? = 0 ]; then
-            ${SUDO} wget -c "${DURL}" || return 1
-        else
-            ${SUDO} curl -Lo "r2ghidra_sleigh-${R2G_VERSION}.zip" "${DURL}"
-        fi
-        ${SUDO} unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
-        ${SUDO} rm -rf r2ghidra_sleigh
-        ${SUDO} mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
-        SUDO=sudo
-    else
-        rm -rf ghidra/ghidra/Ghidra
-        rm -rf build # clean build
-        ./preconfigure || return 1
-        ./configure --prefix=`r2 -H R2_PREFIX` || return 1
-        ${MAKE} -j4
-        if [ "${GLOBAL}" = 1 ]; then
-            ${SUDO} ${MAKE} -C ghidra install
-        else
-            ${MAKE} -C ghidra user-install
-        fi
-    fi
+		DURL="https://github.com/radareorg/r2ghidra/releases/download/${R2G_VERSION}/r2ghidra_sleigh-${R2G_VERSION}.zip"
+		echo "Downloading $DURL"
+		${SUDO} wget --help > /dev/null 2>&1
+		if [ $? = 0 ]; then
+			${SUDO} wget -c "${DURL}" || return 1
+		else
+			${SUDO} curl -Lo "r2ghidra_sleigh-${R2G_VERSION}.zip" "${DURL}"
+		fi
+		${SUDO} unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
+		${SUDO} rm -rf r2ghidra_sleigh
+		${SUDO} mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
+		SUDO=sudo
+	else
+		rm -rf ghidra/ghidra/Ghidra
+		rm -rf build # clean build
+		./preconfigure || return 1
+		./configure --prefix=`r2 -H R2_PREFIX` || return 1
+		${MAKE} -j4
+		if [ "${GLOBAL}" = 1 ]; then
+			${SUDO} ${MAKE} -C ghidra install
+		else
+			${MAKE} -C ghidra user-install
+		fi
+	fi
 }
 
 R2PM_UNINSTALL() {
-    if [ "$USE_BIN" = 1 ]; then
-        rm -rf ~/.local/share/radare2/plugins/r2ghidra_sleigh*
-    else
-        if [ "${GLOBAL}" = 1 ]; then
-            ${SUDO} ${MAKE} -C ghidra uninstall
-        else
-            ${MAKE} -C ghidra user-uninstall
-        fi
-    fi
+	if [ "$USE_BIN" = 1 ]; then
+		rm -rf ~/.local/share/radare2/plugins/r2ghidra_sleigh*
+	else
+		if [ "${GLOBAL}" = 1 ]; then
+			${SUDO} ${MAKE} -C ghidra uninstall
+		else
+			${MAKE} -C ghidra user-uninstall
+		fi
+	fi
 }
 
 R2PM_END
