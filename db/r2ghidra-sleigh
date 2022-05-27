@@ -9,27 +9,25 @@ R2G_VERSION=5.6.2
 
 R2PM_INSTALL() {
     if [ "$USE_BIN" = 1 ]; then
-		local _sudo
         if [ "${GLOBAL}" = 0 ]; then
             mkdir -p ~/.local/share/radare2/plugins/
             cd ~/.local/share/radare2/plugins/ || return 1
         else
-			_sudo=$SUDO
-            ${_sudo} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
+            ${SUDO} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
             cd $(r2 -HR2_LIBR_PLUGINS) || return 1
         fi
 
         DURL="https://github.com/radareorg/r2ghidra/releases/download/${R2G_VERSION}/r2ghidra_sleigh-${R2G_VERSION}.zip"
         echo "Downloading $DURL"
-        ${_sudo} wget --help > /dev/null 2>&1
+        ${SUDO} wget --help > /dev/null 2>&1
         if [ $? = 0 ]; then
-            ${_sudo} wget -c "${DURL}" || return 1
+            ${SUDO} wget -c "${DURL}" || return 1
         else
-            ${_sudo} curl -Lo "r2ghidra_sleigh-${R2G_VERSION}.zip" "${DURL}"
+            ${SUDO} curl -Lo "r2ghidra_sleigh-${R2G_VERSION}.zip" "${DURL}"
         fi
-        ${_sudo} unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
-        ${_sudo} rm -rf r2ghidra_sleigh
-        ${_sudo} mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
+        ${SUDO} unzip -o r2ghidra_sleigh-${R2G_VERSION}.zip || return 1
+        ${SUDO} rm -rf r2ghidra_sleigh
+        ${SUDO} mv r2ghidra_sleigh-${R2G_VERSION} r2ghidra_sleigh
     else
         rm -rf ghidra/ghidra/Ghidra
         rm -rf build # clean build
