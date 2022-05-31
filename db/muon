@@ -2,17 +2,18 @@ R2PM_BEGIN
 
 R2PM_GIT "https://git.sr.ht/~lattis/muon"
 R2PM_DESC "meson implementation in pure C"
+R2PM_DEPS samurai
 
 R2PM_INSTALL() {
 	./bootstrap.sh build
 	cp -f build/muon m
 	./m setup build
-	ninja -C build
-	${R2PM_SUDO} cp -f build/muon "${BINDIR}"
+	samu -C build
+	${R2PM_SUDO} cp -f build/muon "${R2PM_BINDIR}"
 }
 
 R2PM_UNINSTALL() {
-	${R2PM_SUDO} rm -f "${BINDIR}/muon"
+	${R2PM_SUDO} rm -f "${R2PM_BINDIR}/muon"
 }
 
 R2PM_END
