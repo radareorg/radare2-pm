@@ -8,11 +8,11 @@ R2PM_INSTALL() {
 	cp -f build/muon m
 	./m setup build
 	ninja -C build
-	${SUDO} cp -f build/muon "${BINDIR}"
+	${R2PM_SUDO} cp -f build/muon "${BINDIR}"
 }
 
 R2PM_UNINSTALL() {
-	${SUDO} rm -f "${BINDIR}/muon"
+	${R2PM_SUDO} rm -f "${BINDIR}/muon"
 }
 
 R2PM_END

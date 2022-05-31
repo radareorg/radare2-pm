@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/michaelforney/samurai"
+R2PM_DESC "meson implementation in pure C"
+
+R2PM_INSTALL() {
+	${MAKE} -j
+	${R2PM_SUDO} cp -f samu "${R2PM_BINDIR}"
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} rm -f "${R2PM_BINDIR}/samu"
+}
+
+R2PM_END
