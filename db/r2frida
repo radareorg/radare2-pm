@@ -18,6 +18,12 @@ You can also connect to Android/iOS gadgets or servers:
 $ r2 frida://{device-id}/{application-name|process-id}
 "
 
+R2PM_INSTALL_WINDOWS() {
+	python -m wget -o r2frida-5.7.0-w64.zip https://github.com/nowsecure/r2frida/releases/download/v5.7.0/r2frida-5.7.0-w64.zip
+	unzip r2frida-5.7.0-w64.zip
+	copy io_frida.dll %R2_USER_PLUGINS%
+}
+
 R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
@@ -29,6 +35,10 @@ R2PM_INSTALL() {
 
 R2PM_UNINSTALL() {
 	${MAKE} user-uninstall R2_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL_WINDOWS() {
+	del %R2_USER_PLUGINS%\io_frida.dll
 }
 
 R2PM_END

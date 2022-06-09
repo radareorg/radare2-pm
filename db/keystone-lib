@@ -12,6 +12,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
+	pwd
 	cd build || exit 1
 	${R2PM_SUDO} ${MAKE} uninstall
 }
