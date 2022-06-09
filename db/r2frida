@@ -18,6 +18,7 @@ You can also connect to Android/iOS gadgets or servers:
 $ r2 frida://{device-id}/{application-name|process-id}
 "
 
+# powershell -command "Invoke-WebRequest 'https://github.com/nowsecure/r2frida/releases/download/v5.7.0/r2frida-5.7.0-w64.zip'" -OutFile 'r2frida-5.7.0-w64.zip'
 R2PM_INSTALL_WINDOWS() {
 	python -m wget -o r2frida-5.7.0-w64.zip https://github.com/nowsecure/r2frida/releases/download/v5.7.0/r2frida-5.7.0-w64.zip
 	unzip r2frida-5.7.0-w64.zip
