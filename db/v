@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT https://github.com/vlang/v
+R2PM_DESC "v language compiler"
+
+R2PM_INSTALL() {
+	make
+	sudo ./v symlink
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} rm -f /usr/local/bin/v
+}
+
+R2PM_END
