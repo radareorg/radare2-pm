@@ -12,16 +12,6 @@ R2PM_INSTALL() {
 	rm -rf ghidra/ghidra/Ghidra
 	rm -rf build # clean build
 	./preconfigure || exit 1
-if [ "$USE_CMAKE" = 1 ]; then
-	mkdir -p build && cd build || exit 1
-	cmake -DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" .. || exit 1
-	${MAKE} -j4 || exit 1
-	if [ "${GLOBAL}" = 1 ]; then
-		${SUDO} ${MAKE} install || exit 1
-	else
-		${MAKE} install || exit 1
-	fi
-else
 	./configure --prefix=`r2 -H R2_PREFIX` || R2PM_FAIL "configure"
 	${MAKE} -C src -j4 || R2PM_FAIL "make"
 	if [ "${GLOBAL}" = 1 ]; then
@@ -29,7 +19,6 @@ else
 	else
 		${MAKE} -C src user-install
 	fi
-fi
 }
 
 R2PM_UNINSTALL() {
