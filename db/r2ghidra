@@ -6,8 +6,6 @@ R2PM_DEPS r2ghidra-sleigh
 
 R2PM_DOC=""
 
-USE_CMAKE=0
-
 R2PM_INSTALL() {
 	rm -rf ghidra/ghidra/Ghidra
 	rm -rf build # clean build
@@ -22,18 +20,11 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-if [ "$USE_CMAKE" = 1 ]; then
-	cd build || exit 1
-	rm -rf build
-	cat install_manifest.txt | xargs rm -rv
-	rm -r "${R2PM_PLUGDIR}/r2ghidra_sleigh"
-else
 	if [ "${GLOBAL}" = 1 ]; then
 		${SUDO} ${MAKE} -C src uninstall
 	else
 		${MAKE} -C src user-uninstall
 	fi
-fi
 }
 
 R2PM_END
