@@ -13,8 +13,8 @@ R2PM_INSTALL() {
 			${SUDO} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
 			cd $(r2 -HR2_LIBR_PLUGINS) || return 1
 		else
-			mkdir -p r2 -H $(r2 -HR2_USER_PLUGINS)
-			cd $(r2 -HR2_USER_PLUGINS) || return 1
+			mkdir -p "$(r2 -HR2_USER_PLUGINS)"
+			cd "$(r2 -HR2_USER_PLUGINS)" || return 1
 			SUDO=''
 		fi
 
