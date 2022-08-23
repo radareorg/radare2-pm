@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/Siguza/iometa"
+R2PM_DESC "Extract c++ class rtti on arm64 darwin kernel"
+
+R2PM_INSTALL() {
+	${MAKE}
+	mkdir -p "${R2PM_BINDIR}"
+	cp -f iometa "${R2PM_BINDIR}/iometa"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}"/iometa
+}
+
+R2PM_END
