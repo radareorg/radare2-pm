@@ -1,11 +1,11 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/wargio/r2dec-js" r2dec
+R2PM_GIT https://github.com/wargio/r2dec-js r2dec
 R2PM_DESC "Experimental Decompiler written in javascript on top of r2"
 BINDIR="${R2PM_BINDIR}"
 
 R2PM_INSTALL() {
-	export CFLAGS="-DR2DEC_HOME=\\\"${R2PM_GITDIR}/r2dec\\\""
+	export CFLAGS='-DR2DEC_HOME="${R2PM_GITDIR}/r2dec"'
 	${MAKE} -C p USE_JSC=1 || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
 		${MAKE} -C p install USE_JSC=1 || exit 1
