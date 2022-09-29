@@ -7,8 +7,8 @@ R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}"
 	cd libr/asm/p || exit 1
 	${MAKE} clean
-	${MAKE} asm_ppc_disasm.${LIBEXT} || exit 1
-	cp -f asm_ppc_disasm.${LIBEXT} ${R2PM_PLUGDIR}
+	${MAKE} asm_ppc_disasm.${R2_LIBEXT} || exit 1
+	cp -f asm_ppc_disasm.${R2_LIBEXT} ${R2PM_PLUGDIR}
 }
 
 R2PM_UNINSTALL() {

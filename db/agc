@@ -7,10 +7,9 @@ R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX} || exit 1
 	cd libr/asm/p
 	${MAKE} clean
-ls
-	${MAKE} asm_agc.${LIBEXT} || exit 1
-	cp -f asm_agc.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
-	echo "cp -f asm_agc.${LIBEXT} ${R2PM_PLUGDIR}"
+	${MAKE} asm_agc.${R2_LIBEXT} || exit 1
+	cp -f asm_agc.${R2_LIBEXT} "${R2PM_PLUGDIR}" || exit 1
+	echo "cp -f asm_agc.${R2_LIBEXT} ${R2PM_PLUGDIR}"
 }
 
 R2PM_UNINSTALL() {

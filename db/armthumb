@@ -8,9 +8,9 @@ R2PM_INSTALL() {
 	cd libr/asm/p
 	${MAKE} clean
 ls
-	${MAKE} asm_armthumb.${LIBEXT} || exit 1
-	cp -f asm_armthumb.${LIBEXT} "${R2PM_PLUGDIR}" || exit 1
-	echo "cp -f asm_armthumb.${LIBEXT} ${R2PM_PLUGDIR}"
+	${MAKE} asm_armthumb.${R2_LIBEXT} || exit 1
+	cp -f asm_armthumb.${R2_LIBEXT} "${R2PM_PLUGDIR}" || exit 1
+	echo "cp -f asm_armthumb.${R2_LIBEXT} ${R2PM_PLUGDIR}"
 }
 
 R2PM_UNINSTALL() {
