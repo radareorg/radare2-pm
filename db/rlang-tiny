@@ -4,10 +4,11 @@ R2PM_GIT "https://github.com/radareorg/radare2-rlang"
 R2PM_DESC "[rlang] QuickJS RLang plugin #!qjs"
 
 R2PM_INSTALL() {
-	cd libr/lang || exit 1
-	${MAKE} -C tiny clean || exit 1
-	${MAKE} -C tiny || exit 1
-	${MAKE} -C tiny user-install" || exit 1
+	./configure || exit 1
+	cd tiny || exit 1
+	${MAKE} clean || exit 1
+	${MAKE} || exit 1
+	${MAKE} user-install || exit 1
 }
 
 R2PM_UNINSTALL() {
