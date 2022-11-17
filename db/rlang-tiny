@@ -5,13 +5,13 @@ R2PM_DESC "[rlang] QuickJS RLang plugin #!qjs"
 
 R2PM_INSTALL() {
 	cd libr/lang || exit 1
-	${MAKE} -C quickjs clean || exit 1
-	${MAKE} -C quickjs || exit 1
-	${MAKE} -C quickjs user-install" || exit 1
+	${MAKE} -C tiny clean || exit 1
+	${MAKE} -C tiny || exit 1
+	${MAKE} -C tiny user-install" || exit 1
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} -C quickjs user-uninstall || exit 1
+	${MAKE} -C tiny user-uninstall || exit 1
 }
 
 R2PM_END
