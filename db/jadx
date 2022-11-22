@@ -2,9 +2,11 @@ R2PM_BEGIN
 
 R2PM_DESC "[app] jadx decompiler"
 
+# XXX the new r2pm doesnt support global vars. maybe i should add R2PM_VERSION to define the version of the package instead
 JADX_VERSION=1.2.0
+# XXX the new r2pm doesnt evaluate vars in the urls
 JADX_URL="https://github.com/skylot/jadx/releases/download/v${JADX_VERSION}/jadx-${JADX_VERSION}.zip"
-
+# XXX globals are bad
 R2PM_TGZ ${JADX_URL} jadx-${JADX_VERSION}
 
 R2PM_INSTALL() {

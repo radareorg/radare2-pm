@@ -1,6 +1,8 @@
 R2PM_BEGIN
 
+# XXX globals are no longer supported
 VV="0.50.2"
+# XXX this is not gonna work with r2pm.c
 SV="$(echo ${VV}|cut -d . -f 1,2)"
 
 R2PM_TGZ "http://download.gnome.org/sources/vala/${SV}/vala-${VV}.tar.xz"

@@ -13,4 +13,5 @@ R2PM_INSTALL() {
 R2PM_UNINSTALL() {
     rm -f "${R2PM_BINDIR}"/machoke
 }
+
 R2PM_END

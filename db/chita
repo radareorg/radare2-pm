@@ -3,8 +3,6 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/jpenalbae/chita"
 R2PM_DESC "[r2-r2pipe-node] Exploiting helper"
 
-BINDIR="${R2PM_BINDIR}"
-
 R2PM_INSTALL() {
 	node --version || exit 1
 	npm install || exit 1
@@ -15,6 +13,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
+	export BINDIR="${R2PM_BINDIR}"
 	rm -f "${BINDIR}"/chita
 	rm -rf "${R2PM_GITDIR}"/chita
 }

@@ -2,11 +2,11 @@ R2PM_BEGIN
 
 R2PM_DESC "[app] ghidra"
 
-GHIDRA_VERSION=10.0.4
-GHIDRA_URL="https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${GHIDRA_VERSION}_build/ghidra_${GHIDRA_VERSION}_PUBLIC_20210928.zip"
 R2PM_TGZ ${GHIDRA_URL} "ghidra_${GHIDRA_VERSION}"
 
 R2PM_INSTALL() {
+	GHIDRA_VERSION=10.0.4
+	GHIDRA_URL="https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_${GHIDRA_VERSION}_build/ghidra_${GHIDRA_VERSION}_PUBLIC_20210928.zip"
 	echo "Installing Ghidra"
 	cd ghidra_${GHIDRA_VERSION}_PUBLIC
 	( ln -fs ghidra_${GHIDRA_VERSION} ../ghidra )

@@ -11,3 +11,5 @@ R2PM_INSTALL() {
 R2PM_UNINSTALL() {
         make uninstall || exit 1
 }
+
+R2PM_END
