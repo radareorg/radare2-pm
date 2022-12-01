@@ -8,7 +8,7 @@ R2PM_INSTALL() {
 	for CPU in ${CPUS} ; do
 		echo "Building for $CPU..."
 		make CPU=${CPU} SYNTAX=std > /dev/null 2>&1
-		cp -f vasm${CPU}_std "${R2PM_PREFIX}/bin/vasm${CPU}_std"
+		cp -f "$vasm${CPU}_std" "${R2PM_PREFIX}/bin/vasm${CPU}_std"
 	done
 }
 
