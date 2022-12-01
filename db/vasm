@@ -1,14 +1,15 @@
 R2PM_BEGIN
 
 R2PM_TGZ "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz"
-R2PM_DESC "a portable and retargetable assembler"
+R2PM_DESC "portable and retargetable assembler"
 
 R2PM_INSTALL() {
+	[ -d vasm ] && cd vasm
 	CPUS="arm 6502 6800 6809 c16x jagrisc m68k pdp11 ppc qnice tr3200 vidcore x86 z80"
 	for CPU in ${CPUS} ; do
 		echo "Building for $CPU..."
 		make CPU=${CPU} SYNTAX=std > /dev/null 2>&1
-		cp -f "$vasm${CPU}_std" "${R2PM_PREFIX}/bin/vasm${CPU}_std"
+		cp -f "vasm${CPU}_std" "${R2PM_PREFIX}/bin/vasm${CPU}_std"
 	done
 }
 
