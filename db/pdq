@@ -4,13 +4,12 @@ R2PM_GIT "https://github.com/radareorg/radare2-r2papi"
 R2PM_DESC "QuickDecompiler : r2-esil-based decompiler in quickjs"
 
 R2PM_INSTALL() {
-	make -C typescript || exit 1
-	mkdir -p `r2 -H R2_USER_PLUGINS` || exit 1
-	cp -f typescript/pdq.qjs `r2 -H R2_USER_PLUGINS`
+	make -C typescript pdq || exit 1
+	make -C typescript user-install || exit 1
 }
 
 R2PM_UNINSTALL() {
-	rm -f `r2 -H R2_USER_PLUGINS`/pdq.qjs
+	make -C typescript user-uninstall || exit 1
 }
 
 R2PM_END
