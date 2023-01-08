@@ -3,6 +3,8 @@ R2PM_BEGIN
 R2PM_GIT https://github.com/wargio/r2dec-js r2dec
 R2PM_DESC "Experimental Decompiler written in javascript on top of r2"
 
+R2PM_NEEDS "python3 gcc make"
+
 R2PM_INSTALL() {
 	export CFLAGS='-DR2DEC_HOME="${R2PM_GITDIR}/r2dec"'
 	${MAKE} -C p USE_JSC=1 V= || exit 1
