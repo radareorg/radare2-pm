@@ -9,6 +9,7 @@ R2PM_INSTALL() {
 	cp -f build/muon m
 	./m setup build
 	samu -C build
+	mkdir -p "${R2PM_BINDIR}"
 	${R2PM_SUDO} cp -f build/muon "${R2PM_BINDIR}"
 }
 
