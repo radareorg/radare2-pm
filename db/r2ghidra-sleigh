@@ -33,7 +33,7 @@ R2PM_INSTALL() {
 		rm -rf build # clean build
 		./preconfigure || return 1
 		./configure --prefix=`r2 -H R2_PREFIX` || return 1
-		${MAKE} -j4
+		${MAKE} -j1
 		if [ "${GLOBAL}" = 1 ]; then
 			${SUDO} ${MAKE} -C ghidra install
 		else
