@@ -7,8 +7,11 @@ R2PM_DESC "[syspkg] GNU/Poke tool and library needed for r2poke"
 
 R2PM_INSTALL() {
 	echo "Ubuntu: Requires libgc-dev and libreadline-dev"
-	export CFLAGS=-fPIC
-	export LDFLAGS=-fPIC
+	export CFLAGS="$(pkg-config --cflags readline)"
+	export LDFLAGS="$(pkg-config --libs readline)"
+	echo "macOS: Requires GNU readline, from brew its here"
+	export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig"
+	sleep 1
 	./configure --prefix="${R2PM_PREFIX}"
 	${MAKE} -j4
 	${MAKE} install
