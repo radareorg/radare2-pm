@@ -1,15 +1,15 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/sdb"
-R2PM_DESC "[syspkg] Simple/String DataBase"
+R2PM_DESC "Simple/String DataBase commandline tool and library"
 
 R2PM_INSTALL() {
 	${MAKE} clean
-	${MAKE} PREFIX="${R2PM_PREFIX}" || exit 1
+	${MAKE} HAVE_VALA= PREFIX="${R2PM_PREFIX}" || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
-		${SUDO} ${MAKE} install PREFIX="${R2PM_PREFIX}" || exit 1
+		${SUDO} ${MAKE} install HAVE_VALA= PREFIX="${R2PM_PREFIX}" || exit 1
 	else
-		${MAKE} install PREFIX="${R2PM_PREFIX}" || exit 1
+		${MAKE} install HAVE_VALA= PREFIX="${R2PM_PREFIX}" || exit 1
 	fi
 }
 
