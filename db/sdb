@@ -11,6 +11,8 @@ R2PM_INSTALL() {
 	else
 		${MAKE} install HAVE_VALA= PREFIX="${R2PM_PREFIX}" || exit 1
 	fi
+	rm -f ${R2PM_PREFIX}/lib/libsdb*.so*
+	rm -f ${R2PM_PREFIX}/lib/libsdb*.dylib*
 }
 
 R2PM_UNINSTALL() {
