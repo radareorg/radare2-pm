@@ -28,7 +28,7 @@ R2PM_INSTALL_WINDOWS() {
 R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
-	./configure --with-precompiled-agent || R2PM_FAIL "Install fail"
+	./configure || R2PM_FAIL "Install fail"
 	${MAKE} || R2PM_FAIL "Build failed"
 	${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
 }
