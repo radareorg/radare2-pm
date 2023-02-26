@@ -1,18 +1,18 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-extras"
-R2PM_DESC "[r2-arch] BlackFin disassembler plugin"
+R2PM_DESC "BlackFin arch plugin for radare2"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
 	cd libr/asm/p || exit 1
 	${MAKE} clean
-	${MAKE} asm_blackfin.${R2_LIBEXT} || exit 1
-	cp -f asm_blackfin.${R2_LIBEXT} "${R2PM_PLUGDIR}" || exit 1
+	${MAKE} arch_blackfin.${R2_LIBEXT} || exit 1
+	cp -f arch_blackfin.${R2_LIBEXT} "${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_PLUGDIR}/asm_blackfin."*
+	rm -f "${R2PM_PLUGDIR}/arch_blackfin."*
 }
 
 R2PM_END
