@@ -1,0 +1,44 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/nowsecure/r2frida"
+R2PM_DESC "[r2-io] r2frida:// IO plugin"
+
+R2PM_DOC="
+r2frida is an IO plugin for r2 that talks with Frida.
+This allows to interact with local and remote processes.
+
+$ r2 frida:///bin/ls
+[0x00000000]> :i*
+e asm.arch=x86
+e asm.bits=64
+e asm.os=darwin
+
+You can also connect to Android/iOS gadgets or servers:
+
+$ r2 frida://{device-id}/{application-name|process-id}
+"
+
+# powershell -command "Invoke-WebRequest 'https://github.com/nowsecure/r2frida/releases/download/v5.7.6/r2frida-5.7.6-w64.zip'" -OutFile 'r2frida-5.7.6-w64.zip'
+R2PM_INSTALL_WINDOWS() {
+	python -m wget -o r2frida-5.7.8-w64.zip https://github.com/nowsecure/r2frida/releases/download/v5.7.6/r2frida-5.7.8-w64.zip
+	unzip r2frida-5.7.8-w64.zip
+	copy io_frida.dll %R2_USER_PLUGINS%
+}
+
+R2PM_INSTALL() {
+	unset CFLAGS
+	unset LDFLAGS
+	./configure --with-precompiled-agent || R2PM_FAIL "Install fail"
+	${MAKE} || R2PM_FAIL "Build failed"
+	${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} user-uninstall R2_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL_WINDOWS() {
+	del %R2_USER_PLUGINS%\io_frida.dll
+}
+
+R2PM_END
