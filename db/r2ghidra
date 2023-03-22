@@ -6,6 +6,15 @@ R2PM_DEPS r2ghidra-sleigh
 
 R2PM_DOC=""
 
+R2PM_INSTALL_WINDOWS() {
+	cd dist/windows/r2pm
+	install.bat
+}
+R2PM_UNINSTALL_WINDOWS() {
+	cd dist/windows/r2pm
+	uninstall.bat
+}
+
 R2PM_INSTALL() {
 	rm -rf ghidra/ghidra/Ghidra
 	rm -rf build # clean build
