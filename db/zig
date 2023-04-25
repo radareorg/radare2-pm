@@ -2,15 +2,14 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/marler8997/zigup"
 R2PM_DESC "keep your Zig toolchain up to date"
+R2PM_DEPS zigup
 
 R2PM_INSTALL() {
-	wget https://github.com/marler8997/zigup/releases/download/v2022_08_25/zigup.macos-latest-aarch64.zip
-	unzip zigup.macos-latest-aarch64.zip
-	cp -f zigup "${R2PM_BINDIR}/zigup"
+	sudo zigup master
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_BINDIR}/zigup"
+	sudo zigup clean
 }
 
 R2PM_END
