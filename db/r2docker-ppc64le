@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2"
+R2PM_DESC "[syspkg] radare2 docker image on Debian/ppc64le"
+
+R2PM_INSTALL() {
+	cd dist/docker || return 1
+	docker build --platform linux/ppc64le -t r2docker-ppc64le .
+	echo
+	echo '$ docker run -ti r2docker'
+	echo
+	BIN="${R2PM_PREFIX}/bin/r2docker-ppc64le"
+	echo '#!/bin/sh' > $BIN
+	echo 'docker run --platform linux/ppc64le -v /tmp:/tmp -ti r2docker-ppc64le' >> $BIN
+	chmod +x $BIN
+}
+
+R2PM_UNINSTALL() {
+	docker rmi -f r2docker-ppc64le
+}
+
+R2PM_END
