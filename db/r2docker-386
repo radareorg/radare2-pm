@@ -5,6 +5,7 @@ R2PM_DESC "[syspkg] radare2 docker image on Debian/386"
 
 R2PM_INSTALL() {
 	cd dist/docker || return 1
+	uname | grep Linux || exit 1
 	docker build --platform linux/386 -t r2docker-s390x .
 	echo
 	echo '$ docker run -ti r2docker'
