@@ -4,7 +4,8 @@ R2PM_GIT "https://github.com/stolk/imcat"
 R2PM_DESC "image cat (png)"
 
 R2PM_INSTALL() {
-	gcc -o imcat imcat.c
+	[ -z "$CC" ] && CC=gcc
+	${CC} -o imcat imcat.c
 	${SUDO} mkdir -p "${R2PM_PREFIX}/bin"
 	${SUDO} cp -f imcat "${R2PM_PREFIX}/bin/imcat"
 }
