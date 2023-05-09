@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-extras"
+R2PM_DESC "Doom port for Radare2"
+
+R2PM_INSTALL() {
+	$MAKE -C r2doom || exit 1
+	$MAKE -C r2doom install || exit 1
+}
+
+R2PM_UNINSTALL() {
+	$MAKE -C r2doom uninstall || exit 1
+}
+
+R2PM_END
