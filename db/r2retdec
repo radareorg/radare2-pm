@@ -19,7 +19,8 @@ R2PM_INSTALL() {
 		-DBUILD_BUNDLED_RETDEC=ON \
 		-DRETDEC_INSTALL_PREFIX="${PWD}/install" || exit 1
 	fi
-	${MAKE} -j$(nproc --all) install || exit 1
+	${MAKE} -j2 || exit 1
+	${MAKE} install || exit 1
 }
 
 R2PM_UNINSTALL() {
