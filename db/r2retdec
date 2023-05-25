@@ -5,15 +5,6 @@ R2PM_DESC "retdec decompiler plugin for radare2 (adds pdz command)"
 
 R2PM_DOC=""
 
-fetch_nproc() {
-	which nproc 2>/dev/null >/dev/null
-	if [ $? -eq 0 ]; then
-		nproc
-	else
-		echo 1
-	fi
-}
-
 R2PM_INSTALL() {
 	mkdir -p build && cd build || exit 1
 	if [ "`uname`" = Darwin ]; then
@@ -28,7 +19,7 @@ R2PM_INSTALL() {
 		-DBUILD_BUNDLED_RETDEC=ON \
 		-DRETDEC_INSTALL_PREFIX="${PWD}/install" || exit 1
 	fi
-	${MAKE} -j$(fetch_nproc) install || exit 1
+	${MAKE} -j$(nproc --all) install || exit 1
 }
 
 R2PM_UNINSTALL() {
