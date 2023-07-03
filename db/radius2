@@ -1,17 +1,19 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/nowsecure/radius2"
+R2PM_GIT "https://github.com/aemmitt-ns/radius"
 R2PM_DESC "fast symbolic execution with r2"
+
+R2PM_NEEDS "rustc cargo cmake"
 
 R2PM_INSTALL() {
 	cargo update --verbose || exit 1
 	cargo build --verbose || exit 1
-	ln -fs `pwd`/target/debug/radius \
-		"${R2PM_BINDIR}"/radius || exit 1
+	ln -fs `pwd`/target/debug/radius2 \
+		"${R2PM_BINDIR}"/radius2 || exit 1
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_BINDIR}"/radius
+	rm -f "${R2PM_BINDIR}"/radius2
 }
 
 R2PM_END
