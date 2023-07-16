@@ -29,7 +29,11 @@ R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
 	./configure || R2PM_FAIL "Install fail"
-	${MAKE} || R2PM_FAIL "Build failed"
+	if [ -n "${FRIDA_VERSION}" ]; then
+		${MAKE} frida_version=${FRIDA_VERSION} || R2PM_FAIL "Build failed"
+	else
+		${MAKE} || R2PM_FAIL "Build failed"
+	fi
 	${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
 }
 
