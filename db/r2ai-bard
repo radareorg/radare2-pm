@@ -4,7 +4,7 @@ R2PM_GIT "https://github.com/radareorg/radare2-extras"
 R2PM_DESC "Google Bard AI plugin for radare2 (requires bard-cli in $PATH)"
 
 R2PM_INSTALL() {
-	bard-cli --help || echo "Please install bard-cli"
+	bard-cli --help > /dev/null 2>&1 || echo "Please install bard-cli"
 	cp -f r2ai/bard.r2.js "${R2PM_PLUGDIR}"
 }
 
