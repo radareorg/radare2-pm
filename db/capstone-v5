@@ -1,9 +1,10 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/capstone-engine/capstone"
+R2PM_GIT "https://github.com/capstone-engine/capstone --branch v5"
 R2PM_DESC "capstone v5"
 
 R2PM_INSTALL() {
+	git reset --hard
 	git pull ; git checkout v5 ; git pull
 	${MAKE} PREFIX="${R2PM_PREFIX}"
 	${MAKE} install PREFIX="${R2PM_PREFIX}"
