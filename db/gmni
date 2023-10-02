@@ -2,8 +2,11 @@ R2PM_BEGIN
 
 R2PM_GIT "https://git.sr.ht/~sircmpwn/gmni"
 R2PM_DESC "command-line gemini client"
+R2PM_DEPS bearssl
 
 R2PM_INSTALL() {
+	export CFLAGS="-w -I${R2PM_PREFIX}/include"
+	export LDFLAGS="-L${R2PM_PREFIX}/lib"
 	./configure --prefix="${R2PM_PREFIX}" || exit 1
 	${MAKE} -j 4 || exit -1
 	${MAKE} install || exit 1

@@ -1,0 +1,18 @@
+R2PM_BEGIN
+R2PM_TGZ https://www.bearssl.org/bearssl-0.6.tar.gz
+R2PM_DESC "command-line gemini client"
+
+R2PM_INSTALL() {
+	cd bearssl-0.6
+	${MAKE} -j 4 || exit 1
+	mkdir -p ${R2PM_PREFIX}/include ${R2PM_PREFIX}/lib
+	cp -rf inc/bearssl* ${R2PM_PREFIX}/include
+	cp -f build/libbearssl.a ${R2PM_PREFIX}/lib
+}
+
+R2PM_UNINSTALL() {
+	rm -rf ${R2PM_PREFIX}/include/bearssl*
+	rm -f ${R2PM_PREFIX}/lib/libbearssl.a
+}
+
+R2PM_END
