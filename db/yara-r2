@@ -6,35 +6,48 @@ R2PM_DESC "implements the r2 module for Yara"
 R2PM_DOC="https://r2yara.readthedocs.io/en/latest/"
 
 R2PM_INSTALL() {
-	# Yara
-	git clone https://github.com/VirusTotal/yara || R2PM_FAIL "Cloning Yara"
 
-	# R2 module for Yara
-	cp -f r2.c yara/libyara/modules/r2.c
-	cp -f dist/yara-3.6.3/libyara/modules/module_list yara/libyara/modules/module_list
-	cp -f dist/yara-3.6.3/libyara/Makefile.am yara/libyara/Makefile.am
-	cp -f dist/yara-3.6.3/configure.ac yara/configure.ac
-	echo "AM_CFLAGS += @DOLLAR_SIGN@(shell pkg-config --cflags r_socket)" >> yara/Makefile.am
-	echo "LIBS += @DOLLAR_SIGN@(shell pkg-config --libs r_socket)" >> yara/Makefile.am
-
+if [ 1 = 0 ]; then
 	# libjansson
-	wget http://www.digip.org/jansson/releases/jansson-2.7.tar.gz || R2PM_FAIL "Downloading libjansson"
+	wget -c http://www.digip.org/jansson/releases/jansson-2.7.tar.gz || R2PM_FAIL "Downloading libjansson"
 	tar -xzvf jansson-2.7.tar.gz || R2PM_FAIL "Unpacking libjansson"
 	cd jansson-2.7 || R2PM_FAIL "Entering libjansson folder"
 	./configure --prefix="${R2PM_PREFIX}" || R2PM_FAIL "Configuring libjansson"
 	${MAKE} || R2PM_FAIL "Building libjansson"
 	${R2PM_SUDO} ${MAKE} install || R2PM_FAIL "Installing libjansson"
 	cd ..
+	fi
+if [ 1 = 1 ] ; then
+	if [ ! -d yara ]; then
+	# Yara
+	git clone https://github.com/VirusTotal/yara || R2PM_FAIL "Cloning Yara"
+	# pin the commit
+	fi
+	( cd yara && git reset --hard)
+	( cd yara && git checkout v3.6.3 )
+
+	# R2 module for Yara
+	cp -f r2.c yara/libyara/modules/r2.c
+	cp -f dist/yara-3.6.3/libyara/modules/module_list yara/libyara/modules/module_list
+	cp -f dist/yara-3.6.3/libyara/Makefile.am yara/libyara/Makefile.am
+	cp -f dist/yara-3.6.3/configure.ac yara/configure.ac
+	echo 'AM_CFLAGS += @DOLLAR_SIGN@(shell pkg-config --cflags r_socket)' >> yara/Makefile.am
+	echo 'LIBS += @DOLLAR_SIGN@(shell pkg-config --libs r_socket)' >> yara/Makefile.am
+fi
 
 	# Compile Yara
+	export CFLAGS="-I${R2PM_PREFIX}/include"
+	export LDFLAGS="-L${R2PM_PREFIX}/lib"
 	cd yara || exit 1
 	./bootstrap.sh || R2PM_FAIL "Bootstrap Yara"
-	./configure --prefix="${R2PM_PREFIX}" --enable-cuckoo || R2PM_FAIL "Configure"
+	./configure --prefix="${R2PM_PREFIX}" --enable-cuckoo || R2PM_FAIL "Configure has failed"
 	${MAKE} || R2PM_FAIL "Build"
 	${R2PM_SUDO} ${MAKE} install || R2PM_FAIL "Install"
 }
 
 R2PM_UNINSTALL() {
+	rm -rf yara
+	rm -f jansson-2.7.tar.gz
 	${R2PM_SUDO} ${MAKE} uninstall
 }
 
