@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/nowsecure/r2frida"
+R2PM_DESC "Use the objection Frida scripts from r2frida"
+
+R2PM_DOC="run the :objection command for more details"
+
+R2PM_INSTALL() {
+	cd plugins/objection || R2PM_FAIL "nodir"
+	${MAKE} || R2PM_FAIL "make"
+	if [ "${GLOBAL}" = 1 ]; then
+		${R2PM_SUDO} ${MAKE} install
+	else
+		${MAKE} user-install
+	fi
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} user-uninstall || exit 1
+}
+
+R2PM_END
