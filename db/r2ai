@@ -6,12 +6,11 @@ R2PM_DESC "run a local language model integrated with radare2"
 R2PM_INSTALL() {
 	echo "RUN IF IN NEED FOR DEPS:"
 	echo "pip3 install rich inquirer python-dotenv openai litellm tokentrim"
-	make -C "${PWD}/r2ai/local"
-	ln -fs "${PWD}/r2ai/local/main.py" "${R2PM_BINDIR}/r2ai" || exit 1
+	make -C "${PWD}/r2ai/local" user-install
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_BINDIR}/r2ai"
+	make -C "${PWD}/r2ai/local" user-uninstall
 }
 
 R2PM_END
