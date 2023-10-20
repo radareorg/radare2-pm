@@ -4,8 +4,7 @@ R2PM_GIT "https://github.com/radareorg/r2ai"
 R2PM_DESC "run a local language model integrated with radare2"
 
 R2PM_INSTALL() {
-	echo "RUN THIS LINE IF IN NEED FOR DEPS:"
-	echo "pip3 install rich inquirer python-dotenv openai litellm tokentrim"
+	grep install README.md
 	make user-install
 }
 
