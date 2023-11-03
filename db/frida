@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_DESC "Frida and tools"
+
+R2PM_INSTALL() {
+	pip install -U frida
+	pip install -U frida-tools
+}
+
+R2PM_UNINSTALL() {
+	pip uninstall frida-tools
+	pip uninstall frida
+}
+
+R2PM_END
