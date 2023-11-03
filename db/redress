@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/goretk/redress"
+R2PM_DESC "A tool for analyzing stripped Go binaries"
+
+R2PM_INSTALL() {
+	make build
+	cp -f ${PWD}/redress ${R2PM_PREFIX}/bin/redress
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_PREFIX}/bin/redress
+}
+
+R2PM_END
