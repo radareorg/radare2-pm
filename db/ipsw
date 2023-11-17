@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/blacktop/ipsw"
+R2PM_DESC "iOS/macOS Research Swiss Army Knife"
+
+R2PM_INSTALL() {
+	make build
+	ln -fs ${PWD}/ipsw ${R2PM_BINDIR}/ipsw
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_BINDIR}/ipsw
+}
+
+R2PM_END
+
