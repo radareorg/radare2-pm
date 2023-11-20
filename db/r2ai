@@ -5,6 +5,7 @@ R2PM_DESC "run a local language model integrated with radare2"
 
 R2PM_INSTALL() {
 	grep install README.md
+        pip install -r requirements.txt
 	make user-install
 }
 
