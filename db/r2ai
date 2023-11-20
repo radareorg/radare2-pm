@@ -4,8 +4,7 @@ R2PM_GIT "https://github.com/radareorg/r2ai"
 R2PM_DESC "run a local language model integrated with radare2"
 
 R2PM_INSTALL() {
-	grep install README.md
-        pip install -r requirements.txt
+        pip install -r requirements.txt || exit 1
 	make user-install
 }
 
