@@ -1,26 +1,28 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/wargio/r2dec-js r2dec
-R2PM_DESC "Experimental Decompiler written in javascript on top of r2"
+R2PM_DESC "The latest r2dec from git using QuickJS"
 
-R2PM_NEEDS "python3 gcc make"
+R2PM_NEEDS "gcc make ninja"
 
 R2PM_INSTALL() {
-	export CFLAGS='-DR2DEC_HOME="${R2PM_GITDIR}/r2dec"'
-	${MAKE} -C p USE_JSC=1 V= || exit 1
+	meson b --reconfigure || exit 1
+	( cd b && ninja ) || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
-		${MAKE} -C p uninstall
-		${MAKE} -C p install V= USE_JSC=1 || exit 1
+		${R2PM_SUDO} ninja uninstall
+		${R2PM_SUDO} ninja install V= USE_JSC=1 || exit 1
 	else
-		${MAKE} -C p user-uninstall
-		${MAKE} -C p user-install V= USE_JSC=1 || exit 1
+		mkdir -p ${R2PM_PLUGDIR}
+		cp -f b/libcore_pdd.${R2_LIBEXT} ${R2PM_PLUGDIR}
+		echo "${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}"
 	fi
 }
 
 R2PM_UNINSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
-		${MAKE} -C p uninstall || exit 1
+		${R2PM_SUDO} ninja -C p uninstall || exit 1
 	else
+		rm -f ${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}
 		${MAKE} -C p user-uninstall || exit 1
 	fi
 }
