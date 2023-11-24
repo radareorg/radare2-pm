@@ -1,0 +1,27 @@
+R2PM_BEGIN
+
+# R2PM_TGZ http://prdownloads.sourceforge.net/tcl/tcl8.6.13-src.tar.gz tcl
+R2PM_TGZ https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/8.6.13/tk8.6.13-src.tar.gz
+R2PM_DESC "The TCL programming language"
+
+R2PM_NEEDS "gcc make"
+
+R2PM_INSTALL() {
+	cd tk8.6.13
+	mkdir build
+	cd build
+	if [ "`uname`" = Darwin ]; then
+#(cd ../macosx ; autoreconf -vfi ; aclocal ; autoconf ; automake )
+		../macosx/configure --prefix=${R2PM_PREFIX} --enable-aqua=yes
+	else
+		../unix/configure --prefix=${R2PM_PREFIX}
+	fi
+	${MAKE}
+	${R2PM_SUDO} ${MAKE} install
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} ${MAKE} -C build install
+}
+
+R2PM_END
