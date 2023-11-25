@@ -7,7 +7,7 @@ R2PM_NEEDS "gcc make ninja meson"
 
 R2PM_INSTALL() {
 	rm -rf b
-	meson b --reconfigure || exit 1
+	meson b || exit 1
 	ninja -C b || exit 1
 	if [ "${GLOBAL}" = 1 ]; then
 		${R2PM_SUDO} ninja uninstall
