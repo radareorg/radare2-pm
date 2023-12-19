@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/r2ai"
+R2PM_DESC "run a local language model integrated with radare2"
+R2PM_CONFLICT r2ai
+R2PM_DEPS llama.cpp
+
+R2PM_INSTALL() {
+	make -C native/cxx
+}
+
+R2PM_UNINSTALL() {
+	make -C native/cxx user-uninstall
+}
+
+R2PM_END

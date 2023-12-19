@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2ai"
 R2PM_DESC "run a local language model integrated with radare2"
+R2PM_CONFLICT r2ai-native
 
 R2PM_INSTALL() {
         pip install -r requirements.txt
