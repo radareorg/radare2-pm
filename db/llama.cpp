@@ -6,8 +6,7 @@ R2PM_DESC "The most advanced and performant opensource language model implementa
 R2PM_NEEDS "gcc make cmake"
 
 R2PM_INSTALL() {
-	export CMAKE_CXX_FLAGS=-fPIC
-	cmake -DCMAKE_INSTALL_PREFIX:PATH=${R2PM_PREFIX} .
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=${R2PM_PREFIX} -DCMAKE_CXX_FLAGS="-O2 -fPIC" -DCMAKE_SHARED_LINKER_FLAGS=-fPIC .
 	${MAKE} -j4
 	${R2PM_SUDO} ${MAKE} install
 }
