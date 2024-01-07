@@ -15,7 +15,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} -C python uninstall
+	${R2PM_SUDO} ${MAKE} -C python uninstall
 }
 
 R2PM_END
