@@ -9,7 +9,7 @@ R2PM_INSTALL() {
 	echo "To setup a virtual Python environment run the following commands:"
 	echo 'python -m venv r2ai; export PATH="$PWD/r2ai/bin:$PATH"'
 	if [ "${R2PM_GLOBAL}" = 1 ]; then
-		make install R2_USER_PLUGINS=${R2PM_PLUGDIR} R2PM_BINDIR=/usr/bin
+		${R2PM_SUDO} make install R2_USER_PLUGINS=${R2PM_PLUGDIR} R2PM_BINDIR=/usr/bin
 	else
 		make user-install
 	fi
