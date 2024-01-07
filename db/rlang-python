@@ -11,7 +11,7 @@ R2PM_INSTALL() {
 	cd python
 	${MAKE} clean || exit 1
 	${MAKE} || exit 1
-	${MAKE} install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+	${MAKE} install R2_PLUGIN_PATH="${R2PM_PLUGDIR}" R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_UNINSTALL() {
