@@ -9,23 +9,14 @@ R2PM_INSTALL() {
 	rm -rf b
 	meson b || exit 1
 	ninja -C b || exit 1
-	if [ "${GLOBAL}" = 1 ]; then
-		${R2PM_SUDO} ninja uninstall
-		${R2PM_SUDO} ninja install || exit 1
-	else
-		mkdir -p ${R2PM_PLUGDIR}
-		cp -f b/libcore_pdd.${R2_LIBEXT} ${R2PM_PLUGDIR}
-		echo "${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}"
-	fi
+	mkdir -p ${R2PM_PLUGDIR}
+	echo "${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}"
+	${R2PM_SUDO} cp -f b/libcore_pdd.${R2_LIBEXT} ${R2PM_PLUGDIR}
 }
 
 R2PM_UNINSTALL() {
-	if [ "${GLOBAL}" = 1 ]; then
-		${R2PM_SUDO} ninja -C p uninstall || exit 1
-	else
-		rm -f ${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}
-		${MAKE} -C p user-uninstall || exit 1
-	fi
+	rm -f ${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}
+	${MAKE} -C p user-uninstall || exit 1
 }
 
 R2PM_END
