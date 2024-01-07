@@ -5,10 +5,14 @@ R2PM_DESC "run a local language model integrated with radare2"
 R2PM_CONFLICT r2ai-native
 
 R2PM_INSTALL() {
-        pip install -r requirements.txt
+        ${R2PM_SUDO} pip install --break-system-packages -r requirements.txt
 	echo "To setup a virtual Python environment run the following commands:"
 	echo 'python -m venv r2ai; export PATH="$PWD/r2ai/bin:$PATH"'
-	make user-install
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		make install
+	else
+		make user-install
+	fi
 }
 
 R2PM_UNINSTALL() {
