@@ -34,7 +34,11 @@ R2PM_INSTALL() {
 	else
 		${MAKE} || R2PM_FAIL "Build failed"
 	fi
-	${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
+	if [ "$GLOBAL" = 1 ]; then
+		${R2PM_SUDO} ${MAKE} install || R2PM_FAIL "Install fail"
+	else
+		${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
+	fi
 }
 
 R2PM_UNINSTALL() {
