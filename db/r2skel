@@ -4,11 +4,19 @@ R2PM_GIT "https://github.com/radareorg/radare2-skel"
 R2PM_DESC "Create basic skeleton to write radare2 scripts and plugins in any language"
 
 R2PM_INSTALL() {
-	make
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		${R2PM_SUDO} make install
+	else
+		make user-install
+	fi
 }
 
 R2PM_UNINSTALL() {
-	rm -f ${R2PM_BINDIR}/r2skel
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		${R2PM_SUDO} make uninstall
+	else
+		make user-uninstall
+	fi
 }
 
 R2PM_END
