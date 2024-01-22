@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2retdec"
 R2PM_DESC "retdec decompiler plugin for radare2 (adds pdz command)"
+R2PM_NEEDS cmake
 
 R2PM_DOC=""
 
@@ -11,8 +12,8 @@ R2PM_INSTALL() {
 		cmake .. \
 		-DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" \
 		-DBUILD_BUNDLED_RETDEC=ON \
-		-DRETDEC_INSTALL_PREFIX="${PWD}/install" || exit 1
 		-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/ \
+		-DRETDEC_INSTALL_PREFIX="${PWD}/install"
 	else
 		cmake .. \
 		-DRADARE2_INSTALL_PLUGDIR="${R2PM_PLUGDIR}" \
