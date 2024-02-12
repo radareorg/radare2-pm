@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/dnakov/r2d2"
+R2PM_DESC "[r2-d2] Plugin to allow GPT-4 to interface with the radare2 session"
+
+R2PM_INSTALL() {
+    pip install .
+    ln -s "${R2PM_GITDIR}/r2d2/r2d2/main.py" "${R2PM_PLUGDIR}/r2d2.py"
+}
+
+R2PM_UNINSTALL() {
+    pip uninstall r2d2
+    rm -f "${R2PM_PLUGDIR}/r2d2.py"
+}
+
+R2PM_END
