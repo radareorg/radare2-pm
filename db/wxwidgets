@@ -1,0 +1,15 @@
+R2PM_BEGIN
+R2PM_GIT https://github.com/wxWidgets/wxWidgets.git
+R2PM_DESC "[pkg] radare2 symstall"
+
+R2PM_INSTALL() {
+	./configure --prefix=${R2PM_PREFIX}
+	make -j8
+	make install
+}
+
+R2PM_UNINSTALL() {
+}
+
+R2PM_END
+
