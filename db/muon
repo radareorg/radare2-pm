@@ -2,7 +2,7 @@ R2PM_BEGIN
 
 # R2PM_GIT "https://git.sr.ht/~lattis/muon"
 R2PM_GIT "https://github.com/annacrombie/muon"
-R2PM_DESC "meson implementation in pure C"
+R2PM_DESC "Reimplementation of meson in pure C"
 R2PM_DEPS samurai
 
 R2PM_INSTALL() {
