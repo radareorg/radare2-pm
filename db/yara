@@ -8,7 +8,7 @@ R2PM_DESC "install yara commandline tool and library from git"
 R2PM_INSTALL() {
 	export CFLAGS="-fPIC"
 	git fetch --tags
-	git checkout v4.3.2
+	git checkout v4.5.0
 	chmod +x bootstrap.sh
 	echo "Using PREFIX ${R2PM_PREFIX}"
 	./bootstrap.sh
