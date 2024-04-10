@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_DESC "Renewed r2pipe module for NodeJS in TypeScript"
+
+R2PM_INSTALL() {
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} npm install -g r2pipe-ts
+	else
+		npm install r2pipe-ts
+	fi
+}
+
+R2PM_UNINSTALL() {
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} npm uninstall -g r2pipe-ts
+	else
+		npm uninstall r2pipe-ts
+	fi
+}
+
+R2PM_END
