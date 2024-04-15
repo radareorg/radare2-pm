@@ -7,11 +7,19 @@ R2PM_DEPS yara
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" || R2PM_FAIL "Configure"
 	${MAKE} || R2PM_FAIL "Build"
-	${MAKE} user-install || R2PM_FAIL "Install"
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} install || R2PM_FAIL "Install"
+	else
+		${MAKE} user-install || R2PM_FAIL "Install"
+	fi
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} user-uninstall
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} uninstall
+	else
+		${MAKE} user-uninstall
+	fi
 }
 
 R2PM_END
