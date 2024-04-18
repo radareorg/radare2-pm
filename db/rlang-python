@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-rlang"
-R2PM_DESC "[rlang] Python RLang plugin #!python"
+R2PM_DESC "Python lang plugin providing 'import r2lang' and #!python"
 
 R2PM_INSTALL() {
 	[ -z python-config ] && \
