@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/hamikm/AsciiBird/"
+R2PM_DESC "Flappy bird in ascii art"
+
+R2PM_INSTALL() {
+	make
+	cp -f driver "${R2PM_BINDIR}/asciibird"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}/asciibird"
+}
+
+R2PM_END
