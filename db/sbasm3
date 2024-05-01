@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_GIT https://github.com/sbprojects/sbasm3
+R2PM_DESC "SB-Assembler Version 3 - Cross Macro Assembler"
+
+R2PM_INSTALL() {
+#	pip install -r requirements.txt
+	ln -fs ${PWD}/sbasm "${R2PM_PREFIX}/bin/sbasm3"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PREFIX}/bin/sbasm3"
+}
+
+R2PM_END
