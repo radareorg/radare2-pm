@@ -4,11 +4,11 @@ R2PM_GIT "https://github.com/radareorg/radare2-extras"
 R2PM_DESC "x86 disassembler plugin in Rust using the iced library"
 
 R2PM_INSTALL() {
-	${MAKE} -C r2iced
+	${MAKE} -C x86iced
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} -C r2iced uninstall || exit 1
+	${MAKE} -C x86iced uninstall || exit 1
 }
 
 R2PM_END
