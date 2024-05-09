@@ -1,0 +1,58 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/hanemile/radare2-GoReSym"
+R2PM_DESC "import into r2 the symbols from GoReSym"
+
+R2PM_INSTALL() {
+	if [ ! -d GoReSym ]; then
+		git clone https://github.com/mandiant/GoReSym
+		pushd GoReSym
+		go build || exit 1
+		popd
+	fi
+
+	# TODO: This script should be moved to the r2-goresym repo imho
+	export GRS_DIR="${PWD}"
+	export GRS_SRC="${GRS_DIR}/rename.py"
+	export GRS_DST="${R2PM_PLUGDIR}/goresym.r2.js"
+	export GRS_R2JS=`cat <<EOF
+	(function(){
+	 	r2.unload("core", "goresym");
+	 	r2.plugin("core", function() {
+			function coreCall(cmd) {
+				if (cmd.startsWith("goresym")) {
+					const bin = r2.cmd("o.").trim();
+					r2.cmd("!! ${GRS_DIR}/GoReSym/GoReSym -t -d -p "+bin+"> goresym_out.txt");
+					r2.cmd("#!pipe python3 ${GRS_SRC}");
+					console.log("goresym");
+					return true;
+				}
+				return false;
+			}
+			return {
+				"name": "goresym",
+				"license": "MIT",
+				"desc": "rename symbols with goresym",
+				"call": coreCall,
+			};
+		});
+	 })();
+EOF
+`
+	echo "${GRS_R2JS}" > ${GRS_DST}
+	# install a plugin that runs ". radare2GoReSym/rename.py"
+	# Extract the symbols from the binary like this
+	# GoReSym -t -d -p BINARY > goresym_out.txt
+	#
+	# Then within radare2:
+	# [0x........]> . radare2GoReSym/rename.py
+	#
+	# Wait a bit and finally, the sumbols are renamed accordingly
+}
+
+R2PM_UNINSTALL() {
+        rm -rf GoReSym
+	rm -f ${R2PM_PLUGDIR}/goresym.r2.js
+}
+
+R2PM_END
