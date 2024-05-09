@@ -2,7 +2,7 @@ R2PM_BEGIN
 
 R2PM_DESC "jadx decompiler (requires Java)"
 
-R2PM_TGZ https://github.com/skylot/jadx/releases/download/v1.4.7/jadx-1.4.7.zip
+R2PM_TGZ https://github.com/skylot/jadx/releases/download/v1.5.0/jadx-1.5.0.zip
 
 R2PM_INSTALL() {
 	mkdir -p "${R2PM_BINDIR}"
