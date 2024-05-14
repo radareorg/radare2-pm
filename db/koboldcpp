@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/LostRuins/koboldcpp"
+R2PM_DESC "language model server"
+
+R2PM_INSTALL() {
+	mkdir b
+	(cd b && cmake .. && make -j && cp -f koboldcpp_default.dylib ../koboldcpp_default.so )
+	echo "#!/bin/sh" > "${R2PM_BINDIR}/koboldcpp"
+	echo "cd ${PWD}; " 'python3 koboldcpp.py --noblas $@' >> "${R2PM_BINDIR}/koboldcpp"
+	chmod +x "${R2PM_BINDIR}/koboldcpp"
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_BINDIR}/koboldcpp
+}
+
+R2PM_END
+
