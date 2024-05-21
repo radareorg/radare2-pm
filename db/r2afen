@@ -1,9 +1,10 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/satk0/r2-afen-plugin"
+R2PM_GIT "https://github.com/radareorg/radare2-extras"
 R2PM_DESC "Radare2 plugin to rename expressions"
 
 R2PM_INSTALL() {
+	cd afen
 	meson b --wipe
 	meson install -C b
 }
