@@ -4,9 +4,9 @@ R2PM_DESC "[app] apktool"
 
 R2PM_INSTALL() {
 	cd "${R2PM_USRDIR}/git"
-	wget -c https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.7.0.jar
+	wget -c https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.3.jar
 	mkdir -p "${R2PM_BINDIR}"
-	echo "java -jar ${R2PM_USRDIR}/git/"'apktool_2.7.0.jar $@' > "${R2PM_BINDIR}/apktool"
+	echo "java -jar ${R2PM_USRDIR}/git/"'apktool_2.9.3.jar $@' > "${R2PM_BINDIR}/apktool"
 	chmod +x "${R2PM_BINDIR}/apktool"
 }
 
