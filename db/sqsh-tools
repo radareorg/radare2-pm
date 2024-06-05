@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_TGZ https://github.com/Gottox/sqsh-tools/releases/download/v1.4.0/sqsh-tools-1.4.0.tar.gz
+R2PM_DESC "SquashFS utilities"
+
+R2PM_NEEDS "gcc meson ninja"
+
+R2PM_INSTALL() {
+	cd sqsh-tools-1.4.0
+	rm -rf b
+	meson b
+	ninja -C b
+	ninja -C b install
+}
+
+R2PM_UNINSTALL() {
+	cd sqsh-tools-1.4.0
+	ninja -C b uninstall
+}
+
+R2PM_END
