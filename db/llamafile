@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_TGZ https://github.com/Mozilla-Ocho/llamafile/releases/download/0.8.9/llamafile-0.8.9.zip
+R2PM_DESC "Distribute and run LLMs with a single file"
+
+R2PM_INSTALL() {
+	cd llamafile-0.8.9/bin/
+	for a in * ; do ln -fs ${PWD}/$a "${R2PM_BINDIR}/$a" ; done
+}
+
+R2PM_UNINSTALL() {
+	cd llamafile-0.8.9/bin/
+	for a in * ; do rm -f "${R2PM_BINDIR}/$a" ; done
+	rm -f ${R2PM_BINDIR}/llamafile*
+}
+
+R2PM_END
