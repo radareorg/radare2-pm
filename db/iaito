@@ -5,11 +5,11 @@ R2PM_DESC "[gui] C++/Qt GUI for radare2"
 
 R2PM_INSTALL() {
 	./configure && make 
-	${SUDO} make install
+	${R2PM_SUDO} make install
 }
 
 R2PM_UNINSTALL() {
-	${SUDO} make uninstall
+	${R2PM_SUDO} make uninstall
 }
 
 R2PM_END
