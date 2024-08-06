@@ -4,11 +4,13 @@ R2PM_GIT https://github.com/radareorg/iaito
 R2PM_DESC "[gui] C++/Qt GUI for radare2"
 
 R2PM_INSTALL() {
-	./configure && make 
+	./configure && ${MAKE}
+	${MAKE} user-install
 	${R2PM_SUDO} make install
 }
 
 R2PM_UNINSTALL() {
+	${MAKE} user-uninstall
 	${R2PM_SUDO} make uninstall
 }
 

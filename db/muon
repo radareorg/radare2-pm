@@ -9,9 +9,9 @@ R2PM_INSTALL() {
 	./bootstrap.sh build
 	cp -f build/muon m
 	./m setup build
-	samu -C build
-	mkdir -p "${R2PM_BINDIR}"
-	${R2PM_SUDO} cp -f build/muon "${R2PM_BINDIR}"
+	samu -C build || exit 1
+	mkdir -p "${R2PM_BINDIR}" || exit 1
+	${R2PM_SUDO} cp -f build/muon "${R2PM_BINDIR}/muon"
 }
 
 R2PM_UNINSTALL() {
