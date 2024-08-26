@@ -1,0 +1,14 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/r2ai"
+R2PM_DESC "start a language model webserver in local"
+
+R2PM_INSTALL() {
+	make -C r2ai-server user-install
+}
+
+R2PM_UNINSTALL() {
+	make -C r2ai-server user-uninstall
+}
+
+R2PM_END
