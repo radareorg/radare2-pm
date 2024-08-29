@@ -1,16 +1,15 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-extras"
-R2PM_DESC "angr decompiler for radare2"
-R2PM_DEPS angr
+R2PM_DESC "angr commandline tool"
 
 R2PM_INSTALL() {
 	cd r2angr
-	ln -fs $PWD/r2angr ${R2PM_BINDIR}/r2angr
+	ln -fs $PWD/angr ${R2PM_BINDIR}/angr
 }
 
 R2PM_UNINSTALL() {
-	rm -f ${R2PM_BINDIR}/r2angr
+	rm -f ${R2PM_BINDIR}/angr
 }
 
 R2PM_END
