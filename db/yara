@@ -17,7 +17,7 @@ R2PM_UNINSTALL_WINDOWS() {
 R2PM_INSTALL() {
 	export CFLAGS="-fPIC"
 	git fetch --tags
-	git checkout v4.5.1
+	git checkout v4.5.2
 	chmod +x bootstrap.sh
 	echo "Using PREFIX ${R2PM_PREFIX}"
 	./bootstrap.sh
