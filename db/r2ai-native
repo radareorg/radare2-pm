@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2ai"
-R2PM_DESC "run a local language model integrated with radare2"
+R2PM_DESC "Work in progress C rewrite of r2ai (experimental)"
 R2PM_CONFLICT r2ai
 R2PM_DEPS llama.cpp
 
