@@ -5,6 +5,7 @@ R2PM_DESC "[r2-arch] Load SVD description files into r2"
 
 R2PM_INSTALL() {
 	cd r2svd || exit 1
+	${MAKE} || exit 1
 	${MAKE} install || exit 1
 }
 
