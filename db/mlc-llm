@@ -1,0 +1,28 @@
+R2PM_BEGIN
+
+R2PM_GIT https://github.com/mlc-ai/mlc-llm
+R2PM_DESC "Universal LLM Deployment Engine with ML Compilation"
+
+R2PM_NEEDS "gcc make cmake"
+
+R2PM_INSTALL() {
+	echo
+	echo "XXX: the python module installation is not working well as usual"
+	echo
+	sleep 4
+	git submodule update --init --recursive
+	mkdir build
+	cd build
+	# python3 cmake/gen_cmake_config.py
+	cmake ..
+	${MAKE} -j4
+	${R2PM_SUDO} ${MAKE} install
+	pip3 install -e ../python --prefix=${R2PM_PREFIX}
+}
+
+R2PM_UNINSTALL() {
+	${R2PM_SUDO} ${MAKE} uninstall
+}
+
+R2PM_END
+
