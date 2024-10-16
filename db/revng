@@ -1,0 +1,15 @@
+R2PM_BEGIN
+
+R2PM_DESC "rev.ng decompiler"
+
+R2PM_INSTALL() {
+	cd "${R2PM_GITDIR}"
+	curl -L -s https://rev.ng/downloads/revng-distributable/master/install.sh | bash
+	ln -fs "${PWD}/revng/revng" "${R2PM_BINDIR}/revng"
+}
+
+R2PM_UNINSTALL() {
+	rm -rf revng
+}
+
+R2PM_END
