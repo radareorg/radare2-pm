@@ -7,7 +7,7 @@ R2PM_DEPS samurai
 
 R2PM_INSTALL() {
 	./bootstrap.sh build
-	cp -f build/muon m
+	cp -f build/muon-bootstrap m
 	./m setup build
 	samu -C build || exit 1
 	mkdir -p "${R2PM_BINDIR}" || exit 1
