@@ -3,13 +3,31 @@ R2PM_BEGIN
 R2PM_DESC "Frida and tools"
 
 R2PM_INSTALL() {
+	S='$'
+	cd "$R2PM_PREFIX"
+	echo "Creating Python virtual environment..."
+	python -m venv venv || exit 1
+	. venv/bin/activate
+	echo "Installing Frida and Frida-Tools..."
 	pip install -U frida
 	pip install -U frida-tools
+	for a in frida frida-apk frida-compile frida-create frida-discover frida-itrace frida-join frida-ls frida-ls-devices frida-kill frida-ps frida-pull frida-push frida-rm frida-trace ; do
+		echo "Wrapping $a"
+		echo "#!/bin/sh" > "${R2PM_BINDIR}/$a"
+		echo ". ${R2PM_PREFIX}/venv/bin/activate" >> "${R2PM_BINDIR}/$a"
+		echo "${R2PM_PREFIX}/venv/bin/$a ${S}@" >> "${R2PM_BINDIR}/$a"
+		chmod +x "${R2PM_BINDIR}/$a"
+	done
 }
 
 R2PM_UNINSTALL() {
+	cd "$R2PM_PREFIX"
+	. venv/bin/activate
 	pip uninstall frida-tools
 	pip uninstall frida
+	for a in frida frida-apk frida-compile frida-create frida-discover frida-itrace frida-join frida-ls frida-ls-devices frida-kill frida-ps frida-pull frida-push frida-rm frida-trace ; do
+		rm -f "${R2PM_BINDIR}/$a"
+	done
 }
 
 R2PM_END
