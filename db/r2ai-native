@@ -6,11 +6,11 @@ R2PM_CONFLICT r2ai
 R2PM_DEPS llama.cpp
 
 R2PM_INSTALL() {
-	make -C native/cxx
+	make -C src
 }
 
 R2PM_UNINSTALL() {
-	make -C native/cxx user-uninstall
+	make -C src user-uninstall
 }
 
 R2PM_END
