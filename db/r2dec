@@ -5,6 +5,11 @@ R2PM_DESC "The latest r2dec from git using QuickJS"
 
 R2PM_NEEDS "gcc make ninja meson"
 
+R2PM_RELOAD() {
+	Lc-r2dec
+	Lc libcore_pdd
+}
+
 R2PM_INSTALL() {
 	meson setup -Dr2_plugdir=${R2PM_PLUGDIR} b --backend=ninja --wipe || exit 1
 	ninja -C b || exit 1
