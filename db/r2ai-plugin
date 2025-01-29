@@ -1,22 +1,14 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2ai"
-R2PM_DESC "r2ai plugin for radare2"
-R2PM_CONFLICT r2ai-native
-
-R2PM_DEPS rlang-python
+R2PM_DESC "r2ai plugin rewritten in plain C"
 
 R2PM_INSTALL() {
-	${MAKE} venv
-	if [ "${R2PM_GLOBAL}" = 1 ]; then
-		${R2PM_SUDO} ${MAKE} install-plugin R2_USER_PLUGINS=${R2PM_PLUGDIR} R2PM_BINDIR=/usr/bin
-	else
-		${MAKE} user-install-plugin
-	fi
+	make -C src
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} user-uninstall-plugin
+	make -C src user-uninstall
 }
 
 R2PM_END
