@@ -1,0 +1,17 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/immunant/dwarf-writer"
+R2PM_DESC "write reversing tools symbols into dwarf files"
+
+R2PM_NEEDS "cargo rustc"
+
+R2PM_INSTALL() {
+	cargo build --release
+	cp -f target/release/dwarf-writer "${R2PM_BINDIR}/dwarf-writer"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_BINDIR}/dwarf-writer"
+}
+
+R2PM_END
