@@ -1,7 +1,8 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2ai"
-R2PM_DESC "r2ai/OpenAI/Anthropic/ollama based decompiler, formerly known as r2ai-decai"
+R2PM_DESC "Local and remote LLM based decompiler for radare2"
+R2PM_NEEDS curl
 
 R2PM_INSTALL() {
 	${MAKE} -C decai user-install
@@ -9,6 +10,14 @@ R2PM_INSTALL() {
 
 R2PM_UNINSTALL() {
 	${MAKE} -C decai user-uninstall
+}
+
+R2PM_WINDOWS_INSTALL() {
+	copy /y decai\decai.r2.js %R2PM_PLUGDIR%\decai.r2.js
+}
+
+R2PM_WINDOWS_UNINSTALL() {
+	del %R2PM_PLUGDIR%\decai.r2.js
 }
 
 R2PM_END
