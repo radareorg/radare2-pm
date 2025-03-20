@@ -12,11 +12,11 @@ R2PM_UNINSTALL() {
 	${MAKE} -C decai user-uninstall
 }
 
-R2PM_WINDOWS_INSTALL() {
+R2PM_INSTALL_WINDOWS() {
 	copy /y decai\decai.r2.js %R2PM_PLUGDIR%\decai.r2.js
 }
 
-R2PM_WINDOWS_UNINSTALL() {
+R2PM_UNINSTALL_WINDOWS() {
 	del %R2PM_PLUGDIR%\decai.r2.js
 }
 
