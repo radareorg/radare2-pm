@@ -6,6 +6,7 @@ R2PM_DESC "MCP server for radare2"
 R2PM_INSTALL() {
 	make
 	make user-install
+	make doc
 }
 
 R2PM_UNINSTALL() {
