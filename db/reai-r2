@@ -4,26 +4,27 @@ R2PM_GIT "https://github.com/RevEngAI/reai-r2"
 R2PM_DESC "RevEng.AI Radare2 Plugin"
 
 R2PM_INSTALL() {
-	export CFLAGS="-I${R2PM_PREFIX}/include"
-	export LDFLAGS="-L${R2PM_PREFIX}/lib"
+	export CFLAGS="-I${R2PM_PREFIX}/tmp/include"
+	export LDFLAGS="-L${R2PM_PREFIX}/tmp/lib"
+	export PKG_CONFIG_PATH="${R2PM_PREFIX}/tmp/lib/pkgconfig"
 # install custom cjson
 	git clone https://github.com/DaveGamble/cJSON || exit 1
 	cd cJSON
-	cmake -B Build -G Ninja -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBUILD_SHARED_LIBS=OFF -D CMAKE_INSTALL_PREFIX="${R2PM_PREFIX}" || exit 1
+	cmake -B Build -G Ninja -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBUILD_SHARED_LIBS=OFF -D CMAKE_INSTALL_PREFIX="${R2PM_PREFIX}/tmp" || exit 1
 	ninja -C Build || exit 1
 	ninja -C Build install || exit 1
 	cd ..
 # install custom libtoml
 	git clone https://github.com/brightprogrammer/tomlc99 || exit 1
 	cd tomlc99
-	cmake -B Build -G Ninja -D CMAKE_INSTALL_PREFIX="${R2PM_PREFIX}" || exit 1
+	cmake -B Build -G Ninja -DBUILD_SHARED_LIBS=OFF -D CMAKE_INSTALL_PREFIX="${R2PM_PREFIX}/tmp" || exit 1
 	ninja -C Build || exit 1
 	ninja -C Build install || exit 1
 	cd ..
 # install creait
 	git submodule update --init || exit 1
 	cd creait || exit 1
-	cmake -B Build -G Ninja -D CMAKE_INSTALL_PREFIX="${R2PM_PREFIX}" || exit 1
+	cmake -B Build -G Ninja -D CMAKE_INSTALL_PREFIX="${R2PM_PREFIX}/tmp" -DBUILD_SHARED_LIBS=OFF || exit 1
 	ninja -C Build install || exit 1
 	cd ..
 # build and install libreai plugin for radare2
@@ -31,6 +32,7 @@ R2PM_INSTALL() {
 	ninja -C Build || exit 1
 	mkdir -p "${R2PM_PLUGDIR}"
 	cp -f Build/Source/Radare/libreai_radare.* "${R2PM_PLUGDIR}"/
+	rm -rf "${R2PM_PREFIX}/tmp"
 }
 
 R2PM_UNINSTALL() {
