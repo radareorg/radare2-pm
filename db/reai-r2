@@ -1,0 +1,21 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/RevEngAI/reai-r2"
+R2PM_DESC "RevEng.AI Radare2 Plugin"
+
+R2PM_INSTALL() {
+	git submodule update --init || exit 1
+	cd creait || exit 1
+	cmake -B Build -G Ninja || exit 1
+	cd ..
+	cmake -B Build -G Ninja || exit 1
+	ninja -C Build || exit 1
+	mkdir -p "${R2PM_PLUGDIR}"
+	cp -f Build/Source/Radare/libreai_radare.* "${R2PM_PLUGDIR}"/
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}"/libreai_radare*
+}
+
+R2PM_END
