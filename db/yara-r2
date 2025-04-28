@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/Yara-Rules/r2yara"
-R2PM_DESC "implements the r2 module for Yara"
+R2PM_DESC "[OLD] radare2 module to be used from Yara"
 
 R2PM_DOC="https://r2yara.readthedocs.io/en/latest/"
 

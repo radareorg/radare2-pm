@@ -1,13 +1,13 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/capstone-engine/capstone --branch v5"
-R2PM_DESC "capstone v5"
+R2PM_DESC "Capstone v5"
 
 R2PM_INSTALL() {
 	git reset --hard
 	git pull ; git checkout v5 ; git pull
-	${MAKE} PREFIX="${R2PM_PREFIX}" CAPSTONE_SHARED=no
-	${MAKE} install PREFIX="${R2PM_PREFIX}" CAPSTONE_SHARED=no
+	${MAKE} PREFIX="${R2PM_PREFIX}" CAPSTONE_SHARED=no || exit 1
+	${MAKE} install PREFIX="${R2PM_PREFIX}" CAPSTONE_SHARED=no || exit 1
 	rm -f ${R2PM_PREFIX}/lib/libcapstone*.so
 	rm -f ${R2PM_PREFIX}/lib/libcapstone*.dylib
 }

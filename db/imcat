@@ -1,13 +1,13 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/stolk/imcat"
-R2PM_DESC "image cat (png)"
+R2PM_DESC "Display png images in your terminal"
 
 R2PM_INSTALL() {
 	[ -z "$CC" ] && CC=gcc
-	${CC} -o imcat imcat.c
+	${CC} -o imcat imcat.c || exit 1
 	${SUDO} mkdir -p "${R2PM_PREFIX}/bin"
-	${SUDO} cp -f imcat "${R2PM_PREFIX}/bin/imcat"
+	${SUDO} cp -f imcat "${R2PM_PREFIX}/bin/imcat" || exit 1
 }
 
 R2PM_UNINSTALL() {
