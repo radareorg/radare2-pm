@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/r2ai"
+R2PM_DESC "Docker setup for r2ai"
+
+R2PM_INSTALL() {
+	cd dist/docker || return 1
+	docker build -t r2ai.
+	echo
+	echo '$ docker run -ti r2ai'
+	echo
+	BIN="${R2PM_PREFIX}/bin/r2ai"
+	echo '#!/bin/sh' > $BIN
+	echo 'docker run -v /tmp:/tmp -ti r2ai' >> $BIN
+	chmod +x $BIN
+}
+
+R2PM_UNINSTALL() {
+	docker rmi -f r2ai
+}
+
+R2PM_END
