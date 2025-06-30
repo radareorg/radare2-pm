@@ -1,0 +1,22 @@
+R2PM_BEGIN
+
+R2PM_DESC "Setup the Python virtual environment for r2pm"
+
+R2PM_INSTALL() {
+	python -m venv "${R2PM_PREFIX}/venv"
+}
+
+R2PM_UNINSTALL() {
+	rm -rf "${R2PM_PREFIX}/venv"
+}
+
+R2PM_INSTALL_WINDOWS() {
+	python -m venv "%R2PM_PREFIX%\venv"
+}
+
+R2PM_UNINSTALL_WINDOWS() {
+	deltree "%R2PM_PREFIX%\venv"
+}
+
+R2PM_END
+
