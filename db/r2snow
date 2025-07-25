@@ -4,14 +4,14 @@ R2PM_GIT "https://github.com/radareorg/radare2-extras"
 R2PM_DESC "[decompiler] snowman decompiler integration with radare2"
 
 R2PM_INSTALL() {
-	cd r2snowman || R2PM_FAIL "Cd"
-	${MAKE} || R2PM_FAIL "Build failed. You probably need 'brew install cartr/qt4/qt' and 'brew install boost' or 'sudo apt-get install libboost-dev libqt4-dev'"
-	${MAKE} install PREFIX=${R2PM_PREFIX} || R2PM_FAIL "Install"
+	cd r2snowman || { echo "Failed to change directory to r2snowman"; exit 1; }
+	${MAKE} || { echo "Build failed. You probably need 'brew install cartr/qt4/qt' and 'brew install boost' or 'sudo apt-get install libboost-dev libqt4-dev'"; exit 1; }
+	${MAKE} install PREFIX=${R2PM_PREFIX} || { echo "Installation failed"; exit 1; }
 }
 
 R2PM_UNINSTALL() {
-	cd r2snowman || R2PM_FAIL "Cd"
-	${MAKE} uninstall PREFIX=${R2PM_PREFIX} || R2PM_FAIL "UnInstall"
+	cd r2snowman || { echo "Failed to change directory to r2snowman"; exit 1; }
+	${MAKE} uninstall PREFIX=${R2PM_PREFIX} || { echo "Uninstallation failed"; exit 1; }
 }
 
 R2PM_END
