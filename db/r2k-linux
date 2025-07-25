@@ -13,18 +13,18 @@ WARNING: Dont use it if you dont know what you are doing
 "
 
 R2PM_INSTALL() {
-	cd r2k/linux
-	${MAKE} || R2PM_FAIL "Build"
-	#gzip -f r2kmod.ko || R2PM_FAIL "GZIP error"
+	cd r2k/linux || { echo "Error: Could not change directory to r2k/linux."; exit 1; }
+	${MAKE} || { echo "Error: Build failed."; exit 1; }
+	#gzip -f r2kmod.ko || { echo "Error: GZIP error."; exit 1; }
 	if [ "${GLOBAL}" = 1 ]; then
-		#${MAKE} install || R2PM_FAIL "Install"
-		sudo mkdir -p /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Cannot create install dir"
-		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
-		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
+		#${MAKE} install || { echo "Error: Install failed."; exit 1; }
+		sudo mkdir -p /lib/modules/$(uname -r)/kernel/drivers/misc/ || { echo "Error: Cannot create install directory."; exit 1; }
+		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || { echo "Error: Permission denied."; exit 1; }
+		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || { echo "Error: Permission denied."; exit 1; }
 		sudo depmod -a
 		r2pm_doc r2k-linux
 	else
-		sudo insmod r2kmod.ko || R2PM_FAIL "Cannot install kernel module"
+		sudo insmod r2kmod.ko || { echo "Error: Cannot install kernel module."; exit 1; }
 	fi
 }
 
@@ -32,7 +32,7 @@ R2PM_UNINSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
 		sudo rm -f /lib/modules/$(uname -r)/kernel/drivers/misc/r2k*.ko*
 	fi
-	sudo rmmod r2kmod
+	sudo rmmod r2kmod || { echo "Error: Failed to remove kernel module r2kmod."; exit 1; }
 	#${MAKE} uninstall
 }
 
