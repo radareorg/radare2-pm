@@ -28,16 +28,16 @@ R2PM_INSTALL_WINDOWS() {
 R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
-	./configure || R2PM_FAIL "Install fail"
+	./configure || { echo "Error: Install failed during configure."; exit 1; }
 	if [ -n "${FRIDA_VERSION}" ]; then
-		${MAKE} frida_version=${FRIDA_VERSION} || R2PM_FAIL "Build failed"
+		${MAKE} frida_version=${FRIDA_VERSION} || { echo "Error: Build failed with specified Frida version."; exit 1; }
 	else
-		${MAKE} || R2PM_FAIL "Build failed"
+		${MAKE} || { echo "Error: Build failed."; exit 1; }
 	fi
 	if [ "$GLOBAL" = 1 ]; then
-		${R2PM_SUDO} ${MAKE} install || R2PM_FAIL "Install fail"
+		${R2PM_SUDO} ${MAKE} install || { echo "Error: Global install failed."; exit 1; }
 	else
-		${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install fail"
+		${MAKE} user-install R2_PLUGDIR="${R2PM_PLUGDIR}" || { echo "Error: User install failed."; exit 1; }
 	fi
 }
 
