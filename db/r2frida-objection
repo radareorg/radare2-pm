@@ -6,8 +6,8 @@ R2PM_DESC "Use the objection Frida scripts from r2frida"
 R2PM_DOC="run the :objection command for more details"
 
 R2PM_INSTALL() {
-	cd plugins/objection || R2PM_FAIL "nodir"
-	${MAKE} || R2PM_FAIL "make"
+	cd plugins/objection || { echo "Error: Could not change directory to plugins/objection."; exit 1; }
+	${MAKE} || { echo "Error: 'make' failed."; exit 1; }
 	if [ "${GLOBAL}" = 1 ]; then
 		${R2PM_SUDO} ${MAKE} install
 	else
