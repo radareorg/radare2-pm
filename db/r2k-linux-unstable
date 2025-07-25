@@ -4,13 +4,13 @@ R2PM_GIT "https://github.com/leberus/r2k"
 R2PM_DESC "[r2k] Unstable Linux kernel module (from leberus/panda repository)"
 
 R2PM_INSTALL() {
-	${MAKE} || R2PM_FAIL "Build"
-	#gzip -f r2kmod.ko || R2PM_FAIL "GZIP error"
+	${MAKE} || { echo "Error: Build failed."; exit 1; }
+	#gzip -f r2kmod.ko || { echo "Error: GZIP error."; exit 1; }
 	if [ "${GLOBAL}" = 1 ]; then
-		#${MAKE} install || R2PM_FAIL "Install"
-		sudo mkdir -p /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Cannot create install dir"
-		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
-		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || R2PM_FAIL "Permission denied"
+		#${MAKE} install || { echo "Error: Install failed."; exit 1; }
+		sudo mkdir -p /lib/modules/$(uname -r)/kernel/drivers/misc/ || { echo "Error: Cannot create install directory."; exit 1; }
+		#sudo cp -f r2kmod.ko.gz /lib/modules/$(uname -r)/kernel/drivers/misc/ || { echo "Error: Permission denied."; exit 1; }
+		sudo cp -f r2kmod.ko /lib/modules/$(uname -r)/kernel/drivers/misc/ || { echo "Error: Permission denied."; exit 1; }
 		sudo depmod -a
 		sudo modprobe r2kmod
 		echo "You should now run:"
@@ -20,7 +20,7 @@ R2PM_INSTALL() {
 		echo "WARNING: This module allows ANY user to read/write physical memory"
 		echo "WARNING: Dont use it if you dont know what you are doing"
 	else
-		sudo insmod r2kmod.ko || R2PM_FAIL "Only installable globally with -gi"
+		sudo insmod r2kmod.ko || { echo "Error: Only installable globally with -gi"; exit 1; }
 	fi
 }
 
@@ -28,7 +28,7 @@ R2PM_UNINSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
 		sudo rm -f /lib/modules/$(uname -r)/kernel/drivers/misc/r2k*.ko*
 	fi
-	sudo rmmod r2kmod
+	sudo rmmod r2kmod || { echo "Error: Failed to remove kernel module r2kmod."; exit 1; }
 	#${MAKE} uninstall
 }
 
