@@ -1,9 +1,10 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/dnakov/radare2-mcp"
-R2PM_DESC "MCP server for radare2"
+R2PM_DESC "Model Context Protocol (MCP) Server for radare2"
 
 R2PM_INSTALL() {
+	./configure
 	make
 	make user-install
 	make doc
