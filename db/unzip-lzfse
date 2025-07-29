@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/sskaje/unzip-lzfse"
+R2PM_DESC "Fork of unzip with lzfse support"
+
+R2PM_INSTALL() {
+	chmod +x unix/configure
+	LZFSE_PATH=/usr/local make -f unix/Makefile CF='-DUSE_LZFSE=1 -c -O3 -Wall -DBSD -I. -Ibzip2 -DUNIX' LF2=-llzfse all
+	mkdir -p ${R2PM_BINDIR}
+	cp unzip ${R2PM_BINDIR}/unzip-lzfse
+}
+
+R2PM_UNINSTALL() {
+	rm -rf ${R2PM_BINDIR}/unzip-lzfse
+}
+
+R2PM_END
+
