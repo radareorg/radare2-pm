@@ -3,11 +3,11 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/VirusTotal/yara"
 R2PM_DESC "install yara commandline tool and library from git"
 
-# TODO: fix global installations (r2pm -g keeps installing in the home)
+# TODO: fix windows and global installations (r2pm -g keeps installing in the home)
 
 R2PM_INSTALL_WINDOWS() {
-	powershell -command "Invoke-WebRequest 'https://github.com/VirusTotal/yara/releases/download/v4.5.0/yara-master-2251-win64.zip' -OutFile 'yara-w64.zip'"
-	powershell -command "$destination = & r2pm -H R2PM_BINDIR;Copy-Item "yara-master-2251-win64/yara64.exe" $destination -Force "
+	powershell -command "Invoke-WebRequest 'https://github.com/VirusTotal/yara/releases/download/v4.5.4/yara-master-v4.5.4-win64.zip' -OutFile 'yara-w64.zip'"
+	powershell -command "$destination = & r2pm -H R2PM_BINDIR;Copy-Item "yara-master-v4.5.4-win64/yara64.exe" $destination -Force "
 }
 
 R2PM_UNINSTALL_WINDOWS() {
@@ -17,7 +17,7 @@ R2PM_UNINSTALL_WINDOWS() {
 R2PM_INSTALL() {
 	export CFLAGS="-fPIC"
 	git fetch --tags
-	git checkout v4.5.2
+	git checkout v4.5.4
 	chmod +x bootstrap.sh
 	echo "Using PREFIX ${R2PM_PREFIX}"
 	./bootstrap.sh
