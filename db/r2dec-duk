@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/wargio/r2dec-js r2dec
-R2PM_DESC "The old r2dec using DukTape (use it only for testing"
+R2PM_DESC "Old r2dec decompiler using DukTape"
 
 R2PM_NEEDS "python3 gcc make"
 

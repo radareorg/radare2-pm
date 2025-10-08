@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_SVN svn://svn.valgrind.org/valgrind/trunk valgrind
-R2PM_DESC "[r2-arch] Keystone assembler plugins"
+R2PM_DESC "Valgrind memory debugging and profiling tool"
 
 R2PM_INSTALL() {
 	${SHELL} autogen.sh || exit 1

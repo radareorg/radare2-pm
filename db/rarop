@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/jpenalbae/rarop"
-R2PM_DESC "[syspkg] Graphical ROP chain builder using radare2 and r2pipe"
+R2PM_DESC "Graphical ROP chain builder using radare2 and r2pipe"
 
 R2PM_INSTALL() {
 	yarn || npm install || exit 1

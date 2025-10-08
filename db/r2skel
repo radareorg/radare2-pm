@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-skel"
-R2PM_DESC "Create basic skeleton to write radare2 scripts and plugins in any language"
+R2PM_DESC "Create skeletons for radare2 scripts and plugins"
 
 R2PM_INSTALL() {
 	if [ "${R2PM_GLOBAL}" = 1 ]; then

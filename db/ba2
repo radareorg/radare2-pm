@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-extras"
-R2PM_DESC "[r2-arch] Beyond Architecture 2 disassembler plugin"
+R2PM_DESC "Beyond Architecture 2 disassembler plugin for radare2"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}" || exit 1

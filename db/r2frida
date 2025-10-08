@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/nowsecure/r2frida"
-R2PM_DESC "Use Frida from radare2 via the r2frida:// uri"
+R2PM_DESC "Use Frida from radare2 via r2frida:// URI"
 
 R2PM_DOC="
 r2frida is an IO plugin for r2 that talks with Frida.

@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[app] ghidra"
+R2PM_DESC "Ghidra reverse engineering suite"
 
 R2PM_TGZ ${GHIDRA_URL} "ghidra_${GHIDRA_VERSION}"
 

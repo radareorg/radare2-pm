@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/mlc-ai/mlc-llm
-R2PM_DESC "Universal LLM Deployment Engine with ML Compilation"
+R2PM_DESC "Universal LLM deployment engine with ML compilation"
 
 R2PM_NEEDS "gcc make cmake"
 

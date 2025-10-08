@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "connect radare2 with Intezer's malware analysis platform"
+R2PM_DESC "Connect radare2 with Intezer malware analysis platform"
 
 R2PM_INSTALL() {
 	pip install -U r2analyze

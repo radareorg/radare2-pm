@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/securisec/r2retdec"
-R2PM_DESC "[r2retdec] Use local opensource retdec to decompile functions"
+R2PM_DESC "Use local open-source RetDec to decompile functions"
 
 R2PM_DOC="
 usage: $r2retdec [-h] [-p] [-t FILE]

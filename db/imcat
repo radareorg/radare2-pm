@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/stolk/imcat"
-R2PM_DESC "Display png images in your terminal"
+R2PM_DESC "Display PNG images in terminal"
 
 R2PM_INSTALL() {
 	[ -z "$CC" ] && CC=gcc

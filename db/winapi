@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[r2] Get info about windows functions"
+R2PM_DESC "Get info about Windows functions"
 
 BINDIR="${R2PM_PLUGDIR}/../bin"
 

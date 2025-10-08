@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[bin] kaitai-struct-compiler commandline tool"
+R2PM_DESC "Kaitai Struct compiler command-line tool"
 R2PM_GIT https://github.com/kaitai-io/kaitai_struct kaitai-struct-compiler
 
 R2PM_INSTALL() {

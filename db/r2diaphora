@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "Diaphora binary diffing tool for radare2 (pip)"
+R2PM_DESC "Diaphora binary diffing tool for radare2"
 
 # R2PM_GIT "https://github.com/radareorg/r2diaphora"
 # ${MAKE} install PREFIX="${R2PM_PREFIX}"

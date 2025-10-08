@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[app] groovy programming language"
+R2PM_DESC "Groovy programming language"
 R2PM_TGZ https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip groovy-2.4.7
 
 R2PM_INSTALL() {

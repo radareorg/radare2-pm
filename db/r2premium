@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/condret/r2premium"
-R2PM_DESC "[r2-fortunes] Fortune package for a premium r2 experience"
+R2PM_DESC "Fortune package for premium radare2 experience"
 
 R2PM_INSTALL() {
         make all install || exit 1

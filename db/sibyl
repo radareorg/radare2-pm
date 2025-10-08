@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/cea-sec/Sibyl"
-R2PM_DESC "[syspkg] sibyl - A Miasm2 based function divination"
+R2PM_DESC "Sibyl function divination based on Miasm2"
 R2PM_DEPS miasm
 
 R2PM_INSTALL() {

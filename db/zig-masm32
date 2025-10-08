@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[r2-zig] Get zignatures for MASM32 libraries"
+R2PM_DESC "Get zignatures for MASM32 libraries"
 
 USER_ZIGNS="$(r2 -hh|grep USER_ZIGNS|awk '{print $2}')"
 

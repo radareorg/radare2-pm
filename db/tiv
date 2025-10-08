@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/tiv"
-R2PM_DESC "text-image viewer"
+R2PM_DESC "Text-image viewer"
 
 R2PM_INSTALL() {
 	${MAKE}

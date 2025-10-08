@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/Tyilo/insert_dylib"
-R2PM_DESC "[tool] insert_dylib - insert dylib into mach0 for OSX"
+R2PM_DESC "Insert dylib into Mach-O for macOS"
 
 R2PM_INSTALL() {
 	if [ "`uname`" != Darwin ]; then

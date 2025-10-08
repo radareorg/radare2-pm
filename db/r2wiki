@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/securisec/r2wiki"
-R2PM_DESC "[r2wiki] an internal wiki for r2"
+R2PM_DESC "Internal wiki for radare2"
 
 R2PM_DOC="
 usage: '$'wiki [-h] [-a] [-l] what_to_search_for

@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/hamikm/AsciiBird/"
-R2PM_DESC "Flappy bird in ascii art"
+R2PM_DESC "ASCII art Flappy Bird game"
 
 R2PM_INSTALL() {
 	make

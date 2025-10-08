@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2env"
-R2PM_DESC "multiple radare2 environment tool"
+R2PM_DESC "Multiple radare2 environment tool"
 
 R2PM_INSTALL() {
 	${MAKE}

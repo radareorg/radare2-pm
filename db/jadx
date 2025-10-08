@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "jadx decompiler (requires Java)"
+R2PM_DESC "JADX Java decompiler"
 
 R2PM_TGZ https://github.com/skylot/jadx/releases/download/v1.5.1/jadx-1.5.1.zip
 

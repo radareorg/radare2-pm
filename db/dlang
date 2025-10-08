@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-extras"
-R2PM_DESC "[r2-bin] dlang symbol demangler plugin"
+R2PM_DESC "D language symbol demangler plugin for radare2"
 
 R2PM_INSTALL() {
 	ldc2 --version || R2PM_FAIL "You need to install ldc2"

@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/anestisb/vdexExtractor"
-R2PM_DESC "[app] verified dex extractor tool from oat files"
+R2PM_DESC "Verified DEX extractor from OAT files"
 
 BINDIR="${R2PM_BINDIR}"
 

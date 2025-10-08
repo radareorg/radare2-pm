@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "Idiomatic High level api on top of r2pipe for Python"
+R2PM_DESC "Idiomatic high-level API on top of r2pipe for Python"
 
 R2PM_INSTALL() {
 	pip install -U r2api

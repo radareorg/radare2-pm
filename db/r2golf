@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/0ki/r2lrn"
-R2PM_DESC "[r2learn] Golf plugin to learn r2 commands"
+R2PM_DESC "Golf plugin to learn radare2 commands"
 
 R2PM_INSTALL() {
 	cd _other/golf-plugin

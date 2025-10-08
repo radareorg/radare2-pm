@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/MaskRay/r2cLEMENCy"
-R2PM_DESC "Arch radare2 plugin for the cLEMENCy architecture (defcon 25 ctf)"
+R2PM_DESC "Radare2 plugin for cLEMENCy architecture"
 
 R2PM_INSTALL() {
 	#./configure --prefix="${R2PM_PREFIX}" || exit 1

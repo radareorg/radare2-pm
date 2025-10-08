@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[sys] vagrant made simple"
+R2PM_DESC "Simplified Vagrant"
 
 R2PM_INSTALL() {
 	wget -c -O ${R2PM_BINDIR}/vg https://raw.githubusercontent.com/radare/toys/master/bin/vg

@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-extras"
-R2PM_DESC "[r2-arch] MSIL disassembler (wip)"
+R2PM_DESC "MSIL disassembler for radare2 (work in progress)"
 
 R2PM_INSTALL() {
 	#export PKG_CONFIG_PATH=/usr/lib/pkgconfig

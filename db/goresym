@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/hanemile/radare2-GoReSym"
-R2PM_DESC "import into r2 the symbols from GoReSym"
+R2PM_DESC "Import symbols from GoReSym into radare2"
 
 R2PM_INSTALL() {
 	if [ ! -d GoReSym ]; then

@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[app] baksmali"
+R2PM_DESC "Baksmali DEX to smali converter"
 
 R2PM_INSTALL() {
 	cd "${R2PM_USRDIR}/git"

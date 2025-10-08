@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/nowsecure/r2frida"
-R2PM_DESC "Use the objection Frida scripts from r2frida"
+R2PM_DESC "Use objection Frida scripts from r2frida"
 
 R2PM_DOC="run the :objection command for more details"
 

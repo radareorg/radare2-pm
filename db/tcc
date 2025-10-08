@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "http://repo.or.cz/tinycc"
-R2PM_DESC "[syspkg] TinyCC compiler aka TCC"
+R2PM_DESC "TinyCC compiler"
 
 # if installation fails, just strace it, probably this will fix:
 # cp -f /usr/lib/crt* /usr/lib64//

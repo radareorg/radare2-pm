@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/libui-ng/libui-ng
-R2PM_DESC "libui-ng portable native GUI library for C"
+R2PM_DESC "Libui-ng portable native GUI library for C"
 
 R2PM_INSTALL() {
 	meson b --reconfigure --prefix ${R2PM_PREFIX}

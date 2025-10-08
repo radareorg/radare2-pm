@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/thestr4ng3r/r2commodore.git"
-R2PM_DESC "[r2-arch] CBM Basic Support (C64, VIC-20, PET, ...)"
+R2PM_DESC "CBM Basic support for radare2 (C64, VIC-20, PET, ...)"
 
 R2PM_DOC=""
 

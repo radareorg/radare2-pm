@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2ai"
-R2PM_DESC "Native r2ai plugin for radare2"
+R2PM_DESC "Native AI plugin for radare2"
 R2PM_NEEDS "gcc pkg-config"
 
 R2PM_INSTALL() {

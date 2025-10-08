@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_TGZ "http://siag.nu/pub/pen/pen-0.34.1.tar.gz"
-R2PM_DESC "[syspkg] pen tcp port load balancer and bouncer"
+R2PM_DESC "Pen TCP port load balancer and bouncer"
 
 R2PM_INSTALL() {
 	./configure --prefix="${R2PM_PREFIX}"

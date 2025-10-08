@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/jpenalbae/chita"
-R2PM_DESC "[r2-r2pipe-node] Exploiting helper"
+R2PM_DESC "Exploiting helper tool"
 
 R2PM_INSTALL() {
 	node --version || exit 1

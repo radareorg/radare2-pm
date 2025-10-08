@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[syspkg] java2dex"
+R2PM_DESC "Java to DEX converter"
 
 R2PM_INSTALL() {
 	mkdir -p "${R2PM_BINDIR}"

@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/radareorg/iaito
-R2PM_DESC "r2 plugin to launch iaito reusing current session"
+R2PM_DESC "Plugin to launch iaito reusing current radare2 session"
 
 R2PM_INSTALL() {
 	./configure && make 

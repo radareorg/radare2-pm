@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/mrmacete/r2-ggpack"
-R2PM_DESC "[r2-io] Read and edit ThimbleweedPark ggpack data files"
+R2PM_DESC "Thimbleweed Park ggpack data file reader/editor for radare2"
 
 R2PM_INSTALL() {
 	mkdir -p "${R2PM_ETCD}" || exit 1

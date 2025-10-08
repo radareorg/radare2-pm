@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/juj/emsdk.git"
-R2PM_DESC "[system] emscripten C/C++ compiler to asm.js/wasm"
+R2PM_DESC "Emscripten C/C++ compiler to asm.js/WASM"
 
 R2PM_INSTALL() {
 	./emsdk update

@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-bindings"
-R2PM_DESC "[r2-api] Native Python API bindings"
+R2PM_DESC "Native Python API bindings for radare2"
 
 R2PM_INSTALL() {
 	${MAKE} -C r2libr || exit 1

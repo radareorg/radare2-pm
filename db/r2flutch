@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/as0ler/r2flutch"
-R2PM_DESC "decrypt iOS applications using r2frida"
+R2PM_DESC "Decrypt iOS applications using r2frida"
 R2PM_DEPS python-pip
 
 R2PM_INSTALL() {

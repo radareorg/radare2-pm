@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-webui"
-R2PM_DESC "[r2-www] The enyo WebUI of /m"
+R2PM_DESC "Enyo WebUI for radare2"
 
 # TODO this is just a proposal, unused for now
 R2PM_GLOBALS() {

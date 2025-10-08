@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "NodeJS r2pipe module"
+R2PM_DESC "Node.js r2pipe module"
 
 R2PM_INSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then

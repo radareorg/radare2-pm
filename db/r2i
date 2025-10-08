@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2"
-R2PM_DESC "[system] indent code using radare2 style"
+R2PM_DESC "Indent code using radare2 style"
 
 R2PM_INSTALL() {
 	${R2PM_SUDO} ln -fs "$PWD/"sys/indent.sh ${R2PM_PREFIX}/bin/r2i

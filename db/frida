@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "Frida and tools"
+R2PM_DESC "Frida dynamic instrumentation framework and tools"
 
 R2PM_INSTALL() {
 	S='$'

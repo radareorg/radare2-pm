@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_TGZ "http://sun.hasenbraten.de/vasm/release/vasm.tar.gz"
-R2PM_DESC "portable and retargetable assembler"
+R2PM_DESC "Portable and retargetable assembler"
 
 R2PM_INSTALL() {
 	[ -d vasm ] && cd vasm

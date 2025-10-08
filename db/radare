@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare"
-R2PM_DESC "The good old radare, nostalgic edition"
+R2PM_DESC "Nostalgic edition of the original radare"
 
 R2PM_INSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then

@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[bin] androguard"
+R2PM_DESC "Androguard Android APK analysis tool"
 
 R2PM_INSTALL() {
 	${SUDO} pip install --upgrade androguard

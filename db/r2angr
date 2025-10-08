@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radare/radare2-extras"
-R2PM_DESC "Use the ANGR decompiler in radare2"
+R2PM_DESC "Use ANGR decompiler in radare2"
 R2PM_DEPS angr
 
 R2PM_INSTALL() {

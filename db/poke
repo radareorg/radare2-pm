@@ -2,7 +2,7 @@ R2PM_BEGIN
 
 R2PM_TGZ "https://ftp.gnu.org/gnu/poke/poke-4.3.tar.gz"
 R2PM_DIR poke-4.3
-R2PM_DESC "[syspkg] GNU/Poke tool and library needed for r2poke"
+R2PM_DESC "GNU Poke tool and library for r2poke"
 
 
 R2PM_INSTALL() {

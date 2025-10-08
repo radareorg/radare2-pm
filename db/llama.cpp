@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/ggerganov/llama.cpp
-R2PM_DESC "The most advanced and performant opensource language model implementation"
+R2PM_DESC "Advanced open-source language model implementation"
 
 R2PM_NEEDS "gcc make cmake"
 

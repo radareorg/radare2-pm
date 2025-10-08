@@ -6,7 +6,7 @@ VV="0.50.2"
 SV="$(echo ${VV}|cut -d . -f 1,2)"
 
 R2PM_TGZ "http://download.gnome.org/sources/vala/${SV}/vala-${VV}.tar.xz"
-R2PM_DESC "[syspkg] Vala compiler from git"
+R2PM_DESC "Vala compiler from git"
 
 R2PM_INSTALL() {
 #	valac --help > /dev/null 2>&1 && exit 0

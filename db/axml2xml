@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[app] axml2xml"
+R2PM_DESC "AXML to XML converter"
 
 R2PM_INSTALL() {
 	export SOURCE="https://raw.githubusercontent.com/trufae/axml2xml.rb/0de60154032341a9a2df3d81dafd0251e0226bbd/axml2xml.rb"

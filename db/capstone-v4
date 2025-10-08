@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/capstone-engine/capstone --branch v4"
-R2PM_DESC "capstone v4"
+R2PM_DESC "Capstone disassembler library v4"
 
 R2PM_INSTALL() {
 	git pull ; git checkout v4 ; git pull

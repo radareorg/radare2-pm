@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[app] dex2jar"
+R2PM_DESC "DEX to JAR converter"
 
 R2PM_INSTALL() {
 	cd "${R2PM_USRDIR}/git"

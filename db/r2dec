@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/wargio/r2dec-js r2dec
-R2PM_DESC "The latest r2dec from git using QuickJS"
+R2PM_DESC "Latest r2dec decompiler using QuickJS"
 
 R2PM_NEEDS "gcc make ninja meson"
 

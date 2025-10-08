@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/AlexOberhofer/SDL2-GNUBoy"
-R2PM_DESC "Gameboy Emulator"
+R2PM_DESC "Game Boy emulator"
 
 R2PM_INSTALL() {
 	${MAKE}

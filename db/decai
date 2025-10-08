@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2ai"
-R2PM_DESC "r2ai rewrite in r2js with focus on providing LLM based decompiler for radare2"
+R2PM_DESC "LLM-based decompiler for radare2 using r2js"
 R2PM_NEEDS curl
 
 R2PM_INSTALL() {

@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT https://github.com/Traumflug/simulavr
-R2PM_DESC "[syspkg] simulavr - avr simulator with gdb server"
+R2PM_DESC "SimulAVR AVR simulator with GDB server"
 
 R2PM_INSTALL() {
 	glibtoolize --force 2> /dev/null || libtoolize --force

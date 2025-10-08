@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/ninja-build/ninja"
-R2PM_DESC "[syspkg] The Ninja build system required for meson"
+R2PM_DESC "Ninja build system"
 
 R2PM_INSTALL() {
 	python configure.py --bootstrap || exit 1

@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "[r2-r2pipe-python] APK decompiler alternative to apktool"
+R2PM_DESC "APK decompiler alternative to apktool"
 
 R2PM_INSTALL() {
 	rm "${R2PM_USRDIR}/git/r2apktool"

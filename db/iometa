@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/Siguza/iometa"
-R2PM_DESC "Extract c++ class rtti on arm64 darwin kernel"
+R2PM_DESC "Extract C++ class RTTI on ARM64 Darwin kernel"
 
 R2PM_INSTALL() {
 	${MAKE}

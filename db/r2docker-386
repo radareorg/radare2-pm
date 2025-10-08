@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2"
-R2PM_DESC "[syspkg] radare2 docker image on Debian/386"
+R2PM_DESC "Radare2 Docker image on Debian i386"
 
 R2PM_INSTALL() {
 	cd dist/docker || return 1

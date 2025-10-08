@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_DESC "The official radare2 conference"
+R2PM_DESC "Official radare2 conference"
 
 R2PM_INSTALL() {
 	R2CON_LINK="https://radare.org/con/"

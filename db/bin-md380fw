@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/radare2-extras"
-R2PM_DESC "[r2-bin] Load md380 firmware images"
+R2PM_DESC "MD380 firmware loader for radare2"
 
 R2PM_INSTALL() {
 	${MAKE} -C md380/bin-fw || exit 1
