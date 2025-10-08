@@ -5,8 +5,8 @@ R2PM_DESC "My Artificial Intelligence Toolkit"
 
 R2PM_INSTALL() {
 	if [ "${GLOBAL}" = 1 ]; then
-		${MAKE} -j
-		${SUDO} ${MAKE} install
+		${MAKE} -j || exit 1
+		${SUDO} ${MAKE} install || exit 1
 	else
 		echo "Global install only"
 		exit 1
