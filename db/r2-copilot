@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/darallium/r2-copilot"
+R2PM_DESC "r2-copilot an MCP using r2pipe with focus on CTF challenges"
+
+R2PM_INSTALL() {
+	python -m venv .venv
+	. ./.venv/bin/activate
+	uv sync
+	echo "cd '${PWD}'; ./start.sh" > ${R2PM_BINDIR}/r2-copilot
+	chmod +x "${R2PM_BINDIR}/r2-copilot"
+}
+
+R2PM_UNINSTALL() {
+	rm -f ${R2PM_BINDIR}/r2-copilot
+}
+
+R2PM_END
