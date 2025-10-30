@@ -16,7 +16,7 @@ R2PM_UNINSTALL_WINDOWS() {
 
 R2PM_INSTALL() {
 	export USE_BIN=1
-	export R2G_VERSION=5.9.8
+	export R2G_VERSION=6.0.4
 	if [ "$USE_BIN" = 1 ]; then
 		if [ "${GLOBAL}" = 1 ]; then
 			${SUDO} mkdir -p $(r2 -HR2_LIBR_PLUGINS)
