@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/ahmeth4n/renef"
+R2PM_DESC "Dynamic instrumentation toolkit for Android ARM64"
+
+R2PM_INSTALL() {
+	git pull
+	make client
+	mkdir -p "${R2PM_PREFIX}/bin"
+	cp build/renef "${R2PM_PREFIX}/bin/renef"
+	chmod +x "${R2PM_PREFIX}/bin/renef"
+}
+
+R2PM_UNINSTALL() {
+	rm -f "${R2PM_PREFIX}/bin/renef"
+}
+
+R2PM_END
+
