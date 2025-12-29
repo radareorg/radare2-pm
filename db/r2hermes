@@ -1,0 +1,24 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/r2hermes"
+R2PM_DESC "r2hermes - Hermes Bytecode disassembler & decompiler plugin for r2"
+
+R2PM_INSTALL() {
+	${MAKE} clean || true
+	${MAKE} || R2PM_FAIL "make"
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} install
+	else
+		${MAKE} user-install
+	fi
+}
+
+R2PM_UNINSTALL() {
+	if [ "${GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} uninstall
+	else
+		${MAKE} user-uninstall
+	fi
+}
+
+R2PM_END
