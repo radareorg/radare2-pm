@@ -20,7 +20,7 @@ R2PM_INSTALL() {
 	rm -rf build # clean build
 	./preconfigure || exit 1
 	./configure --prefix=`r2 -H R2_PREFIX` || R2PM_FAIL "configure"
-	${MAKE} -C src -j1 || R2PM_FAIL "make"
+	${MAKE} -C src -j4 || R2PM_FAIL "make"
 	if [ "${GLOBAL}" = 1 ]; then
 		${SUDO} ${MAKE} -C src install
 	else
