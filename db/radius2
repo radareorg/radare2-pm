@@ -1,6 +1,6 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/aemmitt-ns/radius"
+R2PM_GIT "https://github.com/radareorg/radius2"
 R2PM_DESC "Fast symbolic execution with radare2"
 
 R2PM_NEEDS "rustc cargo cmake"
