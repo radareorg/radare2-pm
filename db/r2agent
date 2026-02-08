@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/nitanmarcel/r2agent"
+R2PM_DESC "AI-powered reverse engineering assistant for radare2"
+R2PM_NEEDS "gcc pkg-config"
+
+R2PM_INSTALL() {
+	make -C r2-plugin-core-c
+	make -C r2-plugin-core-c user-install
+}
+
+R2PM_UNINSTALL() {
+	make -C r2-plugin-core-c user-uninstall
+}
+
+R2PM_END
