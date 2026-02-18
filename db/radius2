@@ -6,6 +6,25 @@ R2PM_DESC "Fast symbolic execution with radare2"
 R2PM_NEEDS "rustc cargo cmake"
 
 R2PM_INSTALL() {
+	if command -v termux-setup-storage; then
+		cwd=`pwd`
+		
+		# Install Boolector manually (shared)
+		cd "$TMPDIR" || exit 1
+		git clone https://github.com/Boolector/boolector.git || exit 1
+		cd boolector || exit 1
+		git checkout cc3a70918538c1e71ea5e7273fa1ac098da37c1b || exit 1
+		./contrib/setup-lingeling.sh || exit 1
+		CMAKE_POLICY_VERSION_MINIMUM=3.5 ./contrib/setup-btor2tools.sh || exit 1
+		CMAKE_POLICY_VERSION_MINIMUM=3.5 ./configure.sh --prefix "$PREFIX" --shared || exit 1
+		cd build || exit 1
+		make -j$(nproc) || exit 1
+		make install || exit 1
+		
+		# remove bootlector vender feature
+		cd "$cwd" || exit 1
+		sed -i '21d;22d' radius/Cargo.toml
+	fi
 	cargo update --verbose || exit 1
 	cargo build --verbose || exit 1
 	ln -fs `pwd`/target/debug/radius2 \
