@@ -7,12 +7,13 @@ R2PM_NEEDS "rustc cargo"
 
 R2PM_INSTALL() {
 	cargo b || exit 1
-	ln -fs `pwd`/target/debug/r2sleigh \
-		"${R2PM_BINDIR}"/r2sleigh || exit 1
+	cd r2plugin && make RUST_FEATURES=all-archs install
+# ln -fs `pwd`/target/debug/r2sleigh "${R2PM_BINDIR}"/r2sleigh || exit 1
 }
 
 R2PM_UNINSTALL() {
 	rm -f "${R2PM_BINDIR}"/r2sleigh
+	cd r2plugin && make RUST_FEATURES=all-archs uninstall
 }
 
 R2PM_END
