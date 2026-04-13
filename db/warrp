@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/warrp"
+R2PM_DESC "warrp - Native radare2 plugin for the binary ninja's WARP signature format"
+
+R2PM_NEEDS "rustc cargo"
+
+R2PM_INSTALL() {
+	${MAKE} clean || true
+	${MAKE} || R2PM_FAIL "make"
+	${MAKE} install
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} uninstall
+}
+
+R2PM_END
