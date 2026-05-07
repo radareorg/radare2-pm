@@ -1,7 +1,7 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/radareorg/r2hermes"
-R2PM_DESC "React Native aka Hermes Bytecode disassembler & decompiler plugin for r2"
+R2PM_GIT "https://github.com/radareorg/r2unity"
+R2PM_DESC "Unity IL2CPP metadata parser for radare2"
 
 R2PM_INSTALL() {
 	${MAKE} clean || true
