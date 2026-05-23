@@ -1,0 +1,19 @@
+R2PM_BEGIN
+
+R2PM_DESC "DotNet Decompiler"
+
+R2PM_INSTALL() {
+	dotnet tool install ilspycmd
+	B="$R2PM_BINDIR/ilspycmd"
+	echo '#!/bin/sh' > "$B"
+	echo 'dotnet tool run ilspycmd $@' >> "$B"
+	chmod +x "$B"
+}
+
+R2PM_UNINSTALL() {
+	B="$R2PM_BINDIR/ilspycmd"
+	rm -f "$B"
+	dotnet tool uninstall ilspycmd
+}
+
+R2PM_END
