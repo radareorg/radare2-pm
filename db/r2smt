@@ -1,0 +1,16 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/seifreed/r2SMT --branch refs/pull/17/head"
+R2PM_DESC "SMT solver integration for radare2"
+
+R2PM_NEEDS "rustc cargo"
+
+R2PM_INSTALL() {
+	${MAKE} user-install
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} user-uninstall
+}
+
+R2PM_END
