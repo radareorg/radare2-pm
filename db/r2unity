@@ -3,6 +3,23 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/radareorg/r2unity"
 R2PM_DESC "Unity IL2CPP metadata parser for radare2"
 
+R2PM_BINSTALL() {
+	asset="r2unity-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
+	workdir=$(mktemp -d)
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2unity/releases/latest/download/${asset}" || R2PM_FAIL "No r2unity ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
+	unzip -qoj "$workdir/$asset" 'bin/*' -d "${R2PM_BINDIR}"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	curl -fsSL -o "%TEMP%\r2unity.zip" https://github.com/radareorg/r2unity/releases/latest/download/r2unity-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2unity %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2unity.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	tar -xf "%TEMP%\r2unity.zip" --strip-components=1 -C "%R2PM_BINDIR%" bin
+	del "%TEMP%\r2unity.zip"
+}
+
 R2PM_INSTALL() {
 	${MAKE} clean || true
 	${MAKE} || R2PM_FAIL "make"
@@ -10,7 +27,12 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} user-uninstall
+	rm -f "${R2PM_PLUGDIR}"/*_r2unity.${R2_LIBEXT} "${R2PM_BINDIR}/r2unity"
+}
+
+R2PM_UNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\*_r2unity.dll"
+	del "%R2PM_BINDIR%\r2unity.exe"
 }
 
 R2PM_END
