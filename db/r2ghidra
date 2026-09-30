@@ -6,6 +6,35 @@ R2PM_DEPS r2ghidra-sleigh
 
 R2PM_DOC=""
 
+R2PM_BINSTALL() {
+	asset="r2ghidra-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
+	workdir=$(mktemp -d)
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2ghidra/releases/download/${R2V}/${asset}" || R2PM_FAIL "No r2ghidra ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	unzip -qo "$workdir/$asset" -d "$workdir"
+	rm -rf "${R2PM_PLUGDIR}/r2ghidra_sleigh"
+	mkdir -p "${R2PM_PLUGDIR}" "${R2PM_BINDIR}"
+	cp -Rf "$workdir/plugins/." "${R2PM_PLUGDIR}/"
+	cp -f "$workdir"/bin/* "${R2PM_BINDIR}/"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	curl -fsSL -o "%TEMP%\r2ghidra.zip" https://github.com/radareorg/r2ghidra/releases/download/%R2V%/r2ghidra-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2ghidra %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	(rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh" 2>nul || cd .)
+	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2ghidra.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	del "%TEMP%\r2ghidra.zip"
+}
+
+R2PM_BUNINSTALL() {
+	rm -rf "${R2PM_PLUGDIR}"/*ghidra*.${R2_LIBEXT} "${R2PM_PLUGDIR}/r2ghidra_sleigh" "${R2PM_BINDIR}/sleighc" "${R2PM_BINDIR}/r2fidb"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\core_r2ghidra.dll"
+	rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh"
+}
+
 R2PM_INSTALL_WINDOWS() {
 	cd dist/windows/r2pm
 	install.bat

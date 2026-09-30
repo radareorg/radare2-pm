@@ -58,6 +58,15 @@ R2PM_BINSTALL_WINDOWS() {
 	del "%TEMP%\r2frida.zip"
 }
 
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/io_frida.${R2_LIBEXT}" "${R2PM_BINDIR}/r2frida-compile" "${R2PM_MANDIR}"/man1/r2frida*.1
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\io_frida.dll"
+	del "%R2PM_BINDIR%\r2frida-compile.exe"
+}
+
 R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
@@ -75,13 +84,11 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_PLUGDIR}/io_frida.${R2_LIBEXT}" || exit 1
-	rm -f "${R2PM_BINDIR}/r2frida-compile" "${R2PM_MANDIR}/man1/r2frida.1" "${R2PM_MANDIR}/man1/r2frida-compile.1" "${R2_USER_PLUGINS}/../fortunes/r2frida.txt" || exit 1
+	${MAKE} user-uninstall R2_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\io_frida.dll"
-	del "%R2PM_BINDIR%\r2frida-compile.exe"
+	del %R2_USER_PLUGINS%\io_frida.dll
 }
 
 R2PM_END

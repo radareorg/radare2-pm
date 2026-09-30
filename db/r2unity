@@ -20,6 +20,15 @@ R2PM_BINSTALL_WINDOWS() {
 	del "%TEMP%\r2unity.zip"
 }
 
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}"/*_r2unity.${R2_LIBEXT} "${R2PM_BINDIR}/r2unity"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\*_r2unity.dll"
+	del "%R2PM_BINDIR%\r2unity.exe"
+}
+
 R2PM_INSTALL() {
 	${MAKE} clean || true
 	${MAKE} || R2PM_FAIL "make"
@@ -27,12 +36,7 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_PLUGDIR}"/*_r2unity.${R2_LIBEXT} "${R2PM_BINDIR}/r2unity"
-}
-
-R2PM_UNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\*_r2unity.dll"
-	del "%R2PM_BINDIR%\r2unity.exe"
+	${MAKE} user-uninstall
 }
 
 R2PM_END

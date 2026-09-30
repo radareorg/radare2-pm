@@ -3,6 +3,32 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/radareorg/r2flutter"
 R2PM_DESC "Flutter and Dart support for radare2"
 
+R2PM_BINSTALL() {
+	asset="r2flutter-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
+	workdir=$(mktemp -d)
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2flutter/releases/latest/download/${asset}" || R2PM_FAIL "No r2flutter ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
+	unzip -qoj "$workdir/$asset" 'bin/*' -d "${R2PM_BINDIR}"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	curl -fsSL -o "%TEMP%\r2flutter.zip" https://github.com/radareorg/r2flutter/releases/latest/download/r2flutter-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2flutter %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2flutter.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	tar -xf "%TEMP%\r2flutter.zip" --strip-components=1 -C "%R2PM_BINDIR%" bin
+	del "%TEMP%\r2flutter.zip"
+}
+
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/core_flutter.${R2_LIBEXT}" "${R2PM_BINDIR}/r2flutter"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\core_flutter.dll"
+	del "%R2PM_BINDIR%\r2flutter.exe"
+}
+
 R2PM_INSTALL() {
 	./configure
 	${MAKE} || R2PM_FAIL "make"
