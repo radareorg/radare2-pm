@@ -25,6 +25,39 @@ R2PM_INSTALL_WINDOWS() {
 	copy io_frida.dll %R2_USER_PLUGINS%
 }
 
+R2PM_BINSTALL() {
+	case "${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}" in
+	linux-x86-64) asset="r2frida_${R2V}_amd64.deb" ;;
+	linux-arm-64) asset="r2frida_${R2V}_aarch64.deb" ;;
+	darwin-arm-64) asset="r2frida-${R2V}-m1.pkg" ;;
+	darwin-x86-64) asset="r2frida-${R2V}-x64.pkg" ;;
+	*) R2PM_FAIL "No r2frida ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}" ;;
+	esac
+	workdir=$(mktemp -d)
+	curl -fL -o "$workdir/$asset" "https://github.com/nowsecure/r2frida/releases/download/${R2V}/${asset}"
+	if [ "${R2PM_OS}" = darwin ]; then
+		pkgutil --expand-full "$workdir/$asset" "$workdir/root"
+		prefix="$workdir/root/Payload/usr/local"
+	else
+		dpkg-deb -x "$workdir/$asset" "$workdir/root"
+		prefix="$workdir/root/usr"
+	fi
+	mkdir -p "${R2PM_PLUGDIR}" "${R2PM_BINDIR}" "${R2PM_MANDIR}/man1"
+	cp -f "$prefix/lib/radare2/$R2V/io_frida.$R2_LIBEXT" "${R2PM_PLUGDIR}/"
+	cp -f "$prefix/bin/r2frida-compile" "${R2PM_BINDIR}/"
+	cp -f "$prefix"/share/man/man1/*.1 "${R2PM_MANDIR}/man1/"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	(echo %R2PM_ARCH%-%R2PM_BITS%| findstr /x x86-64 >nul || (echo No r2frida %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1))
+	curl -fsSL -o "%TEMP%\r2frida.zip" https://github.com/nowsecure/r2frida/releases/download/%R2V%/r2frida-%R2V%-w64.zip
+	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2frida.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" "*/io_frida.dll"
+	tar -xf "%TEMP%\r2frida.zip" --strip-components=1 -C "%R2PM_BINDIR%" "*/r2frida-compile.exe"
+	del "%TEMP%\r2frida.zip"
+}
+
 R2PM_INSTALL() {
 	unset CFLAGS
 	unset LDFLAGS
@@ -42,11 +75,13 @@ R2PM_INSTALL() {
 }
 
 R2PM_UNINSTALL() {
-	${MAKE} user-uninstall R2_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+	rm -f "${R2PM_PLUGDIR}/io_frida.${R2_LIBEXT}" || exit 1
+	rm -f "${R2PM_BINDIR}/r2frida-compile" "${R2PM_MANDIR}/man1/r2frida.1" "${R2PM_MANDIR}/man1/r2frida-compile.1" "${R2_USER_PLUGINS}/../fortunes/r2frida.txt" || exit 1
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	del %R2_USER_PLUGINS%\io_frida.dll
+	del "%R2PM_PLUGDIR%\io_frida.dll"
+	del "%R2PM_BINDIR%\r2frida-compile.exe"
 }
 
 R2PM_END
