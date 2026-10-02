@@ -30,7 +30,7 @@ R2PM_INSTALL() {
 	git submodule init
 	git submodule update
 	${MAKE} clean || true
-	${MAKE} || R2PM_FAIL "make"
+	CONFIGURE_FLAGS= CFLAGS="-Wno-error=format-security -w" ${MAKE} || R2PM_FAIL "make"
 	${MAKE} user-install
 }
 
