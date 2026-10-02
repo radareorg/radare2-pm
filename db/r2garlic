@@ -3,9 +3,32 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/radareorg/r2garlic"
 R2PM_DESC "Garlic DEX/Dalvik decompiler plugin for radare2"
 
+R2PM_BINSTALL() {
+	asset="r2garlic-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
+	workdir=$(mktemp -d)
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2garlic/releases/latest/download/${asset}" || R2PM_FAIL "No r2garlic ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	curl -fsSL -o "%TEMP%\r2garlic.zip" https://github.com/radareorg/r2garlic/releases/latest/download/r2garlic-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2garlic %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2garlic.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	del "%TEMP%\r2garlic.zip"
+}
+
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/core_r2garlic.${R2_LIBEXT}"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\core_r2garlic.dll"
+}
+
 R2PM_INSTALL() {
-  git submodule init
-  git submodule update
+	git submodule init
+	git submodule update
 	${MAKE} clean || true
 	${MAKE} || R2PM_FAIL "make"
 	${MAKE} user-install
