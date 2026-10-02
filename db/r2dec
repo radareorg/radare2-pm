@@ -10,6 +10,29 @@ R2PM_RELOAD() {
 	Lc libcore_pdd
 }
 
+R2PM_BINSTALL() {
+	asset="r2dec-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
+	workdir=$(mktemp -d)
+	curl -fsSL -o "$workdir/$asset" "https://github.com/wargio/r2dec-js/releases/download/${R2V}/${asset}" || R2PM_FAIL "No r2dec ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	curl -fsSL -o "%TEMP%\r2dec.zip" https://github.com/wargio/r2dec-js/releases/download/%R2V%/r2dec-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2dec %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2dec.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	del "%TEMP%\r2dec.zip"
+}
+
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/libcore_pdd.${R2_LIBEXT}"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\libcore_pdd.dll"
+}
+
 R2PM_INSTALL() {
 	meson setup -Dr2_plugdir=${R2PM_PLUGDIR} b --backend=ninja --wipe || exit 1
 	ninja -C b || exit 1
