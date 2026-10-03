@@ -34,7 +34,8 @@ R2V=6.2.2 r2pm -bi r2frida
 Packages provide `R2PM_BINSTALL()` for Unix shell commands and
 `R2PM_BINSTALL_WINDOWS()` for Windows commands. These hooks run without a
 source checkout, receive `R2V`, `R2PM_OS` (`linux`, `darwin`, `windows`, ...),
-`R2PM_ARCH` (`x86`, `arm`, ...) and `R2PM_BITS` (`32` or `64`), and install into
+`R2PM_ARCH` (`x86`, `arm`, ...), `R2PM_BITS` (`32` or `64`) and `R2PM_TRIPLET`
+(`<os>-<arch>-<bits>`, for example `linux-x86-64`), and install into
 the usual `R2PM_PLUGDIR`, `R2PM_BINDIR` and other r2pm directories. `-g` selects
 the system plugin directory and provides `R2PM_SUDO` on Unix.
 
