@@ -9,6 +9,7 @@ R2PM_BINSTALL() {
 	workdir=$(mktemp -d)
 	trap 'rm -rf "$workdir"' 0
 	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2xsql/releases/latest/download/${asset}" || R2PM_FAIL "No r2xsql ${R2V} binary for ${R2PM_TRIPLET}"
+	${R2PM_SUDO} mkdir -p "${R2PM_PLUGDIR}"
 	${R2PM_SUDO} unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
 }
 
