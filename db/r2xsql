@@ -3,12 +3,37 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/radareorg/r2xsql"
 R2PM_DESC "Virtual SQL Server for Analysis with Radare2"
 
+R2PM_BINSTALL() {
+	[ "${R2PM_OFFLINE}" != 1 ] || R2PM_FAIL "Cannot download r2xsql in offline mode"
+	asset="r2xsql-${R2V}-${R2PM_TRIPLET}.zip"
+	workdir=$(mktemp -d)
+	trap 'rm -rf "$workdir"' 0
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2xsql/releases/latest/download/${asset}" || R2PM_FAIL "No r2xsql ${R2V} binary for ${R2PM_TRIPLET}"
+	${R2PM_SUDO} unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	if "%R2PM_OFFLINE%"=="1" (echo Cannot download r2xsql in offline mode & exit 1)
+	curl -fsSL -o "%TEMP%\r2xsql.zip" https://github.com/radareorg/r2xsql/releases/latest/download/r2xsql-%R2V%-%R2PM_TRIPLET%.zip || (echo No r2xsql %R2V% binary for %R2PM_TRIPLET% & exit 1)
+	(if not exist "%R2PM_PLUGDIR%" mkdir "%R2PM_PLUGDIR%")
+	tar -xf "%TEMP%\r2xsql.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	del "%TEMP%\r2xsql.zip"
+}
+
+R2PM_BUNINSTALL() {
+	${R2PM_SUDO} rm -f "${R2PM_PLUGDIR}/core_r2xsql.${R2_LIBEXT}"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	if exist "%R2PM_PLUGDIR%\core_r2xsql.dll" del /f /q "%R2PM_PLUGDIR%\core_r2xsql.dll"
+}
+
 R2PM_INSTALL() {
-	make && make user-install
+	${MAKE} && ${SUDO} ${MAKE} install PLUGDIR="${R2PM_PLUGDIR}"
 }
 
 R2PM_UNINSTALL() {
-	make && make user-uninstall
+	${SUDO} rm -f "${R2PM_PLUGDIR}/core_r2xsql.${R2_LIBEXT}"
 }
 
 R2PM_END
