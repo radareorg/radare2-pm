@@ -1,0 +1,24 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/kp1tal/r2discord"
+R2PM_DESC "Discord Rich Presence for radare2"
+
+R2PM_INSTALL() {
+	${MAKE} clean
+	${MAKE} || R2PM_FAIL "Build"
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} install PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install"
+	else
+		${MAKE} install PLUGDIR="${R2PM_PLUGDIR}" || R2PM_FAIL "Install"
+	fi
+}
+
+R2PM_UNINSTALL() {
+	if [ "${R2PM_GLOBAL}" = 1 ]; then
+		${SUDO} ${MAKE} uninstall PLUGDIR="${R2PM_PLUGDIR}"
+	else
+		${MAKE} uninstall PLUGDIR="${R2PM_PLUGDIR}"
+	fi
+}
+
+R2PM_END
