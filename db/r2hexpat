@@ -2,6 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/radareorg/r2hexpat"
 R2PM_DESC "ImHex pattern language (.hexpat) support for radare2 using r2js"
+R2PM_PLATFORMS "r2js"
 R2PM_DEPS r2frida
 
 R2PM_BINSTALL() {

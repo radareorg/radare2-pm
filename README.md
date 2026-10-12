@@ -31,6 +31,28 @@ sources. `R2V` selects the release and defaults to the installed radare2 version
 R2V=6.2.2 r2pm -bi r2frida
 ```
 
+Optionally declare supported operating systems, runtimes or exact targets with
+`R2PM_PLATFORMS`:
+
+```sh
+R2PM_PLATFORMS "linux darwin windows"
+# For a portable r2js script instead:
+R2PM_PLATFORMS "r2js"
+# For a package restricted to 32-bit x86 Linux instead:
+R2PM_PLATFORMS "linux-x86-32"
+```
+
+The space-separated tags control package search filtering and populate the
+`platforms` array in `r2pm -sj`. Other tags, such as `termux`, may be declared
+when supported. The declaration is optional: packages without it, or with an
+empty value, retain platform inference from their install hooks and keep their
+existing install behavior. Exact `os-arch-bits` triplets are matched against
+`r2pm -H R2PM_TRIPLET`, including the architecture and bitness. Multiple entries
+are alternatives, so adding `linux` alongside a triplet allows all Linux
+architectures. JSON also exposes `binary: true` when a `R2PM_BINSTALL*`
+hook exists; ready-to-use scripts count as binary installs too. Platform tags
+do not guarantee a binary for every release.
+
 Packages provide `R2PM_BINSTALL()` for Unix shell commands and
 `R2PM_BINSTALL_WINDOWS()` for Windows commands. These hooks run without a
 source checkout, receive `R2V`, `R2PM_OS` (`linux`, `darwin`, `windows`, ...),
