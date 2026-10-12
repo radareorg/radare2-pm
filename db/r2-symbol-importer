@@ -2,7 +2,7 @@ R2PM_BEGIN
 
 R2PM_GIT "https://github.com/urk0hx/r2-symbol-importer"
 R2PM_DESC "Import C types, function signatures and constants from headers"
-R2PM_NEEDS "python3"
+R2PM_NEEDS "python3 make"
 
 R2PM_DOC="
 Requires Python 3.9+ with venv support.
@@ -15,15 +15,11 @@ r2pm -r r2-symbol-importer /path/to/header.h --dry-run
 "
 
 R2PM_INSTALL() {
-	python3 -m venv "${R2PM_PREFIX}/lib/r2-symbol-importer" || exit 1
-	"${R2PM_PREFIX}/lib/r2-symbol-importer/bin/python" -m pip install --upgrade . || exit 1
-	mkdir -p "${R2PM_BINDIR}" || exit 1
-	ln -fs "${R2PM_PREFIX}/lib/r2-symbol-importer/bin/r2-symbol-importer" "${R2PM_BINDIR}/r2-symbol-importer"
+	${MAKE} user-install PREFIX="${R2PM_PREFIX}" BINDIR="${R2PM_BINDIR}"
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_BINDIR}/r2-symbol-importer" || exit 1
-	rm -rf "${R2PM_PREFIX}/lib/r2-symbol-importer"
+	${MAKE} user-uninstall PREFIX="${R2PM_PREFIX}" BINDIR="${R2PM_BINDIR}"
 }
 
 R2PM_END
