@@ -5,6 +5,29 @@ R2PM_DESC "Native radare2 plugin for the binary ninja's WARP signature format"
 
 R2PM_NEEDS "rustc cargo"
 
+R2PM_BINSTALL() {
+	asset="r2warp-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
+	workdir=$(mktemp -d)
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2warp/releases/latest/download/${asset}" || R2PM_FAIL "No r2warp ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
+	rm -rf "$workdir"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	curl -fsSL -o "%TEMP%\r2warp.zip" https://github.com/radareorg/r2warp/releases/latest/download/r2warp-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2warp %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2warp.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	del "%TEMP%\r2warp.zip"
+}
+
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_PLUGDIR}/libr2warp.${R2_LIBEXT}" "${R2PM_PLUGDIR}/libcore_warp.${R2_LIBEXT}" "${R2PM_PLUGDIR}/r2warp.${R2_LIBEXT}"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del "%R2PM_PLUGDIR%\r2warp.dll" "%R2PM_PLUGDIR%\libcore_warp.dll"
+}
+
 R2PM_INSTALL() {
 	${MAKE} clean || true
 	${MAKE} || R2PM_FAIL "make"
