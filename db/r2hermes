@@ -4,17 +4,19 @@ R2PM_GIT "https://github.com/radareorg/r2hermes"
 R2PM_DESC "React Native aka Hermes Bytecode disassembler & decompiler plugin for r2"
 R2PM_PLATFORMS "linux darwin windows"
 
+R2PM_VERSION_MAP 6.2.2:1.5.3
 R2PM_BINSTALL() {
 	asset="r2hermes-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
 	workdir=$(mktemp -d)
-	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2hermes/releases/latest/download/${asset}" || R2PM_FAIL "No r2hermes ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2hermes/releases/download/${R2PM_VERSION:-latest}/${asset}" || R2PM_FAIL "No r2hermes ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
 	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
 	unzip -qoj "$workdir/$asset" 'bin/*' -d "${R2PM_BINDIR}"
 	rm -rf "$workdir"
 }
 
 R2PM_BINSTALL_WINDOWS() {
-	curl -fsSL -o "%TEMP%\r2hermes.zip" https://github.com/radareorg/r2hermes/releases/latest/download/r2hermes-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2hermes %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	if "%R2PM_VERSION%"=="" (set R2PM_VERSION=latest)
+	curl -fsSL -o "%TEMP%\r2hermes.zip" https://github.com/radareorg/r2hermes/releases/download/%R2PM_VERSION%/r2hermes-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2hermes %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
 	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" 2>nul || cd .)
 	tar -xf "%TEMP%\r2hermes.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
 	tar -xf "%TEMP%\r2hermes.zip" --strip-components=1 -C "%R2PM_BINDIR%" bin

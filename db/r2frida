@@ -26,6 +26,8 @@ R2PM_INSTALL_WINDOWS() {
 	copy io_frida.dll %R2_USER_PLUGINS%
 }
 
+R2PM_VERSION_MAP 6.2.2:6.2.2 6.2.4:6.2.4
+
 R2PM_BINSTALL() {
 	case "${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}" in
 	linux-x86-64) asset="r2frida_${R2V}_amd64.deb" ;;
@@ -35,7 +37,7 @@ R2PM_BINSTALL() {
 	*) R2PM_FAIL "No r2frida ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}" ;;
 	esac
 	workdir=$(mktemp -d)
-	curl -fL -o "$workdir/$asset" "https://github.com/nowsecure/r2frida/releases/download/${R2V}/${asset}"
+	curl -fL -o "$workdir/$asset" "https://github.com/nowsecure/r2frida/releases/download/${R2PM_VERSION:-$R2V}/${asset}"
 	if [ "${R2PM_OS}" = darwin ]; then
 		pkgutil --expand-full "$workdir/$asset" "$workdir/root"
 		prefix="$workdir/root/Payload/usr/local"
@@ -51,8 +53,9 @@ R2PM_BINSTALL() {
 }
 
 R2PM_BINSTALL_WINDOWS() {
+	if "%R2PM_VERSION%"=="" (set R2PM_VERSION=%R2V%)
 	(echo %R2PM_ARCH%-%R2PM_BITS%| findstr /x x86-64 >nul || (echo No r2frida %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1))
-	curl -fsSL -o "%TEMP%\r2frida.zip" https://github.com/nowsecure/r2frida/releases/download/%R2V%/r2frida-%R2V%-w64.zip
+	curl -fsSL -o "%TEMP%\r2frida.zip" https://github.com/nowsecure/r2frida/releases/download/%R2PM_VERSION%/r2frida-%R2V%-w64.zip
 	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" 2>nul || cd .)
 	tar -xf "%TEMP%\r2frida.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" "*/io_frida.dll"
 	tar -xf "%TEMP%\r2frida.zip" --strip-components=1 -C "%R2PM_BINDIR%" "*/r2frida-compile.exe"
