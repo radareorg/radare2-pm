@@ -4,10 +4,12 @@ R2PM_GIT "https://github.com/radareorg/r2ai"
 R2PM_DESC "Native AI plugin for radare2"
 R2PM_NEEDS "gcc pkg-config"
 
+R2PM_VERSION_MAP 6.2.4:1.5.3
+
 R2PM_BINSTALL() {
 	asset="r2ai-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
 	workdir=$(mktemp -d)
-	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2ai/releases/latest/download/${asset}" || R2PM_FAIL "No r2ai ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
+	curl -fsSL -o "$workdir/$asset" "https://github.com/radareorg/r2ai/releases/download/${R2PM_VERSION:-latest}/${asset}" || R2PM_FAIL "No r2ai ${R2V} binary for ${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}"
 	mkdir -p "${R2PM_MANDIR}/man1" "$HOME/.config/r2ai/prompts"
 	unzip -qoj "$workdir/$asset" 'plugins/*' -d "${R2PM_PLUGDIR}"
 	unzip -qoj "$workdir/$asset" 'bin/*' -d "${R2PM_BINDIR}"
@@ -17,7 +19,8 @@ R2PM_BINSTALL() {
 }
 
 R2PM_BINSTALL_WINDOWS() {
-	curl -fsSL -o "%TEMP%\r2ai.zip" https://github.com/radareorg/r2ai/releases/latest/download/r2ai-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2ai %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
+	if "%R2PM_VERSION%"=="" (set R2PM_VERSION=latest)
+	curl -fsSL -o "%TEMP%\r2ai.zip" https://github.com/radareorg/r2ai/releases/download/%R2PM_VERSION%/r2ai-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2ai %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
 	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" "%USERPROFILE%\.config\r2ai\prompts" 2>nul || cd .)
 	tar -xf "%TEMP%\r2ai.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
 	tar -xf "%TEMP%\r2ai.zip" --strip-components=1 -C "%R2PM_BINDIR%" bin
