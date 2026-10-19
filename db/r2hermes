@@ -4,7 +4,8 @@ R2PM_GIT "https://github.com/radareorg/r2hermes"
 R2PM_DESC "React Native aka Hermes Bytecode disassembler & decompiler plugin for r2"
 R2PM_PLATFORMS "linux darwin windows"
 
-R2PM_VERSION_MAP 6.2.2:1.5.3
+R2PM_VERSION_MAP "6.2.2:1.5.3 6.2.4:1.6.0"
+
 R2PM_BINSTALL() {
 	asset="r2hermes-${R2V}-${R2PM_OS}-${R2PM_ARCH}-${R2PM_BITS}.zip"
 	workdir=$(mktemp -d)
