@@ -1,0 +1,25 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/urk0hx/r2-symbol-importer"
+R2PM_DESC "Import C types, function signatures and constants from headers"
+R2PM_NEEDS "python3 make"
+
+R2PM_DOC="
+Requires Python 3.9+ with venv support.
+
+Inside radare2:
+#!pipe r2-symbol-importer /path/to/header.h
+
+Preview without an active session:
+r2pm -r r2-symbol-importer /path/to/header.h --dry-run
+"
+
+R2PM_INSTALL() {
+	${MAKE} user-install PREFIX="${R2PM_PREFIX}" BINDIR="${R2PM_BINDIR}"
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} user-uninstall PREFIX="${R2PM_PREFIX}" BINDIR="${R2PM_BINDIR}"
+}
+
+R2PM_END
