@@ -1,0 +1,18 @@
+R2PM_BEGIN
+
+R2PM_GIT "https://github.com/radareorg/radare2-extras"
+R2PM_DESC "Game Boy ESIL emulator with terminal display, input and audio"
+R2PM_DEPS r2au
+
+R2PM_INSTALL() {
+	cd r2gb || exit 1
+	${MAKE} clean || exit 1
+	${MAKE} || exit 1
+	${MAKE} install R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_UNINSTALL() {
+	${MAKE} -C r2gb uninstall R2PM_PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+}
+
+R2PM_END
