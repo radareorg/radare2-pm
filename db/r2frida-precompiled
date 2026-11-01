@@ -22,7 +22,7 @@ R2PM_INSTALL_WINDOWS() {
 	curl -fsSL -o "%TEMP%\r2frida.zip" https://github.com/nowsecure/r2frida/releases/download/5.7.8/r2frida-5.7.8-w64.zip
 	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
 	tar -xf "%TEMP%\r2frida.zip" -C "%R2PM_PLUGDIR%" io_frida.dll
-	if exist "%TEMP%\r2frida.zip" del "%TEMP%\r2frida.zip"
+	del "%TEMP%\r2frida.zip"
 }
 
 R2PM_INSTALL() {
@@ -38,8 +38,8 @@ R2PM_UNINSTALL() {
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\io_frida.dll" del "%R2PM_PLUGDIR%\io_frida.dll"
-	if exist "%R2_USER_PLUGINS%\io_frida.dll" del "%R2_USER_PLUGINS%\io_frida.dll"
+	del "%R2PM_PLUGDIR%\io_frida.dll"
+	del "%R2_USER_PLUGINS%\io_frida.dll"
 }
 
 R2PM_END

@@ -25,7 +25,7 @@ R2PM_INSTALL_WINDOWS() {
 	(mkdir "%R2PM_PLUGDIR%" "%R2PM_BINDIR%" 2>nul || cd .)
 	tar -xf "%TEMP%\r2frida.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" "*/io_frida.dll"
 	tar -xf "%TEMP%\r2frida.zip" --strip-components=1 -C "%R2PM_BINDIR%" "*/r2frida-compile.exe"
-	if exist "%TEMP%\r2frida.zip" del "%TEMP%\r2frida.zip"
+	del "%TEMP%\r2frida.zip"
 }
 
 R2PM_VERSION_MAP 6.2.2:6.2.2 6.2.4:6.2.4
@@ -69,8 +69,8 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\io_frida.dll" del "%R2PM_PLUGDIR%\io_frida.dll"
-	if exist "%R2PM_BINDIR%\r2frida-compile.exe" del "%R2PM_BINDIR%\r2frida-compile.exe"
+	del "%R2PM_PLUGDIR%\io_frida.dll"
+	del "%R2PM_BINDIR%\r2frida-compile.exe"
 }
 
 R2PM_INSTALL() {
@@ -94,9 +94,9 @@ R2PM_UNINSTALL() {
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\io_frida.dll" del "%R2PM_PLUGDIR%\io_frida.dll"
-	if exist "%R2_USER_PLUGINS%\io_frida.dll" del "%R2_USER_PLUGINS%\io_frida.dll"
-	if exist "%R2PM_BINDIR%\r2frida-compile.exe" del "%R2PM_BINDIR%\r2frida-compile.exe"
+	del "%R2PM_PLUGDIR%\io_frida.dll"
+	del "%R2_USER_PLUGINS%\io_frida.dll"
+	del "%R2PM_BINDIR%\r2frida-compile.exe"
 }
 
 R2PM_END

@@ -17,7 +17,7 @@ R2PM_INSTALL_WINDOWS() {
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\decai.r2.js" del "%R2PM_PLUGDIR%\decai.r2.js"
+	del %R2PM_PLUGDIR%\decai.r2.js
 }
 
 R2PM_END
