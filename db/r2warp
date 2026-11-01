@@ -28,8 +28,7 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\r2warp.dll" del "%R2PM_PLUGDIR%\r2warp.dll"
-	if exist "%R2PM_PLUGDIR%\libcore_warp.dll" del "%R2PM_PLUGDIR%\libcore_warp.dll"
+	del "%R2PM_PLUGDIR%\r2warp.dll" "%R2PM_PLUGDIR%\libcore_warp.dll"
 }
 
 R2PM_INSTALL() {

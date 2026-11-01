@@ -28,8 +28,8 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\core_flutter.dll" del "%R2PM_PLUGDIR%\core_flutter.dll"
-	if exist "%R2PM_BINDIR%\r2flutter.exe" del "%R2PM_BINDIR%\r2flutter.exe"
+	del "%R2PM_PLUGDIR%\core_flutter.dll"
+	del "%R2PM_BINDIR%\r2flutter.exe"
 }
 
 R2PM_INSTALL() {
