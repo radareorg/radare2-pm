@@ -30,7 +30,7 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\libcore_pdd.dll"
+	if exist "%R2PM_PLUGDIR%\libcore_pdd.dll" del "%R2PM_PLUGDIR%\libcore_pdd.dll"
 }
 
 R2PM_INSTALL() {

@@ -32,8 +32,8 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\core_r2ghidra.dll"
-	rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh"
+	if exist "%R2PM_PLUGDIR%\core_r2ghidra.dll" del "%R2PM_PLUGDIR%\core_r2ghidra.dll"
+	if exist "%R2PM_PLUGDIR%\r2ghidra_sleigh" rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh"
 }
 
 R2PM_INSTALL_WINDOWS() {
