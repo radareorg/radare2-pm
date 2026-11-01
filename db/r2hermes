@@ -29,8 +29,8 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\*hbc.dll"
-	del "%R2PM_BINDIR%\r2hermes.exe"
+	if exist "%R2PM_PLUGDIR%\*hbc.dll" del "%R2PM_PLUGDIR%\*hbc.dll"
+	if exist "%R2PM_BINDIR%\r2hermes.exe" del "%R2PM_BINDIR%\r2hermes.exe"
 }
 
 R2PM_INSTALL() {

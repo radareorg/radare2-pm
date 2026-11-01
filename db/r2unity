@@ -28,8 +28,8 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\*_r2unity.dll"
-	del "%R2PM_BINDIR%\r2unity.exe"
+	if exist "%R2PM_PLUGDIR%\*_r2unity.dll" del "%R2PM_PLUGDIR%\*_r2unity.dll"
+	if exist "%R2PM_BINDIR%\r2unity.exe" del "%R2PM_BINDIR%\r2unity.exe"
 }
 
 R2PM_INSTALL() {
