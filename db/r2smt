@@ -3,7 +3,7 @@ R2PM_BEGIN
 R2PM_GIT "https://github.com/seifreed/r2SMT"
 R2PM_DESC "SMT-assisted opaque-predicate deobfuscator for radare2 (MIT)"
 R2PM_PLATFORMS "linux darwin windows"
-R2PM_NEEDS "curl tar make pkg-config cc"
+R2PM_NEEDS "rustc cargo make pkg-config cc"
 
 R2PM_VERSION_MAP 6.2.4:0.6.2
 
@@ -15,13 +15,13 @@ R2PM_BINSTALL() {
 	PACKAGE_VERSION="${R2PM_VERSION:-0.6.2}"
 	ASSET="r2smt-r2pm-v${PACKAGE_VERSION}-r2-${R2V}-${R2PM_TRIPLET}.zip"
 	WORKDIR="$(mktemp -d)"
+	trap 'rm -rf "${WORKDIR}"' 0
 	URL="https://github.com/seifreed/r2SMT/releases/download/v${PACKAGE_VERSION}/${ASSET}"
 	curl -fLsS --retry 5 --retry-delay 3 --retry-all-errors -o "${WORKDIR}/${ASSET}" "${URL}" || R2PM_FAIL "No r2smt ${PACKAGE_VERSION} binary for radare2 ${R2V} on ${R2PM_TRIPLET}"
 	mkdir -p "${R2PM_BINDIR}" "${R2PM_PLUGDIR}"
 	unzip -qjo "${WORKDIR}/${ASSET}" 'bin/*' -d "${R2PM_BINDIR}"
 	unzip -qjo "${WORKDIR}/${ASSET}" 'plugins/*' -d "${R2PM_PLUGDIR}"
 	chmod 755 "${R2PM_BINDIR}/r2smt"
-	rm -rf "${WORKDIR}"
 }
 
 R2PM_BINSTALL_WINDOWS() {
@@ -48,49 +48,11 @@ R2PM_BUNINSTALL_WINDOWS() {
 }
 
 R2PM_INSTALL() {
-	VERSION="$(sed -n '/^\[workspace.package\]/,/^\[/s/^version[[:space:]]*=[[:space:]]*"\([^"]*\)"/\1/p' Cargo.toml)"
-	if [ -z "${VERSION}" ]; then
-		echo "[r2smt] cannot read workspace version" >&2
-		exit 1
-	fi
-
-	TRIPLE=""
-	case "$(uname -s):$(uname -m)" in
-		Darwin:arm64) TRIPLE="aarch64-apple-darwin" ;;
-		Darwin:x86_64) TRIPLE="x86_64-apple-darwin" ;;
-		Linux:aarch64) TRIPLE="aarch64-unknown-linux-gnu" ;;
-		Linux:x86_64) TRIPLE="x86_64-unknown-linux-gnu" ;;
-	esac
-
-	INSTALLED=0
-	if [ "${USE_PREBUILT:-1}" = 1 ] && [ -n "${TRIPLE}" ]; then
-		ARCHIVE="${TMPDIR:-/tmp}/r2smt-v${VERSION}-${TRIPLE}-$$.tar.gz"
-		URL="https://github.com/seifreed/r2SMT/releases/download/v${VERSION}/r2smt-v${VERSION}-${TRIPLE}.tar.gz"
-		echo "[r2smt] fetching ${URL}"
-		if curl -fLsS -o "${ARCHIVE}" "${URL}"; then
-			mkdir -p "${R2PM_BINDIR}"
-			if tar -xzf "${ARCHIVE}" -C "${R2PM_BINDIR}" r2smt; then
-				INSTALLED=1
-			fi
-		fi
-		rm -f "${ARCHIVE}"
-	fi
-
-	if [ "${INSTALLED}" != 1 ]; then
-		echo "[r2smt] prebuilt unavailable; building from source"
-		make all || exit 1
-		mkdir -p "${R2PM_BINDIR}"
-		install -m 755 target/release/r2smt "${R2PM_BINDIR}/r2smt"
-	fi
-
-	make -B plugin-install PLUGDIR="${R2PM_PLUGDIR}" || exit 1
+	${MAKE} user-install
 }
 
 R2PM_UNINSTALL() {
-	LIBEXT="$(r2 -H R2_LIBEXT 2>/dev/null || echo so)"
-	rm -f "${R2PM_BINDIR}/r2smt"
-	rm -f "${R2PM_PLUGDIR}/core_r2smt.${LIBEXT}"
-	rm -f "${R2PM_PLUGDIR}/r2smt.r2"
+	${MAKE} user-uninstall
 }
 
 R2PM_END
