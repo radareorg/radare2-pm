@@ -23,8 +23,8 @@ R2PM_BINSTALL_WINDOWS() {
 	curl -fsSL -o "%TEMP%\r2ghidra.zip" https://github.com/radareorg/r2ghidra/releases/download/%R2V%/r2ghidra-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2ghidra %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
 	(rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh" 2>nul || cd .)
 	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
-	tar -xf "%TEMP%\r2ghidra.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
-	del "%TEMP%\r2ghidra.zip"
+	tar -xf "%TEMP%\r2ghidra.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins || exit /b 1
+	del "%TEMP%\r2ghidra.zip" || exit /b 1
 }
 
 R2PM_BUNINSTALL() {
@@ -32,17 +32,17 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\core_r2ghidra.dll"
-	if exist "%R2PM_PLUGDIR%\r2ghidra_sleigh" rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh"
+	del "%R2PM_PLUGDIR%\core_r2ghidra.dll" || exit /b 1
+	if exist "%R2PM_PLUGDIR%\r2ghidra_sleigh" (rmdir /s /q "%R2PM_PLUGDIR%\r2ghidra_sleigh" || exit /b 1)
 }
 
 R2PM_INSTALL_WINDOWS() {
-	cd dist/windows/r2pm
-	install.bat
+	cd dist/windows/r2pm || exit /b 1
+	call install.bat || exit /b 1
 }
 R2PM_UNINSTALL_WINDOWS() {
-	cd dist/windows/r2pm
-	uninstall.bat
+	cd dist/windows/r2pm || exit /b 1
+	call uninstall.bat || exit /b 1
 }
 
 R2PM_INSTALL() {

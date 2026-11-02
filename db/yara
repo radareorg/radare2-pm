@@ -6,12 +6,12 @@ R2PM_DESC "Install YARA command-line tool and library from git"
 # TODO: fix windows and global installations (r2pm -g keeps installing in the home)
 
 R2PM_INSTALL_WINDOWS() {
-	powershell -command "Invoke-WebRequest 'https://github.com/VirusTotal/yara/releases/download/v4.5.4/yara-master-v4.5.4-win64.zip' -OutFile 'yara-w64.zip'"
-	powershell -command "$destination = & r2pm -H R2PM_BINDIR;Copy-Item "yara-master-v4.5.4-win64/yara64.exe" $destination -Force "
+	powershell -command "Invoke-WebRequest 'https://github.com/VirusTotal/yara/releases/download/v4.5.4/yara-master-v4.5.4-win64.zip' -OutFile 'yara-w64.zip'" || exit /b 1
+	powershell -command "$destination = & r2pm -H R2PM_BINDIR;Copy-Item "yara-master-v4.5.4-win64/yara64.exe" $destination -Force " || exit /b 1
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	powershell -command "$bindir = & r2pm -H R2PM_BINDIR; $destination = Join-Path -Path $bindir -ChildPath "yara64.exe"; Remove-Item $destination -Force"
+	powershell -command "$bindir = & r2pm -H R2PM_BINDIR; $destination = Join-Path -Path $bindir -ChildPath "yara64.exe"; Remove-Item $destination -Force" || exit /b 1
 }
 
 R2PM_INSTALL() {
