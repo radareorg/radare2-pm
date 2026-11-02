@@ -17,8 +17,8 @@ R2PM_BINSTALL_WINDOWS() {
 	if "%R2PM_VERSION%"=="" (set R2PM_VERSION=latest)
 	curl -fsSL -o "%TEMP%\r2garlic.zip" https://github.com/radareorg/r2garlic/releases/download/%R2PM_VERSION%/r2garlic-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2garlic %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
 	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
-	tar -xf "%TEMP%\r2garlic.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
-	del "%TEMP%\r2garlic.zip"
+	tar -xf "%TEMP%\r2garlic.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins || exit /b 1
+	del "%TEMP%\r2garlic.zip" || exit /b 1
 }
 
 R2PM_BUNINSTALL() {
@@ -26,7 +26,7 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\core_r2garlic.dll"
+	del "%R2PM_PLUGDIR%\core_r2garlic.dll" || exit /b 1
 }
 
 R2PM_INSTALL() {

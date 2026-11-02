@@ -19,9 +19,9 @@ R2PM_BINSTALL_WINDOWS() {
 	(if "%R2PM_VERSION%"=="" (echo r2xsql binary installation requires r2pm with R2PM_VERSION_MAP support from radare2 git & exit 1))
 	(if "%R2PM_OFFLINE%"=="1" (echo Cannot download r2xsql in offline mode & exit 1))
 	(curl -fsSL -o "%TEMP%\r2xsql.zip" https://github.com/radareorg/r2xsql/releases/download/%R2PM_VERSION%/r2xsql-%R2V%-%R2PM_TRIPLET%.zip || (echo No r2xsql %R2PM_VERSION% binary for radare2 %R2V% on %R2PM_TRIPLET% & exit 1))
-	(if not exist "%R2PM_PLUGDIR%" mkdir "%R2PM_PLUGDIR%")
-	tar -xf "%TEMP%\r2xsql.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
-	del "%TEMP%\r2xsql.zip"
+	(if not exist "%R2PM_PLUGDIR%" mkdir "%R2PM_PLUGDIR%" || exit /b 1)
+	tar -xf "%TEMP%\r2xsql.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins || exit /b 1
+	del "%TEMP%\r2xsql.zip" || exit /b 1
 }
 
 R2PM_BUNINSTALL() {
@@ -29,7 +29,7 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	if exist "%R2PM_PLUGDIR%\core_r2xsql.dll" del /f /q "%R2PM_PLUGDIR%\core_r2xsql.dll"
+	if exist "%R2PM_PLUGDIR%\core_r2xsql.dll" (del /f /q "%R2PM_PLUGDIR%\core_r2xsql.dll" || exit /b 1)
 }
 
 R2PM_INSTALL() {

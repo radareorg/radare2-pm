@@ -19,10 +19,10 @@ $ r2 frida://{device-id}/{application-name|process-id}
 "
 
 R2PM_INSTALL_WINDOWS() {
-	curl -fsSL -o "%TEMP%\r2frida.zip" https://github.com/nowsecure/r2frida/releases/download/5.7.8/r2frida-5.7.8-w64.zip
+	curl -fsSL -o "%TEMP%\r2frida.zip" https://github.com/nowsecure/r2frida/releases/download/5.7.8/r2frida-5.7.8-w64.zip || exit /b 1
 	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
-	tar -xf "%TEMP%\r2frida.zip" -C "%R2PM_PLUGDIR%" io_frida.dll
-	del "%TEMP%\r2frida.zip"
+	tar -xf "%TEMP%\r2frida.zip" -C "%R2PM_PLUGDIR%" io_frida.dll || exit /b 1
+	del "%TEMP%\r2frida.zip" || exit /b 1
 }
 
 R2PM_INSTALL() {
@@ -38,8 +38,8 @@ R2PM_UNINSTALL() {
 }
 
 R2PM_UNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\io_frida.dll"
-	del "%R2_USER_PLUGINS%\io_frida.dll"
+	del "%R2PM_PLUGDIR%\io_frida.dll" || exit /b 1
+	del "%R2_USER_PLUGINS%\io_frida.dll" || exit /b 1
 }
 
 R2PM_END

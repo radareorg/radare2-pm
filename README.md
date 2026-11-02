@@ -22,6 +22,14 @@ export R2PM_DBDIR="$PWD/db"
 # export R2PM_USRDIR="/path/to/usr/dir"
 ```
 
+## Windows hooks
+
+Windows install and uninstall hooks use native batch syntax. Stop explicitly
+on failure with `command || exit /b 1`; this catches negative exit codes too.
+Use `call helper.cmd || exit /b 1` when invoking another batch file so execution
+returns to the hook. Environment changes persist across lines; multiline
+`if/else` blocks and `^` continuations follow normal CMD rules.
+
 ## Binary packages
 
 Use `r2pm -bi r2frida` to install a released binary without cloning or compiling

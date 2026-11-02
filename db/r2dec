@@ -21,8 +21,8 @@ R2PM_BINSTALL() {
 R2PM_BINSTALL_WINDOWS() {
 	curl -fsSL -o "%TEMP%\r2dec.zip" https://github.com/wargio/r2dec-js/releases/download/%R2V%/r2dec-%R2V%-windows-%R2PM_ARCH%-%R2PM_BITS%.zip || (echo No r2dec %R2V% binary for windows-%R2PM_ARCH%-%R2PM_BITS% & exit 1)
 	(mkdir "%R2PM_PLUGDIR%" 2>nul || cd .)
-	tar -xf "%TEMP%\r2dec.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
-	del "%TEMP%\r2dec.zip"
+	tar -xf "%TEMP%\r2dec.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins || exit /b 1
+	del "%TEMP%\r2dec.zip" || exit /b 1
 }
 
 R2PM_BUNINSTALL() {
@@ -30,7 +30,7 @@ R2PM_BUNINSTALL() {
 }
 
 R2PM_BUNINSTALL_WINDOWS() {
-	del "%R2PM_PLUGDIR%\libcore_pdd.dll"
+	del "%R2PM_PLUGDIR%\libcore_pdd.dll" || exit /b 1
 }
 
 R2PM_INSTALL() {
