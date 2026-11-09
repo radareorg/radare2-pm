@@ -1,9 +1,51 @@
 R2PM_BEGIN
 
-R2PM_GIT "https://github.com/seifreed/r2SMT --branch refs/pull/17/head"
-R2PM_DESC "SMT solver integration for radare2"
+R2PM_GIT "https://github.com/seifreed/r2SMT"
+R2PM_DESC "SMT-assisted opaque-predicate deobfuscator for radare2 (MIT)"
+R2PM_PLATFORMS "linux darwin windows"
+R2PM_NEEDS "rustc cargo make pkg-config cc"
 
-R2PM_NEEDS "rustc cargo"
+R2PM_VERSION_MAP 6.2.4:0.6.2
+
+R2PM_BINSTALL() {
+	[ "${R2PM_OFFLINE:-0}" != 1 ] || R2PM_FAIL "r2smt binary installation requires network access"
+	command -v curl >/dev/null 2>&1 || R2PM_FAIL "r2smt binary installation requires curl"
+	command -v unzip >/dev/null 2>&1 || R2PM_FAIL "r2smt binary installation requires unzip"
+
+	PACKAGE_VERSION="${R2PM_VERSION:-0.6.2}"
+	ASSET="r2smt-r2pm-v${PACKAGE_VERSION}-r2-${R2V}-${R2PM_TRIPLET}.zip"
+	WORKDIR="$(mktemp -d)"
+	trap 'rm -rf "${WORKDIR}"' 0
+	URL="https://github.com/seifreed/r2SMT/releases/download/v${PACKAGE_VERSION}/${ASSET}"
+	curl -fLsS --retry 5 --retry-delay 3 --retry-all-errors -o "${WORKDIR}/${ASSET}" "${URL}" || R2PM_FAIL "No r2smt ${PACKAGE_VERSION} binary for radare2 ${R2V} on ${R2PM_TRIPLET}"
+	mkdir -p "${R2PM_BINDIR}" "${R2PM_PLUGDIR}"
+	unzip -qjo "${WORKDIR}/${ASSET}" 'bin/*' -d "${R2PM_BINDIR}"
+	unzip -qjo "${WORKDIR}/${ASSET}" 'plugins/*' -d "${R2PM_PLUGDIR}"
+	chmod 755 "${R2PM_BINDIR}/r2smt"
+}
+
+R2PM_BINSTALL_WINDOWS() {
+	(if not "%R2PM_OFFLINE%"=="1" (cd .) else (echo r2smt binary installation requires network access & exit /b 1))
+	(if defined R2PM_VERSION (curl -fLsS --retry 5 --retry-delay 3 --retry-all-errors -o "%TEMP%\r2smt-r2pm.zip" "https://github.com/seifreed/r2SMT/releases/download/v%R2PM_VERSION%/r2smt-r2pm-v%R2PM_VERSION%-r2-%R2V%-%R2PM_TRIPLET%.zip" || (echo No r2smt %R2PM_VERSION% binary for radare2 %R2V% on %R2PM_TRIPLET% & exit /b 1)) else (curl -fLsS --retry 5 --retry-delay 3 --retry-all-errors -o "%TEMP%\r2smt-r2pm.zip" "https://github.com/seifreed/r2SMT/releases/download/v0.6.2/r2smt-r2pm-v0.6.2-r2-%R2V%-%R2PM_TRIPLET%.zip" || (echo No r2smt 0.6.2 binary for radare2 %R2V% on %R2PM_TRIPLET% & exit /b 1)))
+	(mkdir "%R2PM_BINDIR%" "%R2PM_PLUGDIR%" 2>nul || cd .)
+	tar -xf "%TEMP%\r2smt-r2pm.zip" --strip-components=1 -C "%R2PM_BINDIR%" bin
+	tar -xf "%TEMP%\r2smt-r2pm.zip" --strip-components=1 -C "%R2PM_PLUGDIR%" plugins
+	dir /b "%R2PM_BINDIR%\r2smt.exe" >nul
+	dir /b "%R2PM_PLUGDIR%\core_r2smt.dll" >nul
+	dir /b "%R2PM_PLUGDIR%\r2smt.r2" >nul
+	del "%TEMP%\r2smt-r2pm.zip"
+}
+
+R2PM_BUNINSTALL() {
+	rm -f "${R2PM_BINDIR}/r2smt"
+	rm -f "${R2PM_PLUGDIR}/core_r2smt.${R2_LIBEXT}"
+	rm -f "${R2PM_PLUGDIR}/r2smt.r2"
+}
+
+R2PM_BUNINSTALL_WINDOWS() {
+	del /q "%R2PM_BINDIR%\r2smt.exe" "%R2PM_BINDIR%\libz3.dll" 2>nul
+	del /q "%R2PM_PLUGDIR%\core_r2smt.dll" "%R2PM_PLUGDIR%\r2smt.r2" 2>nul
+}
 
 R2PM_INSTALL() {
 	${MAKE} user-install
