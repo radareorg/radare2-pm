@@ -1,19 +1,19 @@
 R2PM_BEGIN
 
 R2PM_GIT "https://github.com/0verflowme/r2sleigh"
-R2PM_DESC "Sleigh-to-r2il compiler and radare2 analysis plugin"
+R2PM_DESC "Sleigh-based analysis shell and Sleigh-to-r2il compiler"
 
 R2PM_NEEDS "rustc cargo"
 
 R2PM_INSTALL() {
-	cargo b || exit 1
-	cd r2plugin && make RUST_FEATURES=all-archs install
-# ln -fs `pwd`/target/debug/r2sleigh "${R2PM_BINDIR}"/r2sleigh || exit 1
+	cargo build --release --target-dir target -p r2s -p r2sleigh-cli \
+		--features r2s/sleigh,r2sleigh-cli/all-archs || exit 1
+	mkdir -p "${R2PM_BINDIR}" || exit 1
+	cp -f target/release/r2s target/release/r2sleigh "${R2PM_BINDIR}/" || exit 1
 }
 
 R2PM_UNINSTALL() {
-	rm -f "${R2PM_BINDIR}"/r2sleigh
-	cd r2plugin && make RUST_FEATURES=all-archs uninstall
+	rm -f "${R2PM_BINDIR}/r2s" "${R2PM_BINDIR}/r2sleigh"
 }
 
 R2PM_END
