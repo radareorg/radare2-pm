@@ -4,7 +4,7 @@ R2PM_GIT "https://github.com/marioballano/r3"
 R2PM_DESC "3D interface for radare2"
 
 R2PM_INSTALL() {
-	cd r3c && make && make user-install
+	cd r3c && make -j4 && make user-install
 }
 
 R2PM_UNINSTALL() {
